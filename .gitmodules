@@ -1,0 +1,6 @@
+[submodule "projects/22-shrines"]
+	path = projects/22-shrines
+	url = https://github.com/galactus-mizoguchi/22-shrines.git
+[submodule "projects/olympos"]
+	path = projects/olympos
+	url = https://github.com/galactus-mizoguchi/olympos.git

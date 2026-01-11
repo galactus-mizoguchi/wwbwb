@@ -105,8 +105,86 @@ wwbwb/
 - **olympos**: オリュンポスプロジェクト
 - **project-tamplate**: 新規プロジェクト作成時のテンプレート
 
+## Git Submodulesについて
+
+`projects/`配下の各プロジェクトは、Git Submodulesとして管理されています。これにより、親リポジトリ（`/wwbwb`）と各プロジェクトの両方で独立してGit管理が可能です。
+
+### 既存プロジェクトをサブモジュールとして追加する場合
+
+既存のプロジェクトディレクトリが独立したGitリポジトリの場合：
+
+```bash
+# 1. 既存のプロジェクトをGitリポジトリとして初期化（まだの場合）
+cd projects/project-name
+git init
+git add .
+git commit -m "Initial commit"
+
+# 2. リモートリポジトリにプッシュ（GitHub等）
+git remote add origin <リモートリポジトリのURL>
+git push -u origin main
+
+# 3. 親リポジトリに戻ってサブモジュールとして追加
+cd ../..
+git submodule add <リモートリポジトリのURL> projects/project-name
+git commit -m "Add project-name as submodule"
+```
+
+### 新しいプロジェクトをサブモジュールとして追加する場合
+
+```bash
+# 1. 新しいプロジェクト用のGitリポジトリを作成（GitHub等）
+# （リモートリポジトリを事前に作成）
+
+# 2. 親リポジトリでサブモジュールとして追加
+git submodule add <リモートリポジトリのURL> projects/new-project-name
+
+# 3. サブモジュールディレクトリに移動して開発
+cd projects/new-project-name
+# ファイルを編集・追加
+git add .
+git commit -m "Initial commit"
+git push
+```
+
+### サブモジュールのクローン
+
+他の環境でこのリポジトリをクローンする場合：
+
+```bash
+# サブモジュールを含めてクローン
+git clone --recurse-submodules <リポジトリのURL>
+
+# または、既にクローン済みの場合
+git submodule update --init --recursive
+```
+
+### サブモジュールの更新
+
+```bash
+# すべてのサブモジュールを最新の状態に更新
+git submodule update --remote
+
+# 特定のサブモジュールのみ更新
+git submodule update --remote projects/project-name
+```
+
+### サブモジュール内で作業する場合
+
+```bash
+# サブモジュールディレクトリに移動
+cd projects/project-name
+
+# 通常のGit操作（add, commit, push等）が可能
+git status
+git add .
+git commit -m "Update project"
+git push
+```
+
 ## 注意事項
 - 既存のHTML構造やCSSクラスは可能な限り保持する
 - モバイルファーストのデザインを推奨
 - セマンティックなHTMLを使用する
+- 各プロジェクトは独立したGitリポジトリとして管理されるため、各プロジェクト内で`git`コマンドを使用可能
 
