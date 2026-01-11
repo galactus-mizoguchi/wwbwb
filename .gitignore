@@ -1,0 +1,55 @@
+# OS生成ファイル
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# エディタ・IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+
+# ログファイル
+*.log
+logs/
+
+# 一時ファイル
+*.tmp
+*.temp
+*.bak
+*.backup
+
+# 環境変数ファイル
+.env
+.env.local
+.env.*.local
+
+# 依存関係（必要に応じて）
+node_modules/
+vendor/
+composer.lock
+package-lock.json
+yarn.lock
+
+# ビルド成果物
+dist/
+build/
+*.min.js
+*.min.css
+
+# キャッシュ
+.cache/
+*.cache
+
+# サブプロジェクト（独立したGitリポジトリ）
+22-shrines/
+olympos/

@@ -1,0 +1,141 @@
+@use "sass:math";
+@use "../../foundation/variable" as *;
+@use "_mediaquery" as *;
+@use "_font" as *;
+
+@mixin linkColor($color: $baseC, $hover: $mainC) {
+  color: $color;
+  &:hover, &:focus, &:active {
+    color: $hover;
+  }
+}
+@mixin textEllipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+@mixin fullWidth {
+  margin: 0 calc(50% - 50vw);
+  width: 100vw;
+}
+
+// flexbox
+@mixin flexBox($align:flex-start, $justy:flex-start, $dir:row, $wrap:nowrap) {
+  display: flex;
+  align-items: $align;
+  justify-content: $justy;
+  flex-direction: $dir;
+  flex-wrap: $wrap;
+}
+@mixin flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin hover {
+  &:hover, &:active, &:focus {
+    @content;
+  }
+}
+
+@mixin fontSize($fontsize) {
+  font-size: $fontsize + px;
+  font-size: (math.div($fontsize, 16)) * 1rem;
+}
+
+
+// margin
+@mixin margin($mtmb, $mrml) {
+  margin: $mtmb + px $mrml + px;
+  @include screen-md {
+    margin: round($mtmb * math.div(2, 3)) + px round($mrml * math.div(2, 3)) + px;
+  }
+  @include screen-sm {
+    margin: round($mtmb * math.div(1, 2)) + px round($mrml * math.div(1, 2)) + px;
+  }
+}
+@mixin mt($mt) {
+  margin-top: $mt + px;
+  @include screen-md {
+    margin-top: round($mt * math.div(2, 3)) + px;
+  }
+  @include screen-sm {
+    margin-top: round($mt * math.div(1, 2)) + px;
+  }
+}
+@mixin mb($mb) {
+  margin-bottom: $mb + px;
+  @include screen-md {
+    margin-bottom: round($mb * math.div(2, 3)) + px;
+  }
+  @include screen-sm {
+    margin-bottom: round($mb * math.div(1, 2)) + px;
+  }
+}
+@mixin mr($mr) {
+  margin-right: $mr + px;
+  @include screen-md {
+    margin-right: round($mr * math.div(2, 3)) + px;
+  }
+  @include screen-sm {
+    margin-right: round($mr * math.div(1, 2)) + px;
+  }
+}
+@mixin ml($ml) {
+  margin-left: $ml + px;
+  @include screen-md {
+    margin-left: round($ml * math.div(2, 3)) + px;
+  }
+  @include screen-sm {
+    margin-left: round($ml * math.div(1, 2)) + px;
+  }
+}
+
+// padding
+@mixin padding($ptpb, $prpl) {
+  padding: $ptpb + px $prpl + px;
+  @include screen-md {
+    padding: round($ptpb * math.div(2, 3)) + px round($prpl * math.div(2, 3)) + px;
+  }
+  @include screen-sm {
+    padding: round($ptpb * math.div(1, 2)) + px round($prpl * math.div(1, 2)) + px;
+  }
+}
+@mixin pt($pt) {
+  padding-top: $pt + px;
+  @include screen-md {
+    padding-top: round($pt * math.div(2, 3)) + px;
+  }
+  @include screen-sm {
+    padding-top: round($pt * math.div(1, 2)) + px;
+  }
+}
+@mixin pb($pb) {
+  padding-bottom: $pb + px;
+  @include screen-md {
+    padding-bottom: round($pb * math.div(2, 3)) + px;
+  }
+  @include screen-sm {
+    padding-bottom: round($pb * math.div(1, 2)) + px;
+  }
+}
+@mixin pr($pr) {
+  padding-right: $pr + px;
+  @include screen-md {
+    padding-right: round($pr * math.div(2, 3)) + px;
+  }
+  @include screen-sm {
+    padding-right: round($pr * math.div(1, 2)) + px;
+  }
+}
+@mixin pl($pl) {
+  padding-left: $pl + px;
+  @include screen-md {
+    padding-left: round($pl * math.div(2, 3)) + px;
+  }
+  @include screen-sm {
+    padding-left: round($pl * math.div(1, 2)) + px;
+  }
+}

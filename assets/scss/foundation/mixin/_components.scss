@@ -1,0 +1,226 @@
+@use "sass:math";
+@use "../../foundation/variable" as *;
+@use "_font" as *;
+@use "_icon" as *;
+@use "_utility" as *;
+@use "_mediaquery" as *;
+
+
+// button
+@mixin btn ($bg: $mainC, $border: $mainC, $color: #fff) {
+  display: block;
+  margin: 24px auto;
+  padding: 8px;
+  width: 300px;
+  max-width: 100%;
+  transition: .3s;
+  background: $bg;
+  border: solid 1px $border;
+  @include notosans;
+  color: $color;
+  text-align: center;
+  @include faIconAfter("f105");
+  &:hover, &:active, &:focus {
+    background: none;
+    color: $border;
+  }
+}
+@mixin btnColor ($bg: $mainC, $border: $mainC, $color: #fff, $hover: $mainC) {
+  background-color: $bg;
+  border-color: $border;
+  color: $color;
+  &:hover, &:active, &:focus {
+    background: $color;
+    border-color: $border;
+    color: $hover;
+  }
+}
+@mixin btnColor_default ($bg: $mainC, $border: $mainC, $color: #fff) {
+  background-color: $bg;
+  border-color: $border;
+  color: $color;
+}
+@mixin btnColor_hover ($bg: #fff, $border: $mainC, $color: $mainC) {
+  &:hover, &:active, &:focus {
+    background-color: $bg;
+    border-color: $border;
+    color: $color;
+  }
+}
+
+
+@mixin btn-skelton ($bg: #fff, $border: #fff, $color: #fff, $hover: $mainC) {
+  &:hover, &:active, &:focus {
+    background: $bg;
+    color: $hover;
+  }
+}
+
+@mixin box($padding: 1.2rem, $mb: 1.6rem) {
+  padding: $padding;
+  margin-bottom: $mb;
+  * + h3 {
+    margin-top: 16px;
+  }
+  // h3 {
+  //   margin-bottom: .8rem;
+  // }
+}
+
+@mixin bracketsBox {
+  position: relative;
+  &:before,
+  &:after {
+    position: absolute;
+    content: '';
+    width: 30px;
+    height: 50px;
+  }
+  &:before {
+    top: 0;
+    left: 0;
+    border-top: 1px solid rgba($mainC, .4);
+    border-left: 1px solid rgba($mainC, .4);
+  }
+  &:after {
+    bottom: 0;
+    right: 0;
+    border-bottom: 1px solid rgba($mainC, .4);
+    border-right: 1px solid rgba($mainC, .4);
+  }
+}
+
+@mixin linkMark($color: $mainC) {
+  position: relative;
+  &:after {
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    content: "";
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 0 12px 12px;
+    border-color: transparent transparent $color transparent;
+    transition: .3s;
+  }
+  &:hover {
+    &:after {
+      border-color: transparent transparent $subC transparent;
+    }
+  }
+}
+@mixin linkBox($color: $mainC) {
+  display: block;
+  border: 1px solid $color;
+  position: relative;
+  &:after {
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    content: "";
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 0 12px 12px;
+    border-color: transparent transparent $color transparent;
+    transition: .3s;
+  }
+  &:hover {
+    background: #f3f4f6;
+    &:after {
+      border-color: transparent transparent $subC transparent;
+    }
+  }
+}
+
+@mixin arrow($right: 12px, $width: 6px, $height: 6px, $color: $mainC) {
+  margin: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: $right;
+  width: 0;
+  height: 0;
+  border-top: $height solid transparent;
+  border-bottom: $height solid transparent;
+  border-left: $width solid $color;
+  content: "";
+  @include screen-md {
+    border-width: round($height * math.div(2, 3)) 0 round($height * math.div(2, 3)) round($width * math.div(2, 3));
+  }
+}
+
+
+@mixin popTitle {
+  @include flexCenter;
+  text-align: center;
+  &:before, &:after {
+    display: block;
+    margin: 0 10px;
+    width: 80px;
+    height: 6px;
+    border-radius: 24px;
+    background: $subC;
+    content: "";
+  }
+  &:before {
+    transform: rotate(60deg);
+  }
+  &:after {
+    transform: rotate(300deg);
+  }
+  @include screen-sm {
+    &:before, &:after {
+      margin: 0;
+      width: 60px;
+      height: 4px;
+    }
+  }
+}
+
+@mixin borderTitle {
+  i {
+    margin-right: 12px;
+    color: $mainC;
+  }
+  &:after {
+    display: block;
+    margin: 12px 0 0;
+    width: 80px;
+    height: 1px;
+    background: $darkgray;
+    content: "";
+  }
+}
+
+@mixin underLine($lineColor: rgba($mainC, .2)) {
+  display: inline-block;
+  padding-right: 10px;
+  padding-left: 10px;
+  background: linear-gradient(transparent 60%, $lineColor 60%);
+  @include screen-sm {
+    display: inline;
+  }
+}
+@mixin textShadow {
+  text-shadow: #fff 2px 0px 0px, #fff -2px 0px 0px,
+  #fff 0px -2px 0px, #fff 0px 2px 0px,
+  #fff 2px 2px 0px, #fff -2px 2px 0px,
+  #fff 2px -2px 0px, #fff -2px -2px 0px,
+  #fff 1px 2px 0px, #fff -1px 2px 0px,
+  #fff 1px -2px 0px, #fff -1px -2px 0px,
+  #fff 2px 1px 0px, #fff -2px 1px 0px,
+  #fff 2px -1px 0px, #fff -2px -1px 0px,
+  #fff 1px 1px 0px, #fff -1px 1px 0px,
+  #fff 1px -1px 0px, #fff -1px -1px 0px;
+}
+
+@mixin borderRadius($radius: 32) {
+  border-radius: $radius + px;
+  overflow: hidden;
+  @include screen-sm {
+    border-radius: $radius * math.div(3, 4);
+  }
+}
+

@@ -1,0 +1,146 @@
+@use "../foundation/variable" as *;
+@use "../foundation/mixin" as *;
+
+#header {
+  position: relative;
+  max-width: 480px;
+  margin: 0 auto;
+  .header_title {
+    margin: 0;
+    font-size: 1.6rem;
+    letter-spacing: .1em;
+    text-align: center;
+  }
+  .header_content {
+    padding: 8px;
+    height: 60px;
+    color: #fff;
+    .gnav {
+      position: absolute;
+      top: 50px;
+      right: 0;
+      z-index: 99;
+      display: none;
+      background: #fff;
+      border: 1px solid #fff;
+      &.opened {
+        display: block;
+      }
+      > li {
+        a {
+          display: block;
+          padding: 12px;
+          letter-spacing: .2rem;
+          text-transform: uppercase;
+          &:hover {
+            background: $subC;
+            color: #fff;
+          }
+          &:before {
+            margin-right: 12px;
+            content: attr(data-number);
+          }
+        }
+        &:not(:last-child) {
+          border-bottom: 1px solid #fff;
+        }
+      }
+    }
+    .header_description {
+      display: none;
+    }
+  }
+
+  @include screen-md {
+    position: absolute;
+    right: -240px;
+    top: 0;
+    height: 100%;
+    .header_content {
+      position: sticky;
+      top: 0;
+      left: 0;
+      padding: 24px;
+      width: 240px;
+      height: 480px;
+      .header_title {
+        padding: 24px 0;
+        font-size: 2rem;
+      }
+      .gnav {
+        position: static;
+        display: block;
+        background: none;
+        li {
+          a {
+            color: #fff;
+          }
+        }
+      }
+      .header_description {
+        display: block;
+        margin-top: 40px;
+        font-size: .8rem;
+        text-align: center;
+      }
+    }
+
+  }
+}
+
+.nav-mobile_trigger {
+  position: absolute;
+  height: 32px;
+  width: 32px;
+  top: 12px;
+  right: 20px;
+  z-index: 999;
+  background: none;
+  border: none;
+  cursor: pointer;
+  &_icon {
+    position: absolute;
+    top: calc(50% - 1px);
+    left: 0;
+    right: 0;
+    z-index: 99;
+    display: block;
+    transition: .3s;
+    width: 100%;
+    height: 2px;
+    background: #ccc;
+    &:before, &:after {
+      @extend .nav-mobile_trigger_icon;
+      content: "";
+    }
+    &:before {
+      top: -8px;
+    }
+    &:after {
+      top: 8px;
+    }
+    &.animated {
+      background: transparent;
+      &:before, &:after {
+        top: 0;
+        opacity: 1;
+        background: #ccc;
+      }
+      &:before {
+        transform: rotate(45deg);
+      }
+      &:after {
+        transform: rotate(-225deg);
+      }
+    }
+  }
+  &:hover, &:active, &:focus {
+    outline: none;
+    &_icon {
+      background: $mainC;
+    }
+  }
+  @include screen-md {
+    display: none;
+  }
+}

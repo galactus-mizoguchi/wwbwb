@@ -1,0 +1,15 @@
+@use "../foundation/variable" as *;
+@use "../foundation/mixin" as *;
+
+#main {
+  position: relative;
+  z-index: 9;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 32px;
+  background: rgba(#fff, .75);
+  overflow: hidden;
+  @include screen-md {
+    padding: 40px;
+  }
+}

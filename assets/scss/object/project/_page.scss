@@ -1,0 +1,113 @@
+@use "../../foundation/variable" as *;
+@use "../../foundation/mixin" as *;
+
+
+.page_header {
+  margin-bottom: 24px;
+}
+.page_title {
+  margin: 0;
+  background: none;
+  font-size: 3.2rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.page_breadcrumbs {
+  .breadcrumbs {
+    font-size: .8rem;
+    li {
+      display: inline-block;
+      margin: 0 8px 0 0;
+      &:not(:first-child):before {
+        content: ">";
+        margin-right: 8px;
+      }
+      a {
+        color: $subC;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+      &:last-child {
+        a {
+          color: $darkgray;
+          cursor: text;
+        }
+      }
+    }
+  }
+}
+.page_body {
+  padding-top: 40px;
+}
+
+.page_section {
+  p {
+    @include mb(32);
+    &.lead {
+      font-weight: 500;
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  & > h4 {
+    font-size: 1.2rem;
+    color: $darkgray;
+    * + & {
+      margin-top: 24px;
+    }
+  }
+  ul {
+    margin-bottom: 24px;
+    &.list {
+      list-style: disc;
+      padding-left: 16px;
+      font-size: .85rem;
+      line-height: 2;
+    }
+  }
+  &:not(:last-child) {
+    margin-bottom: 80px;
+  }
+}
+
+.page_section_title {
+  position: relative;
+  margin-bottom: 24px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid $gray;
+  font-size: 1.6rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  &:before {
+    margin-right: 12px;
+    padding-left: 8px;
+    color: $mainC;
+    content: attr(data-number);
+  }
+  &:after {
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 32px;
+    height: 1px;
+    background: $mainC;
+    content: "";
+  }
+}
+
+.section_title_h3 {
+  display: flex;
+  align-items: center;
+  margin-top: 40px;
+  margin-bottom: 16px;
+  padding-left: 12px;
+  border-left: 1px solid #555;
+  font-size: 1.4rem;
+  * + & {
+    margin-top: 40px;
+  }
+}

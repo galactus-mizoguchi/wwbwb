@@ -1,0 +1,265 @@
+@use "../foundation/variable" as *;
+@use "../foundation/mixin" as *;
+
+.btn {
+  position: relative;
+  display: block;
+  padding: 16px 24px;
+  width: 280px;
+  max-width: 100%;
+  border-width: 1px;
+  border-style: solid;
+  @include btnColor_default;
+  @include btnColor_hover;
+  transition: .3s;
+  text-align: center;
+  @include faIconAfter(f105);
+}
+.btn-skelton {
+  @include btnColor_default(transparent, $mainC, $mainC);
+  @include btnColor_hover($mainC, $mainC, #fff);
+}
+.btn-full {
+  width: 100%;
+}
+.btn-small {
+  width: 160px;
+  padding: 6px;
+  font-size: .9rem;
+}
+.btn-reserve {
+  @include faIconBefore(f303);
+  &:after {
+    content: none;
+  }
+}
+.btn-line {
+  @include btnColor_default($lineC, $lineC, #fff);
+  @include btnColor_hover(#fff, $lineC, $lineC);
+  @include faIconBefore(f3c0);
+  &:after {
+    content: none;
+  }
+}
+.btn-contact {
+  @include btnColor_default($subC, $subC, #fff);
+  @include btnColor_hover(#fff, $subC, $subC);
+  @include faIconBefore(f0e0);
+  &:after {
+    content: none;
+  }
+}
+.btn-pdf {
+  @include faIconBefore(f1c1);
+  &:after {
+    content: none;
+  }
+}
+.btn-map {
+  @include faIconBefore(f276);
+  &:after {
+    content: none;
+  }
+}
+.btn-external {
+  @include faIconAfter(f2d2);
+}
+.btns_list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: -8px 0;
+  li {
+    padding: 0 8px;
+    .btn {
+      margin: 8px auto;
+    }
+  }
+  @include screen-md {
+    flex-direction: column;
+  }
+}
+
+.link {
+  padding-bottom: 4px;
+  border-bottom: 1px solid $mainC;
+  @include faIconAfter(f0da);
+  &:hover {
+    border-color: $subC;
+  }
+}
+
+.link-box {
+  @include linkBox;
+}
+
+.link-external {
+  display: inline-block;
+  span {
+    padding-bottom: 4px;
+    border-bottom: 1px solid $mainC;
+    @include faIconBefore(f35d);
+  }
+}
+
+.pic {
+  text-align: center;
+}
+
+// list
+.list-disc {
+  list-style: disc;
+  padding-left: 24px;
+  li {
+    &:not(:first-child) {
+      margin-top: 8px;
+    }
+  }
+}
+.list-check {
+  li {
+    display: flex;
+    padding: 12px 0;
+    border-bottom: 1px dotted $gray;
+    &:before {
+      margin-right: 12px;
+      @include faIcon(f00c);
+      color: $mainC;
+    }
+  }
+}
+.notes {
+  font-size: .85rem;
+  * + & {
+    margin-top: 24px;
+  }
+}
+
+// box
+.box-message {
+  margin: 0 auto;
+  padding: 24px 32px;
+  max-width: 960px;
+  text-align: center;
+  @include bracketsBox;
+}
+.box-notes {
+  @include box(24px, 24px);
+  border: 2px solid $lightgray;
+  h4, .note-title {
+    padding-left: 16px;
+    border-left: 1px solid $mainC;
+  }
+  p, ul {
+    font-size: .9rem;
+  }
+  * + & {
+    margin-top: 24px;
+  }
+}
+.box-caution {
+  @include box(24px 18px, 24px);
+  background: rgba($mainC, .05);
+  p {
+    display: flex;
+    justify-content: center;
+    font-size: .9rem;
+    color: $mainC;
+    &:before {
+      margin-right: 12px;
+      @include faIcon(f303);
+    }
+  }
+  * + & {
+    margin-top: 24px;
+  }
+}
+.box-caution {
+  @include box(24px 18px, 24px);
+  background: rgba($mainC, .05);
+  p {
+    display: flex;
+    justify-content: center;
+    font-size: .9rem;
+    color: $mainC;
+    &:before {
+      margin-right: 12px;
+      @include faIcon(f303);
+    }
+  }
+  * + & {
+    margin-top: 24px;
+  }
+}
+.box-icon {
+  display: flex;
+  align-items: center;
+  margin: 16px 0;
+  .icon {
+    flex-basis: 80px;
+    text-align: center;
+    i {
+      font-size: 2.8rem;
+      color: $mainC;
+      line-height: 1;
+    }
+  }
+  .content {
+    flex-basis: calc(100% - 80px);
+    padding-left: 12px;
+    .title {
+      margin-bottom: 0;
+      padding-left: 0;
+      border: none;
+      @include notosans;
+      font-size: 1rem;
+    }
+    .desc {
+      font-size: .9rem;
+      &:before {
+        display: block;
+        margin: 8px 0 12px;
+        width: 64px;
+        height: 1px;
+        background: $darkgray;
+        content: "";
+      }
+    }
+  }
+}
+
+.external-link {
+  border: 1px solid $gray;
+  background: #f7f7f7;
+  padding: 16px;
+  margin: 16px 0 24px 0;
+  p {
+    border-bottom: 1px dotted $gray;
+    margin: 0 0 8px 0;
+    &:last-child {
+      border-bottom: none;
+      margin: 0;
+    }
+  }
+  a {
+    @include faIconBefore("f35d");
+  }
+}
+
+// table
+.table {
+  width: 100%;
+  background: #fff;
+  tr {
+    th, td {
+      border: 1px solid $gray;
+      padding: 16px;
+      word-break: break-all;
+    }
+    th {
+      width: 30%;
+      background: $lightgray;
+      font-weight: normal;
+    }
+  }
+}

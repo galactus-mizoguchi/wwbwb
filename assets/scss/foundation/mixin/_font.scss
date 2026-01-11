@@ -1,0 +1,49 @@
+@mixin fontStyle ($weight, $size, $color, $lh, $ls) {
+  font-weight: $weight;
+  font-size: $size;
+  color: $color;
+  line-height: $lh;
+  letter-spacing: $ls;
+}
+
+// 日本語 / ゴシック
+@mixin gothic {
+  font-family: YuGothic, "ヒラギノ角ゴ ProN W3", "Lucida Grande", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, Verdana, "ＭＳ Ｐゴシック", sans-serif;
+}
+@mixin notosans {
+  font-family: 'Noto Sans JP', "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", "Meiryo", "Osaka", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+}
+@mixin mplus {
+  font-family: 'M PLUS 1p', "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", "Meiryo", "Osaka", "MS PGothic", "ＭＳ Ｐゴシック", sans-serif;
+}
+@mixin zenkakugothic {
+  font-family: 'Zen Kaku Gothic New', YuGothic, "ヒラギノ角ゴ ProN W3", "Lucida Grande", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, Verdana, "ＭＳ Ｐゴシック", sans-serif;
+}
+
+// 日本語 / 明朝
+@mixin mincho {
+  font-family: "游明朝", 'YuMincho', "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
+}
+@mixin notoserif {
+  font-family: 'Noto Serif JP',"游明朝", 'YuMincho', "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
+}
+@mixin shippori {
+  font-family: 'Shippori Mincho', "游明朝", 'YuMincho', "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
+}
+
+// 英語 / サンセリフ
+@mixin roboto {
+  font-family: 'Roboto', sans-serif;
+}
+@mixin lato {
+  font-family: 'Lato', sans-serif;
+}
+@mixin montserrat {
+  font-family: 'Montserrat', sans-serif;
+}
+@mixin raleway {
+  font-family: 'Raleway', sans-serif;
+}
+
+// 英語 / セリフ
+

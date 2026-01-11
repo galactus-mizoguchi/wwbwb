@@ -1,0 +1,60 @@
+@use "../../foundation/variable" as *;
+
+// PC基準
+// @mixin screen-xl {
+//   @media screen and (max-width: $xl-max) {
+//     @content;
+//   }
+// }
+// @mixin screen-lg {
+//   @media screen and (max-width: $lg-max) {
+//     @content;
+//   }
+// }
+// @mixin screen-md {
+//   @media screen and (max-width: $md-max) {
+//     @content;
+//   }
+// }
+// @mixin screen-sm {
+//   @media screen and (max-width: $sm-max) {
+//     @content;
+//   }
+// }
+// @mixin screen-xs {
+//   @media screen and (max-width: $xs-max) {
+//     @content;
+//   }
+// }
+
+// モバイルファースト
+@mixin screen-xxl {
+  @media screen and (min-width: $xxl-min) {
+    @content;
+  }
+}
+@mixin screen-xl {
+  @media screen and (min-width: $xl-min) {
+    @content;
+  }
+}
+@mixin screen-lg {
+  @media screen and (min-width: $lg-min) {
+    @content;
+  }
+}
+@mixin screen-md {
+  @media screen and (min-width: $md-min) {
+    @content;
+  }
+}
+@mixin screen-sm {
+  @media screen and (min-width: $sm-min) {
+    @content;
+  }
+}
+@mixin screen-xs {
+  @media screen and (min-width: $xs-min) {
+    @content;
+  }
+}

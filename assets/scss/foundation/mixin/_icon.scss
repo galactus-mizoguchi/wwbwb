@@ -1,0 +1,44 @@
+@use "../../foundation/variable" as *;
+
+// Font Awesome
+@mixin faIcon($unicode) {
+  font-family: 'Font Awesome 6 Free', 'Font Awesome 6 Brands';
+  font-weight: 900;
+  content: unquote("\"") + unquote(str-insert($unicode, "\\", 1)) + unquote("\"");
+}
+@mixin faIconBefore($unicode) {
+  &:before {
+    margin-right: 8px;
+    font-family: 'Font Awesome 6 Free', 'Font Awesome 6 Brands';
+    font-weight: 900;
+    content: unquote("\"") + unquote(str-insert($unicode, "\\", 1)) + unquote("\"");
+  }
+}
+@mixin faIconAfter($unicode) {
+  &:after {
+    margin-left: 8px;
+    font-family: 'Font Awesome 6 Free', 'Font Awesome 6 Brands';
+    font-weight: 900;
+    content: unquote("\"") + unquote(str-insert($unicode, "\\", 1)) + unquote("\"");
+  }
+}
+
+// Material Icons
+@mixin mIcon($unicode) {
+  font-family: 'Material Icons Outlined';
+  font-weight: 400 !important;
+  vertical-align: middle;
+  content: unquote("\"") + unquote(str-insert($unicode, "\\", 1)) + unquote("\"");
+}
+@mixin mIconBefore($unicode) {
+  &:before {
+    margin-right: 8px;
+    @include mIcon($unicode);
+  }
+}
+@mixin mIconAfter($unicode) {
+  &:after {
+    margin-left: 8px;
+    @include mIcon($unicode);
+  }
+}
