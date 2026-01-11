@@ -46,3 +46,9 @@ project-name/
 - **CSS、JavaScript、画像、フォントなどのアセットファイルは必ず`assets`フォルダ内に配置する**
 - `assets`フォルダ内は種類別にサブフォルダで整理（`css/`, `js/`, `img/`, `fonts/`など）
 - HTMLファイルからは`assets/`を基準にパスを指定（例: `assets/css/style.css`）
+
+## SCSSについて
+- ルートサイト（メインの`index.html`）ではSCSSを使用してCSSを生成
+- `assets/scss/` フォルダにSCSSソースファイルを配置
+- コンパイル後のCSSは `assets/css/style.css` に出力
+- 個別プロジェクト（`projects/`配下）では通常のCSSを使用することを推奨

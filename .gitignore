@@ -51,5 +51,6 @@ build/
 *.cache
 
 # サブプロジェクト（独立したGitリポジトリ）
-22-shrines/
-olympos/
+# projects/ 配下のディレクトリをすべて無視する
+projects/**
+!projects/.gitkeep
