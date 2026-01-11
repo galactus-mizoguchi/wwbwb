@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>オリンポス十二神ショー</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="js/bxslider/jquery.bxslider.css">
+</head>
+<body>
+	<div class="content">
+		<div class="container-fluid">
+			<h1 id="title">オリンポス十二神ショー</h1>
+			<div class="bxslider">
+				<div class="slide"><img src="img/zeus.jpg"><p>ゼウス</p></div>
+				<div class="slide"><img src="img/hera.jpg"><p>ヘラ</p></div>
+				<div class="slide"><img src="img/athena.jpg"><p>アテナ</p></div>
+				<div class="slide"><img src="img/apollo.jpg"><p>アポロン</p></div>
+				<div class="slide"><img src="img/aphrodite.jpg"><p>アフロディーテ</p></div>
+				<div class="slide"><img src="img/ares.jpg"><p>アレス</p></div>
+				<div class="slide"><img src="img/artemis.jpg"><p>アルテミス</p></div>
+				<div class="slide"><img src="img/demeter.jpg"><p>デメテル</p></div>
+				<div class="slide"><img src="img/hephaestus.jpg"><p>ヘーパイストス</p></div>
+				<div class="slide"><img src="img/hermes.jpg"><p>ヘルメス</p></div>
+				<div class="slide"><img src="img/poseidon.jpg"><p>ポセイドン</p></div>
+				<div class="slide"><img src="img/dionysos.jpg"><p>ディオニソス</p></div>
+			</div>
+		</div>
+
+	</div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script src="js/bxslider/jquery.bxslider.min.js"></script>
+<script>
+$('.bxslider').bxSlider({
+  minSlides: 4,
+  maxSlides: 4,
+  slideWidth: 460,
+  slideMargin: 36,
+  ticker: true,
+  speed: 100000
+});
+</script>
+
+</body>
+</html>

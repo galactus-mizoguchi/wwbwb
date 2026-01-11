@@ -1,0 +1,182 @@
+@charset "utf-8";
+@import url(https://fonts.googleapis.com/earlyaccess/notosansjapanese.css);
+
+/*common*/
+body {
+  background: url(../img/bg.jpg) ;
+  background-size: cover;
+  background-attachment: fixed;
+  margin: 0;
+  font-family: "Noto Sans Japanese", "ヒラギノ丸ゴ ProN","Hiragino Maru Gothic ProN","メイリオ","ＭＳ Ｐゴシック",sans-serif;
+  font-size: 14px;
+}
+img {
+  max-width: 100%;
+}
+
+/* nav */
+.nav {
+  max-width: 100%;
+  margin: 1.6rem auto 0 auto;
+  padding: 0;
+  display: table;
+  text-align: center;
+  font-style: italic;
+  li {
+    display: table-cell;
+    padding: 1rem 1.6rem;
+    a {
+        color : #fff;
+    }
+  }
+}
+
+/*mv*/
+#mv {
+  text-align: center;
+  color: #fff;
+  font-style: italic;
+   h1 {
+    font-size: 4rem;
+    font-weight: 900;
+    letter-spacing: 3px;
+    margin: 0 0 .4rem 0;
+  }
+   h2 {
+    margin: 0;
+  }
+   .row {
+    height: 80vh;
+    align-items: center;
+  }
+}
+
+/* section */
+.section {
+  padding: 4rem 0;
+   h2 {
+    font-size: 1.4rem;
+    font-style: italic;
+    margin-bottom: 1.6rem;
+  }
+}
+
+/* biography */
+#biography {
+  background: #000;
+  color: #fff;
+  padding: 2.4rem 0;
+  p {
+    line-height: 2;
+  }
+}
+.bio-pic {
+  display: block; 
+  margin: 0 auto 1.6rem;
+  border-radius: 8px;
+}
+
+/* works */
+#works {
+  background: #1b1b1b;
+  color: #fff;
+  padding: 2.4rem 0;
+}
+
+/*contact*/
+#contact {
+  padding: 2.4rem 0;
+  background: #0a0838;
+  color: #fff;
+  .row {
+    align-items: center;
+  }
+   h2 {
+    font-size: 1.4rem;
+    font-weight: 900;
+    letter-spacing: 3px;
+    line-height: 2;
+    margin: 0;
+    font-style: italic;
+  }
+  .btn-contact {
+    display: inline-block;
+    padding: 1rem 3.2rem;
+    text-align: center; 
+    background: #000;
+    border: 2px solid #000;
+    color: #fff;
+    &:hover {
+      background: #0a0838;
+      text-decoration: none;
+    }
+  }
+}
+
+// footer
+#footer {
+  background:  #1b1b1b;
+}
+.copyright {
+  padding: 1em 0;
+  margin: 0;
+  text-align: center;
+  color: #fff;
+}
+
+#go-to-top {
+  display: none;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+   a {
+    display: block;
+    background-color: #ccc;
+    text-align: center;
+    color: #222;
+    font-size: 1.6em;
+    padding: .4em .8em;
+    filter: alpha(opacity=50);
+    -moz-opacity: 0.5;
+    opacity: 0.5;
+      &:hover {
+      background-color: #000;
+      color: #fff;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  body {
+    background :none
+  }
+  body::before {
+    background: url(../img/bg.jpg) center/cover no-repeat;
+    content: "";
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100vh;
+  }
+/*mv*/
+#mv {
+   h1 {
+    font-size: 2.4rem;
+  }
+}
+.work-box {
+  margin-bottom: 1rem;  
+}
+#contact {
+   h2 {
+    margin-bottom: 1.2rem;  
+  }
+  .btn-contact {
+    display: block; 
+    width: 100%;  
+  }
+}
+}
