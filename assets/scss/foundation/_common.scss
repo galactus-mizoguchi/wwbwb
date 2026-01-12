@@ -13,7 +13,7 @@ body {
   background: linear-gradient(60deg, #3d3393 0%, #2b76b9 37%, #2cacd1 65%, #35eb93 100%) fixed;
   background-size: 320% 320%;
   animation: bggradient 24s ease infinite;
-  font-family: 'Jost', 'Zen Kaku Gothic New', "游ゴシック体", YuGothic, "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック", "Yu Gothic", sans-serif;
+  font-family: "Local Noto Sans JP", "Noto Sans JP", sans-serif;
   color: #333;
   line-height: 1.6;
   @include screen-md {
@@ -59,26 +59,18 @@ h1, h2, h3, h4 ,h5 {
   line-height: 1.6;
 }
 h2 {
-  @include mb(24);
   font-size: 1.6rem;
   letter-spacing: 2px;
 }
 h3 {
-  @include mb(24);
   font-size: 1.4rem;
   letter-spacing: 1px;
 }
 h4 {
-  @include mb(16);
   font-size: 1.15rem;
 }
 h5, h6 {
-  @include mb(16);
   font-size: 1rem;
-}
-.lead {
-  @include mb(40);
-  @include notosans;
 }
 a {
   color: $baseC;
@@ -101,7 +93,7 @@ ul, ol {
   list-style: none;
 }
 figure {
-  margin-bottom: 16px;
+  margin-bottom: 1rem;
 }
 img {
   max-width: 100%;

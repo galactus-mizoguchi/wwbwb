@@ -41,7 +41,7 @@
   padding-top: 40px;
 }
 
-.page_section {
+.section {
   p {
     @include mb(32);
     &.lead {
@@ -74,7 +74,7 @@
   }
 }
 
-.page_section_title {
+.section_title {
   position: relative;
   margin-bottom: 24px;
   padding-bottom: 4px;
