@@ -3,15 +3,16 @@
 
 // home
 .front_title {
-  margin-bottom: 24px;
-  font-weight: 300;
-  font-size: 3rem;
-  line-height: 1.4;
-  letter-spacing: .1em;
-  span {
+  margin-bottom: 1.5rem;
+  text-align: center;
+  .main {
+    font-weight: 300;
+    font-size: 2.5rem;
+    line-height: 1.4;
+  }
+  .sub {
     display: block;
-    padding-top: 24px;
-    font-size: 1rem;
+    font-size: .875rem;
     letter-spacing: .2em;
   }
 }
@@ -19,10 +20,46 @@
 .profile_pic {
   max-width: 200px;
   margin: 0 auto;
-  padding: 1.2rem;
+  padding: 1rem;
   text-align: center;
   img {
     border-radius: 50%;
+  }
+}
+.profile_dl {
+  display: flex;
+  flex-wrap: wrap;
+  dt, dd {
+    margin-bottom: 1rem;
+    padding: 0 .5rem 1rem;
+  }
+  dt {
+    width: 100px;
+    border-bottom: 1px solid $mainC;
+    font-weight: normal;
+    text-align: center;
+  }
+  dd {
+    padding-left: 1.5rem;
+    width: calc(100% - 100px);
+    border-bottom: 1px solid $gray;
+  }
+}
+.history_dl {
+  display: flex;
+  flex-wrap: wrap;
+  dt, dd {
+    margin-bottom: .75rem;
+    padding: 0 1rem;
+  }
+  dt {
+    width: 100px;
+    border-right: 1px solid $mainC;
+    font-weight: normal;
+    text-align: center;
+  }
+  dd {
+    width: calc(100% - 100px);
   }
 }
 .sns_links {
@@ -30,7 +67,7 @@
   flex-wrap: wrap;
   li {
     &:not(:first-child) {
-      margin-left: 12px;
+      margin-left: .5rem;
     }
     a {
       display: block;
@@ -39,16 +76,19 @@
     }
   }
 }
-.site_links {
-  li {
-    a {
-      display: block;
-      padding: 12px 8px;
-      border-bottom: 1px dotted $gray;
-      @include faIconAfter(f35d);
-      &:hover {
-        background: #efefef;
-      }
-    }
+
+.projects_list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  @include screen-md {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.project_box {
+  display: block;
+  margin-bottom: 1.5rem;
+  > p {
+    font-size: .75rem;
   }
 }

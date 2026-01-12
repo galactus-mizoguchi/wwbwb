@@ -7,9 +7,12 @@
   max-width: 480px;
   margin: 0 auto;
   padding: 32px;
-  background: rgba(#fff, .75);
+  border-radius: 8px;
+  background: rgba(#fff, .6);
+  backdrop-filter: blur(4px);
   overflow: hidden;
   @include screen-md {
     padding: 40px;
+    border-radius: 0;
   }
 }

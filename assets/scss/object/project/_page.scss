@@ -8,7 +8,7 @@
 .page_title {
   margin: 0;
   background: none;
-  font-size: 3.2rem;
+  font-size: 3rem;
   letter-spacing: .1em;
   text-transform: uppercase;
 }
@@ -76,15 +76,14 @@
 
 .section_title {
   position: relative;
-  margin-bottom: 24px;
-  padding-bottom: 4px;
-  border-bottom: 1px solid $gray;
-  font-size: 1.6rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: .25rem;
+  border-bottom: 1px solid #888;
+  font-size: 1.5rem;
   letter-spacing: .1em;
   text-transform: uppercase;
   &:before {
-    margin-right: 12px;
-    padding-left: 8px;
+    margin-right: .5rem;
     color: $mainC;
     content: attr(data-number);
   }
@@ -102,12 +101,9 @@
 .section_title_h3 {
   display: flex;
   align-items: center;
-  margin-top: 40px;
-  margin-bottom: 16px;
-  padding-left: 12px;
-  border-left: 1px solid #555;
-  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
   * + & {
-    margin-top: 40px;
+    margin-top: 2.5rem;
   }
 }
