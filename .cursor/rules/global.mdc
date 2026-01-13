@@ -39,3 +39,6 @@ globs: *
 - **JavaScript**: キャメルケース（`myFunctionName`）
 - **PHP**: スネークケース（`my_function_name`）
 - **ファイル名**: 小文字、ハイフン区切り（`my-file-name.html`）
+
+## その他共通事項
+フッターは「© 2019-2026 <a href="https://wwbwb.com">wwbwb.com</a>」で統一
