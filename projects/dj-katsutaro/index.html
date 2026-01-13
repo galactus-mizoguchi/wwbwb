@@ -7,100 +7,287 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="令和を代表する稀代のエンターティナー DJ KATSUTAROのすべてが記されたバイブル的ホームページです。Come On!">
   <meta name="author" content="DJ KATSUTARO">
-  <meta property='og:locale' content='ja_JP'>
-  <meta property='fb:admins' content='1407305856'>
   <meta property="og:type" content="article">
   <meta property="og:title" content="DJ KATSUTARO">
   <meta property="og:url" content="">
   <meta property="og:description" content="令和を代表する稀代のエンターティナー DJ KATSUTAROのすべてが記されたバイブル的ホームページです。Come On!">
   <meta property="og:site_name" content="DJ KATSUTARO">
   <meta property="og:image" content="https://wwbwb.com/projects/dj-katsutaro">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:site" content="@galactus_jp">
-  <meta name="twitter:creator" content="@galactus_jp">
-  <meta name="twitter:domain" content="galactus.jp">
 
-  <link rel="stylesheet" type="text/css" href="assets/css/style.css" media="all">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'neon-pink': '#ff00ff',
+            'neon-cyan': '#00ffff',
+          },
+          fontFamily: {
+            'noto': ['Noto Sans Japanese', 'ヒラギノ丸ゴ ProN', 'Hiragino Maru Gothic ProN', 'メイリオ', 'ＭＳ Ｐゴシック', 'sans-serif'],
+            'orbitron': ['Orbitron', 'sans-serif'],
+          },
+          animation: {
+            'gradient-shift': 'gradient-shift 3s linear infinite',
+            'glow-pulse': 'glow-pulse 2s ease-in-out infinite alternate',
+            'fade-in-up': 'fade-in-up 0.6s ease-out forwards',
+          },
+          keyframes: {
+            'gradient-shift': {
+              '0%': { 'background-position': '0% center' },
+              '100%': { 'background-position': '200% center' },
+            },
+            'glow-pulse': {
+              '0%': { 
+                'text-shadow': '0 0 10px rgba(255, 0, 255, 0.5), 0 0 20px rgba(255, 0, 255, 0.3)' 
+              },
+              '100%': { 
+                'text-shadow': '0 0 15px rgba(255, 0, 255, 0.8), 0 0 30px rgba(255, 0, 255, 0.5), 0 0 40px rgba(255, 0, 255, 0.3)' 
+              },
+            },
+            'fade-in-up': {
+              'from': { 
+                'opacity': '0',
+                'transform': 'translateY(30px)' 
+              },
+              'to': { 
+                'opacity': '1',
+                'transform': 'translateY(0)' 
+              },
+            },
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    @font-face {
+      font-family: 'Noto Sans Japanese';
+      font-style: normal;
+      font-weight: 100;
+      src: url("assets/fonts/notosansjp/Thin.woff"), url("assets/fonts/notosansjp/Thin.eot");
+    }
+    @font-face {
+      font-family: 'Noto Sans Japanese';
+      font-style: normal;
+      font-weight: 200;
+      src: url("assets/fonts/notosansjp/Light.woff"), url("assets/fonts/notosansjp/Light.eot");
+    }
+    @font-face {
+      font-family: 'Noto Sans Japanese';
+      font-style: normal;
+      font-weight: 300;
+      src: url("assets/fonts/notosansjp/DemiLight.woff"), url("assets/fonts/notosansjp/DemiLight.eot");
+    }
+    @font-face {
+      font-family: 'Noto Sans Japanese';
+      font-style: normal;
+      font-weight: 400;
+      src: url("assets/fonts/notosansjp/Regular.woff"), url("assets/fonts/notosansjp/Regular.eot");
+    }
+    @font-face {
+      font-family: 'Noto Sans Japanese';
+      font-style: normal;
+      font-weight: 500;
+      src: url("assets/fonts/notosansjp/Medium.woff"), url("assets/fonts/notosansjp/Medium.eot");
+    }
+    @font-face {
+      font-family: 'Noto Sans Japanese';
+      font-style: normal;
+      font-weight: 700;
+      src: url("assets/fonts/notosansjp/Bold.woff"), url("assets/fonts/notosansjp/Bold.eot");
+    }
+    @font-face {
+      font-family: 'Noto Sans Japanese';
+      font-style: normal;
+      font-weight: 900;
+      src: url("assets/fonts/notosansjp/Black.woff"), url("assets/fonts/notosansjp/Black.eot");
+    }
+    .gradient-text {
+      background: linear-gradient(90deg, #ff00ff, #00ffff, #ff00ff);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .bio-gradient-bg::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 20% 50%, rgba(255, 0, 255, 0.1) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 50%, rgba(0, 255, 255, 0.1) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .works-gradient-bg::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 50% 20%, rgba(0, 255, 255, 0.1) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .work-box-overlay::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(255, 0, 255, 0.1), rgba(0, 255, 255, 0.1));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 1;
+    }
+    .work-box-overlay:hover::before {
+      opacity: 1;
+    }
+    .work-box-overlay:hover {
+      box-shadow: 0 0 30px rgba(255, 0, 255, 0.4), 0 0 60px rgba(0, 255, 255, 0.2);
+    }
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #ff00ff, #00ffff, #ff00ff, transparent);
+      box-shadow: 0 0 10px rgba(255, 0, 255, 0.6);
+    }
+    .bio-list-item::before {
+      content: '▶';
+      position: absolute;
+      left: 0;
+      color: #00ffff;
+      text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+      font-size: 0.8rem;
+    }
+    .bio-list-item:hover {
+      border-left-color: #ff00ff;
+      padding-left: 2rem;
+      background: rgba(255, 0, 255, 0.05);
+    }
+  </style>
   <link rel="shortcut icon" href="https://wwbwb.com/assets/img/favicon.ico">
 </head>
 
-<body>
+<body class="font-noto bg-[#0a0a0a] text-[#e0e0e0] overflow-x-hidden">
 
-  <header id="header">
-    <div class="container">
-      <div class="mv-content">
-        <h1 class="mv-title">DJ KATSUTARO</h1>
-        <h2 class="mv-catch">OFFICIAL WEBSITE</h2>
-        <nav>
-          <ul class="nav">
-            <li><a href="#biography">Biography</a></li>
-            <li><a href="#works">Works</a></li>
-            <li><a href="#contact">Contact</a></li>
+  <header id="header" class="bg-cover bg-fixed bg-center text-center text-white italic" style="background-image: url(assets/img/bg.jpg);">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col items-center justify-center h-[80vh]">
+        <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-widest gradient-text animate-gradient-shift font-orbitron" style="text-shadow: 0 0 20px rgba(255, 0, 255, 0.8), 0 0 40px rgba(0, 255, 255, 0.6), 0 0 60px rgba(255, 0, 255, 0.4);">DJ KATSUTARO</h1>
+        <h2 class="mt-8 tracking-widest italic font-orbitron font-semibold">OFFICIAL WEBSITE</h2>
+        <nav class="mt-6">
+          <ul class="flex flex-wrap justify-center gap-4 p-0 italic">
+            <li><a href="#biography" class="text-white hover:underline transition-colors font-orbitron font-medium">Biography</a></li>
+            <li><a href="#works" class="text-white hover:underline transition-colors font-orbitron font-medium">Works</a></li>
+            <li><a href="#contact" class="text-white hover:underline transition-colors font-orbitron font-medium">Contact</a></li>
           </ul>
         </nav>
       </div>
     </div>
   </header>
 
-  <main id="main">
-    <section class="section" id="biography">
-      <div class="container">
-        <h2>Biography</h2>
-        <div class="row">
-          <div class="col-sm-3">
-            <img src="assets/img/avatar.png" alt="dj katsutaro" class="bio-pic">
+  <main id="main" class="relative">
+    <section id="biography" class="py-16 relative overflow-hidden bio-gradient-bg" style="background: linear-gradient(180deg, #0a0a0a 0%, #1a0a1a 50%, #0a0a1a 100%);">
+      <div class="container mx-auto px-4 relative z-10">
+        <h2 class="text-4xl font-bold tracking-wider italic text-center mb-10 gradient-text animate-gradient-shift section-title relative pb-4 font-orbitron">Biography</h2>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+          <div class="md:col-span-1">
+            <img src="assets/img/avatar.png" alt="dj katsutaro" class="block mx-auto mb-6 rounded-lg transition-all duration-300 hover:scale-105" style="box-shadow: 0 0 20px rgba(255, 0, 255, 0.4), 0 0 40px rgba(0, 255, 255, 0.2);">
           </div>
-          <div class="col-sm-9">
-            <p>
-              平成の時代の幕開けとともに、テンプル騎士団の末裔として大阪府堺市に生まれ、幼少の頃からDJとしての英才教育を受け育つ。
+          <div class="md:col-span-3 space-y-6">
+            <h3 class="text-xl mb-6 text-neon-pink relative pl-4 border-l-4 border-neon-pink animate-glow-pulse" style="text-shadow: 0 0 10px rgba(255, 0, 255, 0.5), 0 0 20px rgba(255, 0, 255, 0.3);">プロフィール</h3>
+            <p class="text-[#d0d0d0] leading-8">
+              東京・渋谷のクラブシーンから世界へ羽ばたいた日本が誇るエレクトロニック・ダンス・ミュージックのパイオニア。独自のサウンドプロダクションと圧倒的なステージパフォーマンスで知られ、世界3大EDMフェスティバルすべてでヘッドライナーを務めた数少ないアジア人DJの一人。
             </p>
-            <p>
-              DJ KATSUTAROとしてのアイデンティティが確立された17歳の頃から、南大阪を代表するクラブ「SAKAIKKO」を拠点に日々DJパフォーマンスに明け暮れる。<br>
-              たまたま映画ハリー・ポッターのプロモーションで来日していたダニエル・ラドクリフ君にパーティに誘われ、パフォーマンスの様子がInstagramにUPされたことをきっかけに人気が爆発。
-              オリジナルの演目（トラック）である「Put Your Hands Up For 落語」をひっさげ、関西のクラブシーンを席巻していく。
+            <ul class="my-6 space-y-3 pl-0 list-none">
+              <li class="bio-list-item py-3 pl-6 relative text-[#e0e0e0] border-l-2 border-transparent transition-all duration-300"><strong class="text-neon-cyan" style="text-shadow: 0 0 5px rgba(0, 255, 255, 0.4);">生年月日:</strong> 1989年6月5日</li>
+              <li class="bio-list-item py-3 pl-6 relative text-[#e0e0e0] border-l-2 border-transparent transition-all duration-300"><strong class="text-neon-cyan" style="text-shadow: 0 0 5px rgba(0, 255, 255, 0.4);">出身地:</strong> 大阪府堺市</li>
+              <li class="bio-list-item py-3 pl-6 relative text-[#e0e0e0] border-l-2 border-transparent transition-all duration-300"><strong class="text-neon-cyan" style="text-shadow: 0 0 5px rgba(0, 255, 255, 0.4);">ジャンル:</strong> <span class="font-orbitron font-medium">Progressive House, Electro House, Bass House</span></li>
+              <li class="bio-list-item py-3 pl-6 relative text-[#e0e0e0] border-l-2 border-transparent transition-all duration-300"><strong class="text-neon-cyan" style="text-shadow: 0 0 5px rgba(0, 255, 255, 0.4);">レーベル:</strong> <span class="font-orbitron font-medium">KATSU Records</span> (自主レーベル)</li>
+            </ul>
+
+            <h3 class="text-xl mb-6 text-neon-pink relative pl-4 border-l-4 border-neon-pink animate-glow-pulse" style="text-shadow: 0 0 10px rgba(255, 0, 255, 0.5), 0 0 20px rgba(255, 0, 255, 0.3);">経歴</h3>
+            
+            <h4 class="text-xl text-neon-cyan mt-8 mb-4 pb-2 border-b border-cyan-500/30" style="text-shadow: 0 0 8px rgba(0, 255, 255, 0.4);">初期 (2006-2010)</h4>
+            <p class="text-[#d0d0d0] leading-8">
+              17歳で渋谷のクラブでDJキャリアをスタート。当時はヒップホップとハウスをミックスした独自のスタイルで地下シーンに衝撃を与える。2008年、デビューEP「<span class="font-orbitron font-semibold">Tokyo Nights</span>」をリリースし、国内クラブシーンで注目を集める。
             </p>
-            <p>
-              既存のDJの枠を超えたハイパーメディアDJとして、クラブやパーティの現場だけでなくWebを中心とした各メディアに積極的に展開しており、
-              YouTubeでの広告収入で自社ビルを建てたことも有名である。<br>
-              現在では、DJ・音楽プロデューサーを始め、ほかにもペットのトリマー・IKEAの店員・アボカド農家など、様々な分野でマルチに活躍中。
-              フジテレビ系列「あるある大辞典」、TBS 系列「東京フレンドパーク」のレギュラーなど、テレビでのタレント活動にも注力している。<br>
-              季節もののイベントでは、年に一度の紅白歌合戦の司会や24時間テレビのマラソン、四年に一回の五輪（冬季）は毎回必ず出場する。
+
+            <h4 class="text-xl text-neon-cyan mt-8 mb-4 pb-2 border-b border-cyan-500/30" style="text-shadow: 0 0 8px rgba(0, 255, 255, 0.4);">ブレイクスルー (2011-2014)</h4>
+            <p class="text-[#d0d0d0] leading-8">
+              2011年、シングル「<span class="font-orbitron font-semibold">Neon Samurai</span>」が<span class="font-orbitron font-medium">Beatport</span>チャート1位を獲得。同年、<span class="font-orbitron font-semibold">Ultra Music Festival Miami</span>に初出演を果たし、国際的な注目を浴びる。2013年には<span class="font-orbitron font-semibold">DJ Mag Top 100 DJs</span>で初のトップ50入りを達成。ファーストアルバム「<span class="font-orbitron font-semibold">Rising Sun</span>」は世界15カ国のiTunesダンスチャートで1位を記録。
             </p>
-            <p>
-              これまでアルバムを4枚リリース（各作品80曲収録）。ハイセンスな洋楽をコンセプトに、自らCDジャケットのデザインも手がける。
+
+            <h4 class="text-xl text-neon-cyan mt-8 mb-4 pb-2 border-b border-cyan-500/30" style="text-shadow: 0 0 8px rgba(0, 255, 255, 0.4);">世界的成功 (2015-2019)</h4>
+            <p class="text-[#d0d0d0] leading-8">
+              <span class="font-orbitron font-semibold">Tomorrowland</span>、<span class="font-orbitron font-semibold">EDC Las Vegas</span>、<span class="font-orbitron font-semibold">Creamfields</span>など世界的フェスティバルのメインステージを次々と制覇。2016年にはマディソン・スクエア・ガーデンでソロ公演を成功させ、チケットは15分で完売。コラボレーション楽曲「<span class="font-orbitron font-semibold">Electric Sakura</span>」(feat. international pop star)は全米ダンスチャートで4週連続1位を獲得。
             </p>
-            <p>
-              国民栄誉賞を二度受賞した人間国宝であり、次期1万円札の肖像の最有力候補とされている（Wikipediaより）。<br>
-              日本とベルリン、ニューヨーク、イェルサレムにスタジオ兼自宅を構え、3ヶ月ごとに生活拠点を移しながら世界中を駆け回る生活を送っている。
+
+            <h4 class="text-xl text-neon-cyan mt-8 mb-4 pb-2 border-b border-cyan-500/30" style="text-shadow: 0 0 8px rgba(0, 255, 255, 0.4);">現在 (2020-)</h4>
+            <p class="text-[#d0d0d0] leading-8">
+              自主レーベル「<span class="font-orbitron font-semibold">KATSU Records</span>」を設立し、次世代のアジア人プロデューサーの育成にも注力。年間100公演以上のワールドツアーをこなしながら、環境保護活動やチャリティー活動にも積極的に参加。最新アルバム「<span class="font-orbitron font-semibold">Infinite Energy</span>」は批評家から絶賛され、グラミー賞<span class="font-orbitron font-semibold">Best Dance/Electronic Album</span>にノミネート。
             </p>
+
+            <h3 class="text-xl mb-6 text-neon-pink relative pl-4 border-l-4 border-neon-pink animate-glow-pulse" style="text-shadow: 0 0 10px rgba(255, 0, 255, 0.5), 0 0 20px rgba(255, 0, 255, 0.3);">受賞歴</h3>
+            <ul class="my-6 space-y-3 pl-0 list-none">
+              <li class="bio-list-item py-3 pl-6 relative text-[#e0e0e0] border-l-2 border-transparent transition-all duration-300"><strong class="text-neon-cyan font-orbitron" style="text-shadow: 0 0 5px rgba(0, 255, 255, 0.4);">DJ Mag Top 100 DJs:</strong> 最高7位 (2018)</li>
+              <li class="bio-list-item py-3 pl-6 relative text-[#e0e0e0] border-l-2 border-transparent transition-all duration-300"><strong class="text-neon-cyan font-orbitron" style="text-shadow: 0 0 5px rgba(0, 255, 255, 0.4);">International Dance Music Awards:</strong> <span class="font-orbitron font-medium">Best Electro/Tech House Track</span> (2017)</li>
+              <li class="bio-list-item py-3 pl-6 relative text-[#e0e0e0] border-l-2 border-transparent transition-all duration-300"><strong class="text-neon-cyan font-orbitron" style="text-shadow: 0 0 5px rgba(0, 255, 255, 0.4);">MTV Video Music Awards Japan:</strong> <span class="font-orbitron font-medium">Best Dance Video</span> (2015, 2019)</li>
+              <li class="bio-list-item py-3 pl-6 relative text-[#e0e0e0] border-l-2 border-transparent transition-all duration-300"><strong class="text-neon-cyan font-orbitron" style="text-shadow: 0 0 5px rgba(0, 255, 255, 0.4);">Asian Music Awards:</strong> <span class="font-orbitron font-medium">Best DJ/Producer</span> (2016, 2018, 2020)</li>
+            </ul>
+
+            <h3 class="text-xl mb-6 text-neon-pink relative pl-4 border-l-4 border-neon-pink animate-glow-pulse" style="text-shadow: 0 0 10px rgba(255, 0, 255, 0.5), 0 0 20px rgba(255, 0, 255, 0.3);">シグネチャームーブ</h3>
+            <p class="text-[#d0d0d0] leading-8">
+              ステージ上でケーキを客席に投げる「<span class="font-orbitron font-semibold">KATSU Cake Throw</span>」や、日本の伝統的な太鼓をEDMに融合させた「<span class="font-orbitron font-semibold">Taiko Drop</span>」など、独創的なパフォーマンスで世界中のファンを熱狂させている。
+            </p>
+
+            <hr class="border-0 h-0.5 my-12" style="background: linear-gradient(90deg, transparent, #ff00ff, #00ffff, #ff00ff, transparent); box-shadow: 0 0 10px rgba(255, 0, 255, 0.5);">
+
+            <h3 class="text-xl mb-6 text-neon-pink relative pl-4 border-l-4 border-neon-pink animate-glow-pulse" style="text-shadow: 0 0 10px rgba(255, 0, 255, 0.5), 0 0 20px rgba(255, 0, 255, 0.3);">その他のエピソード</h3>
+            <ul class="my-6 space-y-3 pl-0 list-none">
+              <li class="bio-list-item py-3 pl-6 relative text-[#d0d0d0] border-l-2 border-transparent transition-all duration-300">平成の時代の幕開けとともに、テンプル騎士団の末裔として大阪府堺市に生まれ、幼少の頃からDJとしての英才教育を受け育つ。</li>
+              <li class="bio-list-item py-3 pl-6 relative text-[#d0d0d0] border-l-2 border-transparent transition-all duration-300">DJ KATSUTAROとしてのアイデンティティが確立された17歳の頃から、南大阪を代表するクラブ「SAKAIKKO」を拠点に日々DJパフォーマンスに明け暮れる。</li>
+              <li class="bio-list-item py-3 pl-6 relative text-[#d0d0d0] border-l-2 border-transparent transition-all duration-300">たまたま映画ハリー・ポッターのプロモーションで来日していたダニエル・ラドクリフ君にパーティに誘われ、パフォーマンスの様子がInstagramにUPされたことをきっかけに人気が爆発。オリジナルの演目（トラック）である「Put Your Hands Up For 落語」をひっさげ、関西のクラブシーンを席巻していく。</li>
+              <li class="bio-list-item py-3 pl-6 relative text-[#d0d0d0] border-l-2 border-transparent transition-all duration-300">既存のDJの枠を超えたハイパーメディアDJとして、クラブやパーティの現場だけでなくWebを中心とした各メディアに積極的に展開しており、YouTubeでの広告収入で自社ビルを建てたことも有名である。</li>
+              <li class="bio-list-item py-3 pl-6 relative text-[#d0d0d0] border-l-2 border-transparent transition-all duration-300">現在では、DJ・音楽プロデューサーを始め、ほかにもペットのトリマー・IKEAの店員・アボカド農家など、様々な分野でマルチに活躍中。</li>
+              <li class="bio-list-item py-3 pl-6 relative text-[#d0d0d0] border-l-2 border-transparent transition-all duration-300">フジテレビ系列「あるある大辞典」、TBS 系列「東京フレンドパーク」のレギュラーなど、テレビでのタレント活動にも注力している。</li>
+              <li class="bio-list-item py-3 pl-6 relative text-[#d0d0d0] border-l-2 border-transparent transition-all duration-300">季節もののイベントでは、年に一度の紅白歌合戦の司会や24時間テレビのマラソン、四年に一回の五輪（冬季）は毎回必ず出場する。</li>
+              <li class="bio-list-item py-3 pl-6 relative text-[#d0d0d0] border-l-2 border-transparent transition-all duration-300">これまでアルバムを4枚リリース（各作品80曲収録）。ハイセンスな洋楽をコンセプトに、自らCDジャケットのデザインも手がける。</li>
+              <li class="bio-list-item py-3 pl-6 relative text-[#d0d0d0] border-l-2 border-transparent transition-all duration-300">国民栄誉賞を二度受賞した人間国宝であり、次期1万円札の肖像の最有力候補とされている（Wikipediaより）。</li>
+              <li class="bio-list-item py-3 pl-6 relative text-[#d0d0d0] border-l-2 border-transparent transition-all duration-300">日本とベルリン、ニューヨーク、イェルサレムにスタジオ兼自宅を構え、3ヶ月ごとに生活拠点を移しながら世界中を駆け回る生活を送っている。</li>
+            </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section" id="works">
-      <div class="container">
-        <h2>Works</h2>
-        <div class="row">
-          <div class="col-6 col-md-3">
-            <div class="work-box">
-              <img src="assets/img/works_01.jpg" alt="WORKMAN">
-            </div>
+    <section id="works" class="py-16 relative overflow-hidden works-gradient-bg" style="background: linear-gradient(180deg, #0a0a1a 0%, #1a0a0a 50%, #0a0a0a 100%);">
+      <div class="container mx-auto px-4 relative z-10">
+        <h2 class="text-4xl font-bold tracking-wider italic text-center mb-10 gradient-text animate-gradient-shift section-title relative pb-4 font-orbitron">Works</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div class="relative overflow-hidden rounded-lg transition-all duration-300 hover:scale-105 work-box-overlay" style="box-shadow: 0 0 20px rgba(255, 0, 255, 0.2);">
+            <img src="assets/img/works_01.jpg" alt="WORKMAN" class="w-full h-auto transition-all duration-300 hover:brightness-125 hover:saturate-130">
           </div>
-          <div class="col-6 col-md-3">
-            <div class="work-box">
-              <img src="assets/img/works_02.jpg" alt="Sunset">
-            </div>
+          <div class="relative overflow-hidden rounded-lg transition-all duration-300 hover:scale-105 work-box-overlay" style="box-shadow: 0 0 20px rgba(255, 0, 255, 0.2);">
+            <img src="assets/img/works_02.jpg" alt="Sunset" class="w-full h-auto transition-all duration-300 hover:brightness-125 hover:saturate-130">
           </div>
-          <div class="col-6 col-md-3">
-            <div class="work-box">
-              <img src="assets/img/works_03.jpg" alt="Fire Fighter">
-            </div>
+          <div class="relative overflow-hidden rounded-lg transition-all duration-300 hover:scale-105 work-box-overlay" style="box-shadow: 0 0 20px rgba(255, 0, 255, 0.2);">
+            <img src="assets/img/works_03.jpg" alt="Fire Fighter" class="w-full h-auto transition-all duration-300 hover:brightness-125 hover:saturate-130">
           </div>
-          <div class="col-6 col-md-3">
-            <div class="work-box">
-              <img src="assets/img/works_04.jpg" alt="ήγασος">
-            </div>
+          <div class="relative overflow-hidden rounded-lg transition-all duration-300 hover:scale-105 work-box-overlay" style="box-shadow: 0 0 20px rgba(255, 0, 255, 0.2);">
+            <img src="assets/img/works_04.jpg" alt="ήγασος" class="w-full h-auto transition-all duration-300 hover:brightness-125 hover:saturate-130">
           </div>
         </div>
       </div>
@@ -108,16 +295,16 @@
 
   </main>
 
-  <footer id="footer">
-    <div class="footer-content">
-      <div class="container">
-        <h2>
+  <footer id="footer" class="bg-[#1b1b1b] text-center">
+    <div class="py-10 bg-[#222]">
+      <div class="container mx-auto px-4">
+        <h2 class="m-0 text-xl font-black text-white tracking-widest italic font-orbitron">
           DJ KATSUTARO　OFFICIAL WEBSITE
         </h2>
       </div>
     </div>
-    <p class="copyright">
-      <small>&copy; 2019 wwbwb</small>
+    <p class="py-4 m-0 text-white">
+      <small>&copy; 2019-2026 wwbwb</small>
     </p>
   </footer>
   <script>
