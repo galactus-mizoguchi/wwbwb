@@ -1,0 +1,8 @@
+---
+description: HTML coding standards and conventions.
+globs: **/*.html
+---
+# HTML コーディング規約
+
+- 適切なタグを使用する (`section`, `article`, `nav` 等)
+- インデントはスペース2つ

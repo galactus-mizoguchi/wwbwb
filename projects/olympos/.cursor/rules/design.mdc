@@ -1,0 +1,16 @@
+---
+description: Design guidelines, UI/UX, and theming.
+globs: **/*.{html,css,js}
+---
+# デザイン・UI/UX (Design Guidelines)
+
+- プレミアムでモダンなデザインを心がける
+- **タイポグラフィ**:
+  - 画面幅いっぱいの巨大サイズ (Massive Scale) を恐れずに使用する
+  - スクロール連動やアニメーション効果 (Kinetic Typography) を取り入れる
+  - 画像よりも「文字」をビジュアルの主役として扱う
+- **レイアウト**:
+  - 従来のグリッドにとらわれない非対称な配置 (Asymmetrical/Broken Grid) を許容する
+  - 要素同士をあえて重ね合わせ (Overlapping)、奥行きを表現する
+  - 整理された情報は Bento Grid スタイルでリズムを作る
+- マイクロインタラクションを大切にする

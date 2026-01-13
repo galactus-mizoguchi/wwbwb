@@ -1,0 +1,11 @@
+---
+description: Project directory structure and file organization.
+globs: *
+---
+# ディレクトリ構造 (Directory Structure)
+
+- `assets/`
+  - `css/`: スタイルシート
+  - `js/`: JavaScriptファイル
+  - `img/`: 画像ファイル
+- `index.html`: エントリーポイント

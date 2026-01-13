@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>オリンポス12神ショー | The Twelve Olympians</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Noto+Serif+JP:wght@300;500;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div class="marble-bg"></div>
+    <div id="particles-container"></div>
+    <div id="loading" class="loading-screen">
+      <div class="text-center">
+        <div class="loader mb-4 mx-auto"></div>
+        <h2 class="loading-title">LOADING OLYMPUS</h2>
+      </div>
+    </div>
+    <nav class="navbar" id="navbar">
+      <div class="container flex justify-between items-center">
+        <div class="nav-logo text-gold-gradient cursor-pointer" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+          OLYMPUS XII
+        </div>
+        <div class="nav-links hidden md:flex text-slate-300">
+          <a href="#gallery" class="nav-link">GODS</a>
+          <a href="#about" class="nav-link">MYTHOS</a>
+          <a href="#timeline" class="nav-link">HISTORY</a>
+          <a href="#genealogy" class="nav-link">LINEAGE</a>
+          <a href="#oracle" class="nav-link">ORACLE</a>
+        </div>
+      </div>
+    </nav>
+    <main>
+      <header class="hero-section">
+        <div class="hero-bg">
+          <img src="https://images.unsplash.com/photo-1564399580075-5dfe19c205f3?q=80&w=2070&auto=format&fit=crop" 
+               alt="Olympus Temple" 
+               class="hero-bg-img animate-pulse-slow">
+          <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-content" id="hero-content">
+          <p class="hero-subtitle">The Divine Pantheons</p>
+          <h1 class="hero-title text-gold-gradient">
+            OLYMPUS
+            <span>Twelve Gods Show</span>
+          </h1>
+          <p class="hero-desc text-slate-300">
+            神々が住まう山、オリンポス。<br>
+            世界を統べる12柱の絶対的な力と物語。
+          </p>
+          <a href="#gallery" class="btn-hero">
+            神々謁見
+          </a>
+        </div>
+      </header>
+      <section id="gallery" class="gallery-section">
+        <div class="container">
+          <div class="section-header-unified">
+            <h2 class="section-title-main">GODS</h2>
+            <span class="section-title-sub">十二神の紹介</span>
+          </div>
+          <p class="section-desc mb-8">
+            カードをクリックすると、神々の詳細な伝承が表示されます。
+          </p>
+          <div class="filter-container">
+            <button class="filter-btn active" data-filter="all">ALL GODS</button>
+            <button class="filter-btn" data-filter="Male">GODS (MALE)</button>
+            <button class="filter-btn" data-filter="Female">GODDESSES (FEMALE)</button>
+          </div>
+          <div class="gods-grid" id="gods-grid">
+          </div>
+        </div>
+      </section>
+      <section id="about" class="about-section">
+        <div class="container">
+          <div class="section-header-unified">
+            <h2 class="section-title-main">MYTHOS</h2>
+            <span class="section-title-sub">オリンポスの神々について</span>
+          </div>
+          <div class="about-content">
+            <p class="about-text">
+              ギリシャ北部にそびえ立つオリンポス山。<br>
+              その山頂には、世界を統べる神々の宮殿があると信じられていました。<br>
+              彼らは「オリンポス十二神」と呼ばれ、主神ゼウスを中心に、<br>
+              厳格なヒエラルキーと家族関係によって結ばれています。
+            </p>
+            <p class="about-text">
+              彼らは不死の存在ですが、人間と同じように感情を持ち、<br>
+              愛し、憎み、争い、そして時には人間を助け、あるいは試練を与えます。<br>
+              その人間臭さこそが、数千年の時を超えて人々を魅了し続ける理由なのかもしれません。
+            </p>
+            <div class="myth-box">
+              <h3 class="myth-title">THE DOCTRINE</h3>
+              <p class="text-slate-400 text-sm">
+                神々は自然現象や人間の営み（愛、知恵、戦争、芸術など）を司ります。<br>
+                古代の人々は、不可解な運命や自然の脅威を神々の意志として理解し、<br>
+                祈りと捧げ物によってその加護を得ようとしました。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="timeline" class="timeline-section">
+        <div class="container relative">
+          <div class="section-header-unified">
+            <h2 class="section-title-main">CHRONICLES</h2>
+            <span class="section-title-sub">神話の歴史</span>
+          </div>
+          <div class="timeline-line"></div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-year">THE BEGINNING</span>
+              <h3 class="timeline-item-title">混沌（カオス）からの誕生</h3>
+              <p class="timeline-item-desc">
+                数千年前、世界は混沌のみが存在していました。そこから大地母神ガイアが生まれ、ウラノス（天空）などの原初の神々が誕生。世界の基礎が築かれました。
+              </p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-year">TITANOMACHY</span>
+              <h3 class="timeline-item-title">巨神族との戦い</h3>
+              <p class="timeline-item-desc">
+                クロノス率いる巨神族（ティターン）と、ゼウス率いるオリンポスの神々との壮絶な戦い。10年に及ぶ大戦の末、ゼウスが勝利し、新たな秩序が生まれました。
+              </p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-year">AGE OF OLYMPUS</span>
+              <h3 class="timeline-item-title">オリンポスの黄金時代</h3>
+              <p class="timeline-item-desc">
+                ゼウスを頂点とする12神が世界を統治。人類に対し、火（プロメテウス）や知恵、芸術が与えられ、文明が栄えました。神々と人間が最も近づいた時代です。
+              </p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-year">HEROIC AGE</span>
+              <h3 class="timeline-item-title">英雄たちの時代</h3>
+              <p class="timeline-item-desc">
+                ヘラクレスやアキレウス、オデュッセウスなど、神の血を引く英雄たちが活躍。トロイア戦争などの叙事詩が紡がれ、神話は伝説へと昇華されていきました。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="genealogy" class="genealogy-section">
+        <div class="container">
+          <div class="section-header-unified">
+            <h2 class="section-title-main">FAMILY TREE</h2>
+            <span class="section-title-sub">神々の系譜</span>
+          </div>
+          <div class="genealogy-tree">
+            <ul>
+              <li>
+                <div class="tree-node titan">
+                  <div class="node-content">
+                    <span class="node-name">CRONUS</span>
+                    <span class="node-symbol">∞</span>
+                    <span class="node-name">RHEA</span>
+                  </div>
+                  <span class="node-role">THE TITANS</span>
+                </div>
+                <ul>
+                  <li>
+                    <div class="tree-node">
+                      <span class="node-name">HESTIA</span>
+                      <span class="node-role">Hearth</span>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="tree-node">
+                      <span class="node-name">HADES</span>
+                      <span class="node-role">Underworld</span>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="tree-node">
+                      <span class="node-name">DEMETER</span>
+                      <span class="node-role">Harvest</span>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="tree-node">
+                      <span class="node-name">POSEIDON</span>
+                      <span class="node-role">Sea</span>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="tree-node double">
+                      <div class="node-content">
+                        <div class="god-pair">
+                          <span class="node-name zeus-text">ZEUS</span>
+                          <span class="pair-icon">⚡</span>
+                        </div>
+                        <div class="god-pair">
+                          <span class="pair-icon">👑</span>
+                          <span class="node-name hera-text">HERA</span>
+                        </div>
+                      </div>
+                      <span class="node-role">King & Queen</span>
+                    </div>
+                    <ul>
+                      <li>
+                        <div class="tree-node">
+                          <span class="node-name">ATHENA</span>
+                          <span class="node-role">Wisdom</span>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="tree-node">
+                          <span class="node-name">APOLLO</span>
+                          <span class="node-role">Sun</span>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="tree-node">
+                          <span class="node-name">ARTEMIS</span>
+                          <span class="node-role">Hunt</span>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="tree-node">
+                          <span class="node-name">ARES</span>
+                          <span class="node-role">War</span>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="tree-node">
+                          <span class="node-name">HEPHAESTUS</span>
+                          <span class="node-role">Fire</span>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="tree-node">
+                          <span class="node-name">HERMES</span>
+                          <span class="node-role">Speed</span>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="tree-node">
+                          <span class="node-name">DIONYSUS</span>
+                          <span class="node-role">Wine</span>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="tree-node">
+                          <span class="node-name">APHRODITE</span>
+                          <span class="node-role">Beauty</span>
+                        </div>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section id="oracle" class="oracle-section">
+        <div class="container">
+          <div class="section-header-unified">
+            <h2 class="section-title-main">THE ORACLE</h2>
+            <span class="section-title-sub">守護神診断</span>
+          </div>
+          <div class="oracle-container">
+            <div id="oracle-start">
+              <p class="text-slate-300 mb-8">あなたの魂に共鳴するオリンポスの神を告げます。</p>
+              <button onclick="startOracle()" class="btn-oracle">
+                診断を始める
+              </button>
+            </div>
+            <div id="oracle-quiz" class="oracle-box hidden" style="display: none;">
+              <h3 class="text-yellow-500 text-sm tracking-widest mb-4 eng-font">QUESTION <span id="q-number">1</span></h3>
+              <p id="q-text" class="question-text">質問内容</p>
+              <div id="q-options" class="options-grid">
+              </div>
+            </div>
+            <div id="oracle-result" class="hidden" style="display: none;">
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      <div class="container">
+        <h2 class="footer-title">OLYMPUS XII</h2>
+        <p class="footer-desc">
+          古代ギリシャの神話に捧ぐ。<br>
+          <small>すべての画像はイメージであり、Unsplashより提供されています。</small>
+        </p>
+        <div class="footer-copyright">
+          &copy; 2023 Olympus Show Gallery. All Rights Reserved.
+        </div>
+      </div>
+    </footer>
+    <div id="modal" class="modal-wrapper">
+      <div class="absolute inset-0 modal-overlay" id="modal-overlay"></div>
+      <div id="modal-content" class="modal-content-container">
+        <button id="modal-close" class="modal-close-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" style="width: 2rem; height: 2rem;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+        <div class="modal-image-col group">
+          <img id="modal-img" src="" alt="" class="w-full h-full object-cover">
+          <div class="absolute inset-0" style="background: linear-gradient(to top, #0f172a, transparent);"></div>
+        </div>
+        <div class="modal-text-col">
+          <span id="modal-eng-name" class="modal-bg-text">ZEUS</span>
+          <h3 id="modal-jp-name" class="modal-title-main">ゼウス</h3>
+          <p id="modal-title" class="modal-title-sub">全知全能の神</p>
+          <div class="space-y-6 modal-desc-container">
+            <p id="modal-desc" class="modal-desc-text">ここに説明が入ります。</p>
+            <div class="modal-info-box">
+              <h4 class="text-yellow-500 text-sm mb-2">SYMBOLS</h4>
+              <p id="modal-symbols" class="text-sm">雷霆、鷲、オークの木、王笏</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="assets/js/script.js"></script>
+  </body>
+</html>

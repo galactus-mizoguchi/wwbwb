@@ -1,0 +1,19 @@
+---
+description: Apply to all files. Defines language, basic style, and tech stack constraints.
+globs: *
+---
+# 基本方針 (General Principles)
+
+## 言語 (Language)
+- **会話**: 日本語 (Japanese)
+- **コード内のコメント**: 日本語 (Japanese)
+- **変数名・関数名**: 英語 (English, descriptive)
+
+## スタイル (Style)
+- 可読性を重視する
+- モダンな構文を使用する (ES6+, CSS Variables etc.)
+
+# テクノロジー (Technology Stack)
+- **HTML**: Semantic HTML5
+- **CSS**: Vanilla CSS (No Framework unless specified)
+- **JS**: Vanilla JavaScript (No jQuery)

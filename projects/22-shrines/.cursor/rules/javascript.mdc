@@ -1,0 +1,9 @@
+---
+description: JavaScript coding standards (ES6+, Async/Await).
+globs: **/*.js
+---
+# JavaScript コーディング規約
+
+- `const` と `let` を使用し、`var` は使用しない
+- アロー関数 `() => {}` を積極的に使用
+- 非同期処理は `async/await` を使用

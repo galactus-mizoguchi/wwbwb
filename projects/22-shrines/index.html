@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>僕らの二十二社巡り</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500&family=Zen+Old+Mincho:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <div class="vertical-titles">
+        <h1>僕らの<br>二十二社巡り</h1>
+        <div class="japanese-subtitle">御朱印ドライブ物語</div>
+      </div>
+      <div class="subtitle">Our Tour of the 22 Shrines</div>
+    </div>
+  </header>
+
+  <main>
+    <div class="status-bar">
+      <div class="progress-text">巡礼の進捗</div>
+      <div>
+        <span id="visited-count" class="progress-count">0</span> / <span id="total-count">0</span> 社 
+        (<span id="percent">0</span>%)
+      </div>
+    </div>
+
+    <section class="rank-section">
+      <h2 class="rank-title">上七社</h2>
+      <div id="upper-list" class="shrine-grid"></div>
+    </section>
+
+    <section class="rank-section">
+      <h2 class="rank-title">中七社</h2>
+      <div id="middle-list" class="shrine-grid"></div>
+    </section>
+
+    <section class="rank-section">
+      <h2 class="rank-title">下八社</h2>
+      <div id="lower-list" class="shrine-grid"></div>
+    </section>
+  </main>
+
+  <div class="about-section">
+    <h2 class="about-title">二十二社とは</h2>
+    <p class="about-text">
+      平安時代後期、国家の重大事や天変地異の際に朝廷が特別に奉幣した有力な22の神社。<br>
+      伊勢神宮は「別格」として筆頭に置かれ、京に近い順に「上七社」「中七社」「下八社」と区分されています。<br>
+      千年の時を超え、今もなお深く信仰される聖地を巡る旅です。
+    </p>
+  </div>
+
+  <footer>
+    &copy; Katsuki.me Lab
+  </footer>
+
+  <script src="assets/js/script.js"></script>
+</body>
+</html>

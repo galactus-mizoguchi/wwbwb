@@ -1,0 +1,394 @@
+:root {
+  --bg-color: #121212; /* Deep sanctuary dark */
+  --card-bg: rgba(30, 30, 30, 0.6); /* Glassy dark */
+  --text-main: #e0e0e0;
+  --text-sub: #a0a0a0;
+  --accent-color: #c5a059; /* Muted Gold */
+  --accent-glow: rgba(197, 160, 89, 0.3);
+  --border-color: rgba(255, 255, 255, 0.1);
+  --font-serif: "Zen Old Mincho", serif;
+  --font-sans: "Zen Kaku Gothic New", sans-serif;
+  --spacing-unit: 8px;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family: var(--font-serif);
+  line-height: 2;
+  margin: 0;
+  padding: 0;
+  /* Subtle texture or gradient to mitigate flatness */
+  background-image: radial-gradient(circle at 50% 0%, #1a1f2e 0%, #121212 60%);
+  min-height: 100vh;
+}
+
+/* Typography Overrides */
+h1, h2, h3 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  letter-spacing: 0.15em;
+}
+
+/* Header - Church-like verticality and grandeur */
+header {
+  position: relative;
+  height: 85vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+  background-image: linear-gradient(rgba(18, 18, 18, 0.4), var(--bg-color)), url('../img/main_visual.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  overflow: hidden;
+  padding-bottom: 10vh;
+}
+
+.header-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  z-index: 2;
+}
+
+
+.vertical-titles {
+  display: flex;
+  flex-direction: column; /* Stacks horizontally in vertical-rl (Right to Left) */
+  align-items: center; /* Center align vertically */
+  gap: 2.5rem;
+  writing-mode: vertical-rl;
+  margin: 0 auto;
+}
+
+h1 {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  font-size: 4rem;
+  color: #fff;
+  text-shadow: 0 4px 12px rgba(0,0,0,0.6);
+  margin: 0;
+  letter-spacing: 0.2em;
+  line-height: 1.6;
+}
+
+.subtitle {
+  writing-mode: horizontal-tb; /* Horizontal English */
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-family: var(--font-sans);
+  text-transform: uppercase;
+  letter-spacing: 0.4em;
+  padding: 0.5rem 0;
+  border-top: 1px solid var(--accent-color);
+  border-bottom: 1px solid var(--accent-color);
+  backdrop-filter: blur(2px);
+  margin-top: 1rem;
+}
+
+@media (max-width: 600px) {
+  h1 { font-size: 2.5rem; }
+  header { height: 60vh; }
+  main { margin-top: -50px; }
+  .shrine-grid { gap: 1.5rem; }
+}
+
+/* Japanese Subtitle (Goshuin Drive Story) */
+.japanese-subtitle {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  font-size: 1.3rem; /* Slightly larger for balance */
+  color: var(--accent-color);
+  font-family: var(--font-serif);
+  letter-spacing: 0.4em;
+  margin: 0;
+  text-shadow: 0 0 10px rgba(0,0,0,0.5);
+  font-weight: 700;
+}
+
+/* Main Content */
+main {
+  max-width: 1200px;
+  margin: -50px auto 0; /* Overlap header */
+  padding: 0 2rem 4rem;
+  position: relative;
+  z-index: 10;
+}
+
+/* Status Bar */
+.status-bar {
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid var(--accent-color);
+  margin-bottom: 4rem;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+.progress-text {
+  font-family: var(--font-serif);
+  color: var(--accent-color);
+  font-weight: 700;
+}
+
+.progress-count {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+/* Rank Sections */
+.rank-section {
+  margin-bottom: 4rem;
+}
+
+.rank-title {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--accent-color);
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  position: relative;
+  display: inline-block;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.rank-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 2px;
+  background: var(--accent-color);
+  margin: 0.5rem auto 0;
+}
+
+/* Shrine Grid */
+.shrine-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+/* Shrine Card */
+.shrine-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  overflow: hidden; /* For watermark */
+  min-height: 200px; /* Ensure height */
+  cursor: pointer;
+}
+
+.shrine-card:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--accent-color);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.shrine-card.visited {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 15px var(--accent-glow);
+}
+
+.shrine-card.visited::before {
+  content: '参拝済';
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: var(--accent-color);
+  color: #000;
+  font-size: 0.7rem;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-family: var(--font-sans);
+  font-weight: bold;
+  z-index: 10;
+}
+
+/* Card Internals */
+.shrine-crest {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 150px;
+  height: 150px;
+  transform: rotate(15deg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: 0.15; /* Slightly more visible as it's smaller */
+  pointer-events: none;
+  z-index: 0;
+  filter: invert(1);
+}
+
+.shrine-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.shrine-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--text-sub);
+}
+
+.province-label, .classification-label {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.shrine-name {
+  font-size: 1.5rem;
+  margin: 0 0 1rem 0;
+  color: #fff;
+  font-family: var(--font-serif);
+}
+
+.kami-section {
+  flex-grow: 1; /* Pushes footer down */
+  margin-bottom: 1rem;
+}
+
+.kami-label {
+  font-size: 0.75rem;
+  color: var(--accent-color);
+  margin-bottom: 0.25rem;
+}
+
+.kami-name {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: var(--text-sub);
+}
+
+.shrine-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+}
+
+.shrine-address {
+  color: var(--text-sub);
+  width: 60%; /* Reduced width to accommodate buttons */
+}
+
+.shrine-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.map-button, .website-button {
+  background: transparent;
+  border: 1px solid var(--accent-color);
+  color: var(--accent-color);
+  padding: 4px 10px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-family: var(--font-sans);
+  transition: all 0.2s;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.map-button:hover, .website-button:hover {
+  background: var(--accent-color);
+  color: #000;
+}
+
+.website-button {
+  border-color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.website-button:hover {
+  background: rgba(255, 255, 255, 0.8);
+  border-color: #fff;
+  color: #000;
+}
+
+/* About Section */
+.about-section {
+  max-width: 800px;
+  margin: 6rem auto 4rem;
+  padding: 3rem;
+  background: rgba(197, 160, 89, 0.05); /* Very subtle gold tint */
+  border: 1px solid var(--border-color);
+  border-radius: 2px; /* Slightly more traditional sharp corners */
+  text-align: center;
+  position: relative;
+}
+
+.about-section::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  border: 1px solid var(--accent-color);
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.about-title {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  color: var(--accent-color);
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.2em;
+}
+
+.about-text {
+  font-family: var(--font-serif);
+  color: var(--text-sub);
+  line-height: 2.2;
+  font-size: 0.95rem;
+  text-align: justify;
+  text-align-last: center;
+}
+
+@media (max-width: 600px) {
+  .about-section {
+    padding: 2rem 1.5rem;
+    margin: 4rem 1rem;
+  }
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 2rem;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.8rem;
+  font-family: var(--font-sans);
+}

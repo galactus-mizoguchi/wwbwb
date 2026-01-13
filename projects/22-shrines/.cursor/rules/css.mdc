@@ -1,0 +1,9 @@
+---
+description: CSS coding standards, BEM, and responsive design.
+globs: **/*.css
+---
+# CSS コーディング規約
+
+- BEM記法または予測可能なクラス命名規則を推奨
+- レスポンシブデザインはモバイルファーストで実装
+- メディアクエリは `min-width` を基本とする
