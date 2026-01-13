@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neon Tetris</title>
+    <meta name="description" content="A simple, neon-styled Tetris game built with Vanilla JS.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="game-container">
+        <header>
+            <h1>NEON TETRIS</h1>
+        </header>
+        
+        <div class="main-area">
+            <div class="game-board-container">
+                <canvas id="tetris" width="240" height="400"></canvas>
+            </div>
+            
+            <div class="sidebar">
+                <div class="score-box">
+                    <h2>SCORE</h2>
+                    <p id="score">0</p>
+                </div>
+                
+                <div class="next-piece-box">
+                    <h2>NEXT</h2>
+                    <canvas id="next" width="80" height="80"></canvas>
+                </div>
+
+                <div class="controls-info">
+                    <h3>CONTROLS</h3>
+                    <p><span>← →</span> Move</p>
+                    <p><span>↑</span> Rotate</p>
+                    <p><span>↓</span> Soft Drop</p>
+                    <p><span>SPACE</span> Hard Drop</p> <!-- Added Hard Drop control info -->
+                    <p><span>P</span> Pause</p>
+                </div>
+                
+                <button id="start-btn" class="btn">START GAME</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
