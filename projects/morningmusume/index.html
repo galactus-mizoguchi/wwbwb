@@ -1,421 +1,77 @@
-<!DOCTYPE HTML>
-<html>
-
+<!DOCTYPE html>
+<html lang="ja">
 <head>
-  <title>モーニング娘。いまむかし</title>
-  <meta name="description" content="website description" />
-  <meta name="keywords" content="website keywords, website keywords" />
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-
-  <link href="css/style.css" rel="stylesheet" type="text/css" />
-  <link href="css/portfolio_one.css" rel="stylesheet" type="text/css" />
-  <link href="css/dark.css" rel="stylesheet" type="text/css" />
-  <!-- we only want the thunbnails to display when javascript is disabled -->
-  <script type="text/javascript">
-    document.write('<style>.noscript { display: none; }</style>');
-  </script>
-  <script type="text/javascript" src="js/modernizr-1.5.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>モーニング娘。いまむかし</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Noto+Serif+JP:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
-
 <body>
-  <div id="main">
-    <header>
-      <div id="logo"><h1>モーニング娘。いまむかし</h1></div>
-<!--       <nav>
-        <ul class="sf-menu" id="nav">
-          <li><a href="">1期</a></li>
-          <li><a href="">2期</a></li>
-          <li><a href="">3期</a></li>
-          <li><a href="">4期</a></li>
-          <li><a href="">5期</a></li>
-          <li><a href="">6期</a></li>
-          <li><a href="">7期</a></li>
-          <li><a href="">8期</a></li>
-        </ul>
-      </nav> -->
+    <header class="header">
+        <div class="header-inner">
+            <p class="header-label">Since 1997</p>
+            <h1 class="main-title">モーニング娘。いまむかし</h1>
+            <p class="header-en">Morning Musume. Then and Now</p>
+            <p class="header-tagline">歴代メンバーを振り返る</p>
+        </div>
     </header>
 
-    <div id="site_content">
-      <div id="gallery" class="content">
-        <div class="slideshow-container">
-          <div id="loading" class="loader"></div>
-          <div id="slideshow" class="slideshow"></div>
+    <nav class="filter-nav">
+        <div class="filter-inner">
+            <span class="filter-label">Generation</span>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-generation="all">All</button>
+                <button class="filter-btn" data-generation="1">01</button>
+                <button class="filter-btn" data-generation="2">02</button>
+                <button class="filter-btn" data-generation="3">03</button>
+                <button class="filter-btn" data-generation="4">04</button>
+                <button class="filter-btn" data-generation="5">05</button>
+                <button class="filter-btn" data-generation="6">06</button>
+                <button class="filter-btn" data-generation="7">07</button>
+                <button class="filter-btn" data-generation="8">08</button>
+                <button class="filter-btn" data-generation="9">09</button>
+                <button class="filter-btn" data-generation="10">10</button>
+                <button class="filter-btn" data-generation="11">11</button>
+                <button class="filter-btn" data-generation="12">12</button>
+                <button class="filter-btn" data-generation="13">13</button>
+                <button class="filter-btn" data-generation="14">14</button>
+                <button class="filter-btn" data-generation="15">15</button>
+                <button class="filter-btn" data-generation="16">16</button>
+                <button class="filter-btn" data-generation="17">17</button>
+            </div>
         </div>
-      </div>
-      <div id="thumb-container">
-        <div id="thumbs" class="navigation">
-          <h1>歴代メンバーを振り返ろう</h1>
-          <ul class="thumbs noscript">
-            <li>
-              <a class="thumb" href="images/portfolio_one/2.jpg">
-                <img src="images/portfolio_one/2_thumb.jpg" alt="【1期】中澤裕子" />
-              </a>
-              <div class="caption">
-                <div class="image-title portfolio_one">【1期】中澤裕子</div>
-              </div>
-            </li>
-            <li>
-              <a class="thumb" href="images/portfolio_one/1.jpg">
-                <img src="images/portfolio_one/1_thumb.jpg" alt="【1期】福田明日香" />
-              </a>
-              <div class="caption">
-                <div class="image-title portfolio_one">【1期】福田明日香</div>
-              </div>
-            </li>
-            <li>
-              <a class="thumb" href="images/portfolio_one/3.jpg">
-                <img src="images/portfolio_one/3_thumb.jpg" alt="【1期】石黒彩" />
-              </a>
-              <div class="caption">
-                <div class="image-title portfolio_one">【1期】石黒彩</div>
-              </div>
-            </li>
-            <li>
-              <a class="thumb" href="images/portfolio_one/4.jpg">
-                <img src="images/portfolio_one/4_thumb.jpg" alt="【1期】飯田香織" />
-              </a>
-              <div class="caption">
-                <div class="image-title portfolio_one">【1期】飯田香織</div>
-              </div>
-            </li>
-            <li>
-              <a class="thumb" href="images/portfolio_one/5.jpg">
-                <img src="images/portfolio_one/5_thumb.jpg" alt="【1期】安倍なつみ" />
-              </a>
-              <div class="caption">
-                <div class="image-title portfolio_one">【1期】安倍なつみ</div>
-              </div>
-            </li>
-            <li>
-              <a class="thumb" href="images/portfolio_one/6.jpg">
-                <img src="images/portfolio_one/6_thumb.jpg" alt="【2期】保田圭" />
-              </a>
-              <div class="caption">
-                <div class="image-title portfolio_one">【2期】保田圭</div>
-              </div>
-            </li>
-            <li>
-              <a class="thumb" href="images/portfolio_one/7.jpg">
-                <img src="images/portfolio_one/7_thumb.jpg" alt="【2期】矢口真里" />
-              </a>
-              <div class="caption">
-                <div class="image-title portfolio_one">【2期】矢口真里</div>
-              </div>
-            </li>
-            <li>
-              <a class="thumb" href="images/portfolio_one/8.jpg">
-                <img src="images/portfolio_one/8_thumb.jpg" alt="【2期】市井紗耶香" />
-              </a>
-              <div class="caption">
-                <div class="image-title portfolio_one">【2期】市井紗耶香</div>
-              </div>
-            </li>
-            <li>
-              <a class="thumb" href="images/portfolio_one/9.jpg">
-                <img src="images/portfolio_one/9_thumb.jpg" alt="【3期】後藤真希" />
-              </a>
-              <div class="caption">
-                <div class="image-title portfolio_one">【3期】後藤真希</div>
-              </div>
-            </li>
-            <li>
-              <a class="thumb" href="images/portfolio_one/10.jpg">
-                <img src="images/portfolio_one/10_thumb.jpg" alt="【4期】石川梨華" />
-              </a>
-              <div class="caption">
-                <div class="image-title portfolio_one">【4期】石川梨華</div>
-              </div>
-            </li>
-            <li>
-              <a class="thumb" href="images/portfolio_one/11.jpg">
-                <img src="images/portfolio_one/11_thumb.jpg" alt="【4期】吉澤ひとみ" />
-              </a>
-              <div class="caption">
-                <div class="image-title portfolio_one">【4期】吉澤ひとみ</div>
-              </div>
-            </li>
-            <li>
-              <a class="thumb" href="images/portfolio_one/12.jpg">
-                <img src="images/portfolio_one/12_thumb.jpg" alt="【4期】辻希美" />
-              </a>
-              <div class="caption">
-                <div class="image-title portfolio_one">【4期】辻希美</div>
-              </div>
-            </li>
-            <li>
-              <a class="thumb" href="images/portfolio_one/13.jpg">
-                <img src="images/portfolio_one/13_thumb.jpg" alt="【4期】加護亜依" />
-              </a>
-              <div class="caption">
-                <div class="image-title portfolio_one">【4期】加護亜依</div>
-              </div>
-            </li>
-            <li>
-              <a class="thumb" href="images/portfolio_one/14.jpg">
-                <img src="images/portfolio_one/14_thumb.jpg" alt="【5期】高橋愛" />
-              </a>
-              <div class="caption">
-                <div class="image-title portfolio_one">【5期】高橋愛</div>
-              </div>
-            </li>
-            <li>
-              <a class="thumb" href="images/portfolio_one/15.jpg">
-                <img src="images/portfolio_one/15_thumb.jpg" alt="【5期】紺野あさ美" />
-              </a>
-              <div class="caption">
-                <div class="image-title portfolio_one">【5期】紺野あさ美</div>
-              </div>
-            </li>
-            <li>
-              <a class="thumb" href="images/portfolio_one/16.jpg">
-                <img src="images/portfolio_one/16_thumb.jpg" alt="【5期】小川麻琴" />
-              </a>
-              <div class="caption">
-                <div class="image-title portfolio_one">【5期】小川麻琴</div>
-              </div>
-            </li>
-            <li>
-              <a class="thumb" href="images/portfolio_one/17.jpg">
-                <img src="images/portfolio_one/17_thumb.jpg" alt="【5期】新垣里沙" />
-              </a>
-              <div class="caption">
-                <div class="image-title portfolio_one">【5期】新垣里沙</div>
-              </div>
-            </li>
-            <li>
-              <a class="thumb" href="images/portfolio_one/18.jpg">
-                <img src="images/portfolio_one/18_thumb.jpg" alt="【6期】藤本美貴" />
-              </a>
-              <div class="caption">
-                <div class="image-title portfolio_one">【6期】藤本美貴</div>
-              </div>
-            </li>
-            <li>
-              <a class="thumb" href="images/portfolio_one/19.jpg">
-                <img src="images/portfolio_one/19_thumb.jpg" alt="【6期】亀井絵里" />
-              </a>
-              <div class="caption">
-                <div class="image-title portfolio_one">【6期】亀井絵里</div>
-              </div>
-            </li>
-            <li>
-              <a class="thumb" href="images/portfolio_one/20.jpg">
-                <img src="images/portfolio_one/20_thumb.jpg" alt="【6期】道重さゆみ" />
-              </a>
-              <div class="caption">
-                <div class="image-title portfolio_one">【6期】道重さゆみ</div>
-              </div>
-            </li>
-            <li>
-              <a class="thumb" href="images/portfolio_one/21.jpg">
-                <img src="images/portfolio_one/21_thumb.jpg" alt="【6期】田中れいな" />
-              </a>
-              <div class="caption">
-                <div class="image-title portfolio_one">【6期】田中れいな</div>
-              </div>
-            </li>
-            <li>
-              <a class="thumb" href="images/portfolio_one/22.jpg">
-                <img src="images/portfolio_one/22_thumb.jpg" alt="【7期】久住小春" />
-              </a>
-              <div class="caption">
-                <div class="image-title portfolio_one">【7期】久住小春</div>
-              </div>
-            </li>
-            <li>
-              <a class="thumb" href="images/portfolio_one/23.jpg">
-                <img src="images/portfolio_one/23_thumb.jpg" alt="【8期】光井愛佳" />
-              </a>
-              <div class="caption">
-                <div class="image-title portfolio_one">【8期】光井愛佳</div>
-              </div>
-            </li>
-            <li>
-              <a class="thumb" href="images/portfolio_one/24.jpg">
-                <img src="images/portfolio_one/24_thumb.jpg" alt="【8期】（留学生）ジュンジュン" />
-              </a>
-              <div class="caption">
-                <div class="image-title portfolio_one">【8期】（留学生）ジュンジュン</div>
-              </div>
-            </li>
-            <li>
-              <a class="thumb" href="images/portfolio_one/25.jpg">
-                <img src="images/portfolio_one/25_thumb.jpg" alt="【8期】（留学生）リンリン" />
-              </a>
-              <div class="caption">
-                <div class="image-title portfolio_one">【8期】（留学生）リンリン</div>
-              </div>
-            </li>
-            <li>
-              <a class="thumb" href="images/portfolio_one/26.jpg">
-                <img src="images/portfolio_one/26_thumb.jpg" alt="【9期】譜久村聖" />
-              </a>
-              <div class="caption">
-                <div class="image-title portfolio_one">【9期】譜久村聖</div>
-              </div>
-            </li>
-            <li>
-              <a class="thumb" href="images/portfolio_one/27.jpg">
-                <img src="images/portfolio_one/27_thumb.jpg" alt="【9期】生田衣梨奈" />
-              </a>
-              <div class="caption">
-                <div class="image-title portfolio_one">【9期】生田衣梨奈</div>
-              </div>
-            </li>
-            <li>
-              <a class="thumb" href="images/portfolio_one/28.jpg">
-                <img src="images/portfolio_one/28_thumb.jpg" alt="【9期】鞘師里保" />
-              </a>
-              <div class="caption">
-                <div class="image-title portfolio_one">【9期】鞘師里保</div>
-              </div>
-            </li>
-            <li>
-              <a class="thumb" href="images/portfolio_one/29.jpg">
-                <img src="images/portfolio_one/29_thumb.jpg" alt="【9期】鈴木香音" />
-              </a>
-              <div class="caption">
-                <div class="image-title portfolio_one">【9期】鈴木香音</div>
-              </div>
-            </li>
-            <li>
-              <a class="thumb" href="images/portfolio_one/30.jpg">
-                <img src="images/portfolio_one/30_thumb.jpg" alt="【10期】飯窪春菜" />
-              </a>
-              <div class="caption">
-                <div class="image-title portfolio_one">【10期】飯窪春菜</div>
-              </div>
-            </li>
-            <li>
-              <a class="thumb" href="images/portfolio_one/31.jpg">
-                <img src="images/portfolio_one/31_thumb.jpg" alt="【10期】石田亜佑美" />
-              </a>
-              <div class="caption">
-                <div class="image-title portfolio_one">【10期】石田亜佑美</div>
-              </div>
-            </li>
-            <li>
-              <a class="thumb" href="images/portfolio_one/32.jpg">
-                <img src="images/portfolio_one/32_thumb.jpg" alt="【10期】佐藤優樹" />
-              </a>
-              <div class="caption">
-                <div class="image-title portfolio_one">【10期】佐藤優樹</div>
-              </div>
-            </li>
-            <li>
-              <a class="thumb" href="images/portfolio_one/33.jpg">
-                <img src="images/portfolio_one/33_thumb.jpg" alt="【10期】工藤遥" />
-              </a>
-              <div class="caption">
-                <div class="image-title portfolio_one">【10期】工藤遥</div>
-              </div>
-            </li>
-            <li>
-              <a class="thumb" href="images/portfolio_one/34.jpg">
-                <img src="images/portfolio_one/34_thumb.jpg" alt="【11期】小田さくら" />
-              </a>
-              <div class="caption">
-                <div class="image-title portfolio_one">【11期】小田さくら</div>
-              </div>
-            </li>
-            <li>
-              <a class="thumb" href="images/portfolio_one/35.jpg">
-                <img src="images/portfolio_one/35_thumb.jpg" alt="【12期】尾形春水" />
-              </a>
-              <div class="caption">
-                <div class="image-title portfolio_one">【12期】尾形春水</div>
-              </div>
-            </li>
-            <li>
-              <a class="thumb" href="images/portfolio_one/36.jpg">
-                <img src="images/portfolio_one/36_thumb.jpg" alt="【12期】野中美希" />
-              </a>
-              <div class="caption">
-                <div class="image-title portfolio_one">【12期】野中美希</div>
-              </div>
-            </li>
-            <li>
-              <a class="thumb" href="images/portfolio_one/37.jpg">
-                <img src="images/portfolio_one/37_thumb.jpg" alt="【12期】牧野真莉愛" />
-              </a>
-              <div class="caption">
-                <div class="image-title portfolio_one">【12期】牧野真莉愛</div>
-              </div>
-            </li>
-            <li>
-              <a class="thumb" href="images/portfolio_one/38.jpg">
-                <img src="images/portfolio_one/38_thumb.jpg" alt="【12期】羽賀朱音" />
-              </a>
-              <div class="caption">
-                <div class="image-title portfolio_one">【12期】羽賀朱音</div>
-              </div>
-            </li>
-          </ul>
-        </div>
-        <div id="controls" class="controls portfolio_one"></div>
-        <div id="caption" class="caption-container"></div>
-        <div style="clear: both;"></div>
+    </nav>
 
-      </div>
+    <main class="main-content">
+        <div class="members-count" id="membersCount"></div>
+        <div class="members-grid" id="membersGrid">
+            <!-- メンバーカードがここに動的に生成されます -->
+        </div>
+    </main>
+
+    <div class="modal" id="memberModal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">
+                <span></span>
+                <span></span>
+            </button>
+            <div class="modal-body" id="modalBody">
+                <!-- モーダルコンテンツがここに動的に生成されます -->
+            </div>
+        </div>
     </div>
 
-    <footer>
-      <p>&copy; 2014 <a href="http://wwbwb.com">wwbwb.com</a> All Rights Reserved.</p>
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-deco"></div>
+            <p class="footer-text">© 2019-2026 <a href="https://wwbwb.com">wwbwb.com</a></p>
+        </div>
     </footer>
 
-  </div>
-  <!-- javascript at the bottom for fast page loading -->
-  <script type="text/javascript" src="js/jquery.min.js"></script>
-  <script type="text/javascript" src="js/jquery.easing-sooper.js"></script>
-  <script type="text/javascript" src="js/jquery.sooperfish.js"></script>
-
-  <script type="text/javascript" src="js/jquery.galleriffic.js"></script>
-  <script type="text/javascript" src="js/jquery.opacityrollover.js"></script>
-  <script type="text/javascript">
-    jQuery(document).ready(function($) {
-      // we only want these styles applied when javascript is enabled
-      $('div.navigation').css({'width' : '450px', 'float' : 'left'});
-      $('div.content').css('display', 'block');
-      // initially set opacity on thumbs and add additional styling for hover effect on thumbs
-      var onMouseOutOpacity = 0.67;
-      $('#thumbs ul.thumbs li').opacityrollover({
-        mouseOutOpacity:   onMouseOutOpacity,
-        mouseOverOpacity:  1.0,
-        fadeSpeed:         'fast',
-        exemptionSelector: '.selected'
-      });
-      // initialize advanced galleriffic gallery
-      var gallery = $('#thumbs').galleriffic({
-        delay:                     3500,
-        numThumbs:                 10,
-        preloadAhead:              10,
-        enableTopPager:            false,
-        enableBottomPager:         true,
-        maxPagesToShow:            7,
-        imageContainerSel:         '#slideshow',
-        controlsContainerSel:      '#controls',
-        captionContainerSel:       '#caption',
-        loadingContainerSel:       '#loading',
-        renderSSControls:          true,
-        renderNavControls:         true,
-        playLinkText:              '▶︎スライドショーで見る',
-        pauseLinkText:             '停止',
-        prevLinkText:              '&lsaquo; 前',
-        nextLinkText:              '次 &rsaquo;',
-        nextPageLinkText:          'Next &rsaquo;',
-        prevPageLinkText:          '&lsaquo; Prev',
-        enableHistory:             false,
-        autoStart:                 false,
-        syncTransitions:           true,
-        defaultTransitionDuration: 900,
-        onSlideChange:             function(prevIndex, nextIndex) {
-          // 'this' refers to the gallery, which is an extension of $('#thumbs')
-          this.find('ul.thumbs').children()
-            .eq(prevIndex).fadeTo('fast', onMouseOutOpacity).end()
-            .eq(nextIndex).fadeTo('fast', 1.0);
-        }
-      });
-    });
-  </script>
+    <script src="assets/js/script.js"></script>
 </body>
 </html>
