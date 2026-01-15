@@ -53,10 +53,23 @@ body {
   right: 0;
   bottom: 0;
   background: 
-    linear-gradient(90deg, transparent 49.5%, rgba(255,255,255,0.03) 50%, transparent 50.5%),
-    linear-gradient(0deg, transparent 49.5%, rgba(255,255,255,0.03) 50%, transparent 50.5%);
-  background-size: 60px 60px;
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 20px,
+      rgba(255, 255, 255, 0.03) 20px,
+      rgba(255, 255, 255, 0.03) 40px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 20px,
+      rgba(255, 255, 255, 0.03) 20px,
+      rgba(255, 255, 255, 0.03) 40px
+    );
+  background-size: 56.57px 56.57px;
   pointer-events: none;
+  opacity: 0.6;
 }
 
 .header-inner {
@@ -83,6 +96,15 @@ body {
   letter-spacing: 0.12em;
   color: var(--white);
   margin: 0.8rem 0 0.5rem;
+  line-height: 1.4;
+}
+
+.title-main {
+  display: inline;
+}
+
+.title-sub-text {
+  display: inline;
 }
 
 .header-en {
@@ -123,6 +145,42 @@ body {
   gap: 2rem;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .filter-nav {
+    padding: 1.5rem 1rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .filter-nav::-webkit-scrollbar {
+    height: 4px;
+  }
+
+  .filter-nav::-webkit-scrollbar-track {
+    background: var(--cream);
+  }
+
+  .filter-nav::-webkit-scrollbar-thumb {
+    background: var(--border);
+  }
+
+  .filter-inner {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    min-width: max-content;
+  }
+
+  .filter-label {
+    flex-shrink: 0;
+  }
+
+  .filter-buttons {
+    flex-wrap: nowrap;
+    gap: 0.4rem;
+  }
 }
 
 .filter-label {
@@ -533,9 +591,39 @@ body {
   color: var(--blue-light);
   padding: 4rem 2rem;
   text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 20px,
+      rgba(255, 255, 255, 0.03) 20px,
+      rgba(255, 255, 255, 0.03) 40px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 20px,
+      rgba(255, 255, 255, 0.03) 20px,
+      rgba(255, 255, 255, 0.03) 40px
+    );
+  background-size: 56.57px 56.57px;
+  pointer-events: none;
+  opacity: 0.6;
 }
 
 .footer-inner {
+  position: relative;
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -571,12 +659,9 @@ body {
     padding: 2rem 1.5rem;
   }
 
-  .filter-nav {
-    padding: 1.5rem 1rem;
-  }
-
-  .filter-inner {
-    gap: 1rem;
+  .title-main::after {
+    content: '\A';
+    white-space: pre;
   }
 
   .filter-btn {

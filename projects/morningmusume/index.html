@@ -1,77 +1,80 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>モーニング娘。いまむかし</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Noto+Serif+JP:wght@200;300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>モーニング娘。いまむかし</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Noto+Serif+JP:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <header class="header">
-        <div class="header-inner">
-            <p class="header-label">Since 1997</p>
-            <h1 class="main-title">モーニング娘。いまむかし</h1>
-            <p class="header-en">Morning Musume. Then and Now</p>
-            <p class="header-tagline">歴代メンバーを振り返る</p>
-        </div>
-    </header>
-
-    <nav class="filter-nav">
-        <div class="filter-inner">
-            <span class="filter-label">Generation</span>
-            <div class="filter-buttons">
-                <button class="filter-btn active" data-generation="all">All</button>
-                <button class="filter-btn" data-generation="1">01</button>
-                <button class="filter-btn" data-generation="2">02</button>
-                <button class="filter-btn" data-generation="3">03</button>
-                <button class="filter-btn" data-generation="4">04</button>
-                <button class="filter-btn" data-generation="5">05</button>
-                <button class="filter-btn" data-generation="6">06</button>
-                <button class="filter-btn" data-generation="7">07</button>
-                <button class="filter-btn" data-generation="8">08</button>
-                <button class="filter-btn" data-generation="9">09</button>
-                <button class="filter-btn" data-generation="10">10</button>
-                <button class="filter-btn" data-generation="11">11</button>
-                <button class="filter-btn" data-generation="12">12</button>
-                <button class="filter-btn" data-generation="13">13</button>
-                <button class="filter-btn" data-generation="14">14</button>
-                <button class="filter-btn" data-generation="15">15</button>
-                <button class="filter-btn" data-generation="16">16</button>
-                <button class="filter-btn" data-generation="17">17</button>
-            </div>
-        </div>
-    </nav>
-
-    <main class="main-content">
-        <div class="members-count" id="membersCount"></div>
-        <div class="members-grid" id="membersGrid">
-            <!-- メンバーカードがここに動的に生成されます -->
-        </div>
-    </main>
-
-    <div class="modal" id="memberModal">
-        <div class="modal-overlay"></div>
-        <div class="modal-content">
-            <button class="modal-close" id="modalClose">
-                <span></span>
-                <span></span>
-            </button>
-            <div class="modal-body" id="modalBody">
-                <!-- モーダルコンテンツがここに動的に生成されます -->
-            </div>
-        </div>
+  <header class="header">
+    <div class="header-inner">
+      <p class="header-label">Since 1997</p>
+      <h1 class="main-title">
+        <span class="title-main">モーニング娘。</span>
+        <span class="title-sub-text">いまむかし</span>
+      </h1>
+      <p class="header-en">Morning Musume. Then and Now</p>
+      <p class="header-tagline">歴代メンバーを振り返る</p>
     </div>
+  </header>
 
-    <footer class="footer">
-        <div class="footer-inner">
-            <div class="footer-deco"></div>
-            <p class="footer-text">© 2019-2026 <a href="https://wwbwb.com">wwbwb.com</a></p>
-        </div>
-    </footer>
+  <nav class="filter-nav">
+    <div class="filter-inner">
+      <span class="filter-label">Generation</span>
+      <div class="filter-buttons">
+        <button class="filter-btn active" data-generation="all">All</button>
+        <button class="filter-btn" data-generation="1">01</button>
+        <button class="filter-btn" data-generation="2">02</button>
+        <button class="filter-btn" data-generation="3">03</button>
+        <button class="filter-btn" data-generation="4">04</button>
+        <button class="filter-btn" data-generation="5">05</button>
+        <button class="filter-btn" data-generation="6">06</button>
+        <button class="filter-btn" data-generation="7">07</button>
+        <button class="filter-btn" data-generation="8">08</button>
+        <button class="filter-btn" data-generation="9">09</button>
+        <button class="filter-btn" data-generation="10">10</button>
+        <button class="filter-btn" data-generation="11">11</button>
+        <button class="filter-btn" data-generation="12">12</button>
+        <button class="filter-btn" data-generation="13">13</button>
+        <button class="filter-btn" data-generation="14">14</button>
+        <button class="filter-btn" data-generation="15">15</button>
+        <button class="filter-btn" data-generation="16">16</button>
+        <button class="filter-btn" data-generation="17">17</button>
+      </div>
+    </div>
+  </nav>
 
-    <script src="assets/js/script.js"></script>
+  <main class="main-content">
+    <div class="members-count" id="membersCount"></div>
+    <div class="members-grid" id="membersGrid">
+      <!-- メンバーカードがここに動的に生成されます -->
+    </div>
+  </main>
+
+  <div class="modal" id="memberModal">
+    <div class="modal-overlay"></div>
+    <div class="modal-content">
+      <button class="modal-close" id="modalClose">
+        <span></span>
+        <span></span>
+      </button>
+      <div class="modal-body" id="modalBody">
+        <!-- モーダルコンテンツがここに動的に生成されます -->
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-deco"></div>
+      <p class="footer-text">© 2019-2026 <a href="https://wwbwb.com">wwbwb.com</a></p>
+    </div>
+  </footer>
+
+  <script src="assets/js/script.js"></script>
 </body>
 </html>
