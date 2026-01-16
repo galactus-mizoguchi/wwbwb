@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" class="text-[14px] md:text-[16px]">
 <head>
   <meta charset="utf-8">
   <title>不眠運動 -ANTI SLEEPING-</title>
@@ -7,69 +7,89 @@
   <meta name="description" content="悪しき睡魔に立ち向かう不眠運動を啓蒙するWebサイトです。">
   <meta property="og:title" content="不眠運動 -ANTI SLEEPING-">
   <meta property="og:description" content="悪しき睡魔に立ち向かう不眠運動を啓蒙するWebサイトです。">
-  <meta property="og:url" content="https://katsuki.me/lab/antisleeping">
+  <meta property="og:url" content="https://wwbwb.com/projects/antisleeping">
   <meta name="twitter:card" content="summary">
   <meta property="og:image" content="">
   <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="icon" type="image/x-icon" href="https://katsuki.me/assets/img/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="https://wwbwb.com/assets/img/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Noto Sans JP"', '"ヒラギノ丸ゴ ProN"', '"Hiragino Maru Gothic ProN"', '"メイリオ"', '"ＭＳ Ｐゴシック"', 'sans-serif'],
+            mincho: ['"游明朝"', '"YuMincho"', '"ヒラギノ明朝 ProN W3"', '"Hiragino Mincho ProN"', '"HG明朝E"', '"ＭＳ Ｐ明朝"', '"ＭＳ 明朝"', 'serif'],
+          },
+          colors: {
+            primary: '#050a7d',
+            accent: '#e50044',
+          }
+        }
+      }
+    }
+  </script>
 </head>
 
-<body>
-<header id="header">
-  <div class="container">
-    <div class="header-nav">
-      <h1>不眠運動</h1>
-      <nav class="nav">
-        <ul>
-          <li><a href="#intro">不眠の敵</a></li>
-          <li><a href="#declaration">不眠宣言</a></li>
-          <li><a href="#guide">不眠の手引き</a></li>
+<body class="bg-[#f6f9f9] overflow-x-hidden text-[#212529] font-sans antialiased leading-relaxed">
+<header id="header" class="h-[80vh] bg-[url('assets/img/header_bg.jpg')] bg-cover bg-center text-white text-center">
+  <div class="container mx-auto px-4 h-full flex flex-col">
+    <div class="header-nav flex items-center justify-between py-4 h-[60px] md:h-[80px] md:flex-col md:justify-center">
+      <h1 class="m-0 text-[1.2rem] tracking-[4px] font-black">不眠運動</h1>
+      <nav class="nav md:w-full">
+        <ul class="flex justify-end md:justify-center">
+          <li class="px-4 text-[0.85rem]"><a href="#intro" class="hover:text-white transition-colors duration-200">不眠の敵</a></li>
+          <li class="px-4 text-[0.85rem]"><a href="#declaration" class="hover:text-white transition-colors duration-200">不眠宣言</a></li>
+          <li class="px-4 text-[0.85rem]"><a href="#guide" class="hover:text-white transition-colors duration-200">不眠の手引き</a></li>
         </ul>
       </nav>
     </div>
-    <div class="header-content">
-      <h2>命短し<br class="sp">眠るな人類</h2>
-      <p>不眠運動<br class="sp">-ANTI SLEEPING-</p>
+    <div class="header-content flex flex-col justify-center items-center flex-grow h-[calc(80vh-60px)] md:h-[calc(80vh-80px)]">
+      <h2 class="text-[4rem] md:text-[6.4rem] font-black tracking-[4px] drop-shadow-[1px_1px_0_#000] mb-[1.6rem] leading-[1.6]">命短し<br class="block md:hidden">眠るな人類</h2>
+      <p class="font-black text-[1.2rem] md:text-[2.4rem] tracking-[4px] leading-[1.8]">不眠運動<br class="block md:hidden">-ANTI SLEEPING-</p>
     </div>
   </div>
 </header>
 
-<main id="main">
-  <section class="section" id="intro">
-    <div class="container">
-      <div class="section-header">
-        <h2>我々は断固として"睡眠"に立ち向かう</h2>
-        <p>人を惑わす悪しき睡魔に打ち勝ち、限りある人生で有意義な活動時間を手にするために。</p>
+<main id="main" class="relative">
+  <section class="py-[3.6rem] md:py-[6rem] overflow-hidden bg-[#efefef] drop-shadow-[1px_1px_0_#fff]" id="intro">
+    <div class="container mx-auto px-4">
+      <div class="mb-[1.2rem] pb-[1.2rem] border-b-4 border-double border-[#ccc] text-center">
+        <h2 class="pb-[1rem] text-[1.6rem] md:text-[2.4rem] tracking-[2px] leading-[1.6] font-black mb-[1.6rem]">我々は断固として"睡眠"に立ち向かう</h2>
+        <p class="text-[1rem] leading-[1.8] tracking-[2px]">人を惑わす悪しき睡魔に打ち勝ち、限りある人生で有意義な活動時間を手にするために。</p>
       </div>
-      <div class="section-content">
-        <p class="lead">
+      <div>
+        <p class="lead m-0 py-[1.6rem] font-bold text-[1rem] tracking-[2px] text-center">
           寝坊して遅刻したこと、眠気で失敗したこと、居眠りをして怒られたこと...<br>
           はっと目覚めたときに襲ってくる焦燥感と自己嫌悪。<br>
           わたし達は様々な場面で睡眠に苦しめられています。
         </p>
-        <div class="row">
-          <div class="col-md-4">
-            <img src="assets/img/intro_01.jpg" alt="睡眠は人生の浪費">
-            <h3>睡眠は人生の浪費</h3>
-            <p>
+        <div class="flex flex-wrap -mx-4 gap-y-[1.6rem]">
+          <div class="w-full md:w-1/3 px-4">
+            <img src="assets/img/intro_01.jpg" alt="睡眠は人生の浪費" class="mx-auto block">
+            <h3 class="my-[1.4rem] font-black text-[1.2rem] text-center py-[1rem] m-0">睡眠は人生の浪費</h3>
+            <p class="text-[1rem] leading-[1.8] tracking-[2px]">
               あなたはどれほどの時間を睡眠に捧げてきたでしょうか。
               眠っている間は自分の意識で生きているといえますか。
               あなたが命を消費して得ている二度と戻らない時間を、みすみす捨ててしまってよいはずがありません。
             </p>
           </div>
-          <div class="col-md-4">
-            <img src="assets/img/intro_02.jpg" alt="睡眠は心の弱さ">
-            <h3>睡眠は心の弱さ</h3>
-            <p>
+          <div class="w-full md:w-1/3 px-4">
+            <img src="assets/img/intro_02.jpg" alt="睡眠は心の弱さ" class="mx-auto block">
+            <h3 class="my-[1.4rem] font-black text-[1.2rem] text-center py-[1rem] m-0">睡眠は心の弱さ</h3>
+            <p class="text-[1rem] leading-[1.8] tracking-[2px]">
               生まれながらにして人間にプログラムされた「眠り」への欲求。
               この最大の本能的欲求に打ち勝ってこそ、生きている（起きている）時間に確かな意味を持たせることができるのです。
               誇り高い魂を持った人間ならば、肉体の疲労回復などといった目先の快楽に溺れてはいけません。
             </span>
           </div>
-          <div class="col-md-4">
-            <img src="assets/img/intro_03.jpg" alt="睡眠は洗脳">
-            <h3>睡眠は洗脳</h3>
-            <p>
+          <div class="w-full md:w-1/3 px-4">
+            <img src="assets/img/intro_03.jpg" alt="睡眠は洗脳" class="mx-auto block">
+            <h3 class="my-[1.4rem] font-black text-[1.2rem] text-center py-[1rem] m-0">睡眠は洗脳</h3>
+            <p class="text-[1rem] leading-[1.8] tracking-[2px]">
               我々は国家の教育によって睡眠に関する偏った知識を刷り込まれ、眠ることを強制されてきました。
               またその一方で眠らないことは悪とされ、不眠は社会から糾弾されています。
               あなたは、世間に言われたとおりに眠り続けて良いのでしょうか。
@@ -77,7 +97,7 @@
             </p>
           </div>
         </div>
-        <p class="lead">
+        <p class="lead m-0 py-[1.6rem] font-bold text-[1rem] tracking-[2px] text-center">
           すでにおわかりのように、睡眠とは憎むべき悪そのものです。<br>
           ぐっすり気持ちよく眠りたい... 卑しくも根強いこの欲望は、いつかあなたの身を滅ぼすことでしょう。<br>
           我々は睡眠に打ち克ち、真に人間らしい生活を取り戻すべきなのです。
@@ -86,22 +106,22 @@
     </div>
   </section>
 
-  <section class="section" id="declaration">
-    <div class="container">
-      <div class="section-header">
-        <h2>不眠を宣言しよう</h2>
-        <p>
+  <section class="py-[3.6rem] md:py-[6rem] overflow-hidden text-center" id="declaration">
+    <div class="container mx-auto px-4">
+      <div class="mb-[1.2rem] pb-[1.2rem] border-b-4 border-double border-[#ccc] text-center">
+        <h2 class="pb-[1rem] text-[1.6rem] md:text-[2.4rem] tracking-[2px] leading-[1.6] font-black mb-[1.6rem]">不眠を宣言しよう</h2>
+        <p class="text-[1rem] leading-[1.8] tracking-[2px]">
           自分自身の為に不眠を誓い、社会のために不眠を啓蒙すること、それが不眠宣言です。<br>
           下記の崇高なる目標を達成することにもつながります。
         </p>
       </div>
-      <div class="section-content">
-        <p class="lead">SNSで不眠宣言をしましょう</p>
-        <div class="row">
-          <div class="col-md-6">
-            <div class="declaration-box">
-              <h3>「眠り」を倒す</h3>
-              <p>
+      <div>
+        <p class="lead m-0 py-[1.6rem] font-bold text-[1rem] tracking-[2px] text-center">SNSで不眠宣言をしましょう</p>
+        <div class="flex flex-wrap -mx-4 gap-y-[1.6rem]">
+          <div class="w-full md:w-1/2 px-4">
+            <div class="declaration-box min-h-0 mb-[1.6rem] md:min-h-[200px] md:mb-0">
+              <h3 class="my-[1.4rem] font-black text-[1.2rem]">「眠り」を倒す</h3>
+              <p class="text-[1rem] leading-[1.8] tracking-[2px]">
                 世の中から悪しき睡魔を追い払う為には、人々の意識を変革しなければなりません。
                 不眠こそ我々があるべき姿であることに気付かせるのです。
                 一致団結して立ち向かえば眠りを倒すことなど容易なこと。
@@ -109,10 +129,10 @@
               </p>
             </div>
           </div>
-          <div class="col-md-6">
-            <div class="declaration-box">
-              <h3>不眠を楽しむ</h3>
-              <p>
+          <div class="w-full md:w-1/2 px-4">
+            <div class="declaration-box min-h-0 mb-[1.6rem] md:min-h-[200px] md:mb-0">
+              <h3 class="my-[1.4rem] font-black text-[1.2rem]">不眠を楽しむ</h3>
+              <p class="text-[1rem] leading-[1.8] tracking-[2px]">
                 不眠運動の目的は単に眠らないことではありません。
                 眠らずに得た時間を有効に活用し、人生をより有意義なものとすることです。
                 眠らないことで心身を削ってしまっては本末転倒です。あなたが不眠を心から楽しめば、より濃密で価値ある時間を過ごすことができるでしょう。
@@ -120,125 +140,128 @@
             </div>
           </div>
         </div>
-        <div class="declaration-btn">
-          <div class="row">
-          <div class="col-2">
-              <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="不眠を宣言する" data-hashtags="不眠運動" data-show-count="false">Tweet</a>
-            </div>
-            <div class="col-2">
-                <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fkatsuki.me%2Flab%2Fantisleeping%2F&layout=button&size=small&width=69&height=20&appId" width="69" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
-            </div>
+        <div class="declaration-btn mt-[1.6rem] p-[2rem] bg-[#efefef]">
+          <div class="flex flex-wrap justify-center items-center gap-4">
+            <a href="https://twitter.com/intent/tweet?text=%E4%B8%8D%E7%9C%A0%E3%82%92%E5%AE%A3%E8%A8%80%E3%81%99%E3%82%8B&url=https%3A%2F%2Fwwbwb.com%2Fprojects%2Fantisleeping&hashtags=%E4%B8%8D%E7%9C%A0%E9%81%8B%E5%8B%95" target="_blank" class="inline-block bg-black text-white px-4 py-2 rounded text-[0.85rem] font-bold hover:opacity-80 transition-opacity">
+              X (旧Twitter)で宣言
+            </a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwwbwb.com%2Fprojects%2Fantisleeping" target="_blank" class="inline-block bg-[#1877f2] text-white px-4 py-2 rounded text-[0.85rem] font-bold hover:opacity-80 transition-opacity">
+              Facebookでシェア
+            </a>
+            <a href="https://social-plugins.line.me/lineit/share?url=https%3A%2F%2Fwwbwb.com%2Fprojects%2Fantisleeping" target="_blank" class="inline-block bg-[#06c755] text-white px-4 py-2 rounded text-[0.85rem] font-bold hover:opacity-80 transition-opacity">
+              LINEで送る
+            </a>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section" id="guide">
-    <div class="container">
-      <div class="section-header">
-        <h2>不眠の手引き</h2>
-        <p>眠らない為の情報・モノをあなたに。</p>
+  <section class="py-[3.6rem] md:py-[6rem] overflow-hidden bg-[#efefef] drop-shadow-[1px_1px_0_#fff]" id="guide">
+    <div class="container mx-auto px-4">
+      <div class="mb-[1.2rem] pb-[1.2rem] border-b-4 border-double border-[#ccc] text-center">
+        <h2 class="pb-[1rem] text-[1.6rem] md:text-[2.4rem] tracking-[2px] leading-[1.6] font-black mb-[1.6rem]">不眠の手引き</h2>
+        <p class="text-[1rem] leading-[1.8] tracking-[2px]">眠らない為の情報・モノをあなたに。</p>
       </div>
-      <div class="section-content">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="row">
-              <div class="col-4">
+      <div>
+        <div class="flex flex-wrap -mx-4 gap-y-[1.6rem]">
+          <div class="w-full md:w-1/2 px-4">
+            <div class="flex flex-wrap -mx-4">
+              <div class="w-1/3 px-4">
                 <a href="http://www.amazon.co.jp/gp/product/B005F25MQ0/ref=as_li_ss_tl?ie=UTF8&camp=247&creative=7399&creativeASIN=B005F25MQ0&linkCode=as2&tag=katsuki0605-22">
-                  <img src="assets/img/guide_01.jpg" alt="エナジードリンク" class="guide-pic">
+                  <img src="assets/img/guide_01.jpg" alt="エナジードリンク" class="mx-auto block">
                 </a>
               </div>
-              <div class="col-8">
-                <h3><span>眠気覚ましの定番</span>エナジードリンク</h3>
-                <p>
+              <div class="w-2/3 px-4">
+                <h3 class="mb-[0.4rem] p-0 text-[1.2rem] leading-[1.6] font-black"><span class="block font-medium text-[0.85rem]">眠気覚ましの定番</span>エナジードリンク</h3>
+                <p class="text-[0.75rem] leading-[1.8] tracking-[2px] mb-[1.2rem]">
                   エナジードリンクには、カフェインを始めとするを活性化させる成分が多く含まれています。<br>
                   ただし効果は個人差があるうえ、一時的なものです。
                 </p>
-                <a href="http://www.amazon.co.jp/gp/product/B005F25MQ0/ref=as_li_ss_tl?ie=UTF8&camp=247&creative=7399&creativeASIN=B005F25MQ0&linkCode=as2&tag=katsuki0605-22" class="btn">購入する</a>
+                <a href="http://www.amazon.co.jp/gp/product/B005F25MQ0/ref=as_li_ss_tl?ie=UTF8&camp=247&creative=7399&creativeASIN=B005F25MQ0&linkCode=as2&tag=katsuki0605-22" class="btn block w-full max-w-[160px] px-[0.8rem] py-[0.2rem] border-2 border-primary rounded-[8px] text-[0.85rem] text-primary text-center hover:bg-primary hover:text-white transition-colors duration-200 mb-[2.4rem]">購入する</a>
               </div>
             </div>
           </div>
-          <div class="col-md-6">
-            <div class="row">
-              <div class="col-4">
-                <a href="http://www.amazon.co.jp/gp/product/B00EP8MEU2/ref=as_li_ss_tl?ie=UTF8&camp=247&creative=7399&creativeASIN=B00EP8MEU2&linkCode=as2&tag=katsuki0605-22" class="guide-pic">
-                  <img src="assets/img/guide_02.jpg" alt="ブルーライト">
+          <div class="w-full md:w-1/2 px-4">
+            <div class="flex flex-wrap -mx-4">
+              <div class="w-1/3 px-4">
+                <a href="http://www.amazon.co.jp/gp/product/B00EP8MEU2/ref=as_li_ss_tl?ie=UTF8&camp=247&creative=7399&creativeASIN=B00EP8MEU2&linkCode=as2&tag=katsuki0605-22">
+                  <img src="assets/img/guide_02.jpg" alt="ブルーライト" class="mx-auto block">
                 </a>
               </div>
-              <div class="col-8">
-                <h3><span>話題の光</span>ブルーライト</h3>
-                <p>
+              <div class="w-2/3 px-4">
+                <h3 class="mb-[0.4rem] p-0 text-[1.2rem] leading-[1.6] font-black"><span class="block font-medium text-[0.85rem]">話題の光</span>ブルーライト</h3>
+                <p class="text-[0.75rem] leading-[1.8] tracking-[2px] mb-[1.2rem]">
                   パソコンやスマホのモニターから発せられるブルーライトは、眼の刺激を通して脳を活性化させます。<br>
                   眼は疲れますが頭は活動的になるのです。
                 </p>
-                <a href="http://www.amazon.co.jp/gp/product/B00EP8MEU2/ref=as_li_ss_tl?ie=UTF8&camp=247&creative=7399&creativeASIN=B00EP8MEU2&linkCode=as2&tag=katsuki0605-22" class="btn">浴びる</a>
+                <a href="http://www.amazon.co.jp/gp/product/B00EP8MEU2/ref=as_li_ss_tl?ie=UTF8&camp=247&creative=7399&creativeASIN=B00EP8MEU2&linkCode=as2&tag=katsuki0605-22" class="btn block w-full max-w-[160px] px-[0.8rem] py-[0.2rem] border-2 border-primary rounded-[8px] text-[0.85rem] text-primary text-center hover:bg-primary hover:text-white transition-colors duration-200 mb-[2.4rem]">浴びる</a>
               </div>
             </div>
           </div>
-          <div class="col-md-6">
-            <div class="row">
-              <div class="col-4">
-                <a href="http://www.amazon.co.jp/gp/product/B000QTJAFG/ref=as_li_ss_tl?ie=UTF8&camp=247&creative=7399&creativeASIN=B000QTJAFG&linkCode=as2&tag=katsuki0605-22" class="guide-pic">
-                  <img src="assets/img/guide_03.jpg" alt="ハリセン">
+          <div class="w-full md:w-1/2 px-4">
+            <div class="flex flex-wrap -mx-4">
+              <div class="w-1/3 px-4">
+                <a href="http://www.amazon.co.jp/gp/product/B000QTJAFG/ref=as_li_ss_tl?ie=UTF8&camp=247&creative=7399&creativeASIN=B000QTJAFG&linkCode=as2&tag=katsuki0605-22">
+                  <img src="assets/img/guide_03.jpg" alt="ハリセン" class="mx-auto block">
                 </a>
               </div>
-              <div class="col-8">
-                <h3><span>不眠兵器</span>ハリセン</h3>
-                <p>
+              <div class="w-2/3 px-4">
+                <h3 class="mb-[0.4rem] p-0 text-[1.2rem] leading-[1.6] font-black"><span class="block font-medium text-[0.85rem]">不眠兵器</span>ハリセン</h3>
+                <p class="text-[0.75rem] leading-[1.8] tracking-[2px] mb-[1.2rem]">
                   仲間が眠ってしまいそうになったらこれで阻止しましょう。<br>
                   遠慮はいりません。不眠運動は助け合いです。
                 </p>
-                <a href="http://www.amazon.co.jp/gp/product/B000QTJAFG/ref=as_li_ss_tl?ie=UTF8&camp=247&creative=7399&creativeASIN=B000QTJAFG&linkCode=as2&tag=katsuki0605-22" class="btn">購入する</a>
+                <a href="http://www.amazon.co.jp/gp/product/B000QTJAFG/ref=as_li_ss_tl?ie=UTF8&camp=247&creative=7399&creativeASIN=B000QTJAFG&linkCode=as2&tag=katsuki0605-22" class="btn block w-full max-w-[160px] px-[0.8rem] py-[0.2rem] border-2 border-primary rounded-[8px] text-[0.85rem] text-primary text-center hover:bg-primary hover:text-white transition-colors duration-200 mb-[2.4rem]">購入する</a>
               </div>
             </div>
           </div>
-          <div class="col-md-6">
-            <div class="row">
-              <div class="col-4">
-                <a href="http://www.amazon.co.jp/gp/product/4471032348/ref=as_li_ss_tl?ie=UTF8&camp=247&creative=7399&creativeASIN=4471032348&linkCode=as2&tag=katsuki0605-22" class="guide-pic">
-                  <img src="assets/img/guide_04.jpg" alt="眠気覚ましのつぼ">
+          <div class="w-full md:w-1/2 px-4">
+            <div class="flex flex-wrap -mx-4">
+              <div class="w-1/3 px-4">
+                <a href="http://www.amazon.co.jp/gp/product/4471032348/ref=as_li_ss_tl?ie=UTF8&camp=247&creative=7399&creativeASIN=4471032348&linkCode=as2&tag=katsuki0605-22">
+                  <img src="assets/img/guide_04.jpg" alt="眠気覚ましのつぼ" class="mx-auto block">
                 </a>
               </div>
-              <div class="col-8">
-                <h3><span>人体を覚醒させる</span>眠気覚ましのつぼ</h3>
-                <p>
+              <div class="w-2/3 px-4">
+                <h3 class="mb-[0.4rem] p-0 text-[1.2rem] leading-[1.6] font-black"><span class="block font-medium text-[0.85rem]">人体を覚醒させる</span>眠気覚ましのつぼ</h3>
+                <p class="text-[0.75rem] leading-[1.8] tracking-[2px] mb-[1.2rem]">
                   人の体には様々なつぼがあり、刺激することで眠気を撃退し爽快な気分になれるものもあります。
                   眠気覚ましのつぼは全身のあらゆるところにあります。
                 </p>
-                <a href="http://www.amazon.co.jp/gp/product/4471032348/ref=as_li_ss_tl?ie=UTF8&camp=247&creative=7399&creativeASIN=4471032348&linkCode=as2&tag=katsuki0605-22" class="btn">つぼを調べる</a>
+                <a href="http://www.amazon.co.jp/gp/product/4471032348/ref=as_li_ss_tl?ie=UTF8&camp=247&creative=7399&creativeASIN=4471032348&linkCode=as2&tag=katsuki0605-22" class="btn block w-full max-w-[160px] px-[0.8rem] py-[0.2rem] border-2 border-primary rounded-[8px] text-[0.85rem] text-primary text-center hover:bg-primary hover:text-white transition-colors duration-200 mb-[2.4rem]">つぼを調べる</a>
               </div>
             </div>
           </div>
-          <div class="col-md-6">
-            <div class="row">
-              <div class="col-4">
-                <a href="http://www.amazon.co.jp/gp/product/4062578263/ref=as_li_ss_tl?ie=UTF8&camp=247&creative=7399&creativeASIN=4062578263&linkCode=as2&tag=katsuki0605-22" class="guide-pic">
-                  <img src="assets/img/guide_05.jpg" alt="眠らない動物たち">
+          <div class="w-full md:w-1/2 px-4">
+            <div class="flex flex-wrap -mx-4">
+              <div class="w-1/3 px-4">
+                <a href="http://www.amazon.co.jp/gp/product/4062578263/ref=as_li_ss_tl?ie=UTF8&camp=247&creative=7399&creativeASIN=4062578263&linkCode=as2&tag=katsuki0605-22">
+                  <img src="assets/img/guide_05.jpg" alt="眠らない動物たち" class="mx-auto block">
                 </a>
               </div>
-              <div class="col-8">
-                <h3><span>自然界の不眠の師</span>眠らない動物たち</h3>
-                <p>
+              <div class="w-2/3 px-4">
+                <h3 class="mb-[0.4rem] p-0 text-[1.2rem] leading-[1.6] font-black"><span class="block font-medium text-[0.85rem]">自然界の不眠の師</span>眠らない動物たち</h3>
+                <p class="text-[0.75rem] leading-[1.8] tracking-[2px] mb-[1.2rem]">
                   自然界には極限まで眠りを押さえた生き物が沢山います。例として、イルカは脳の半分のみを睡眠に当て、もう半分で活動を続ける「半球睡眠」ができます。これは見習うべきでしょう。明日から実践して下さい。
                 </p>
-                <a href="http://www.amazon.co.jp/gp/product/4062578263/ref=as_li_ss_tl?ie=UTF8&camp=247&creative=7399&creativeASIN=4062578263&linkCode=as2&tag=katsuki0605-22" class="btn">調べる</a>
+                <a href="http://www.amazon.co.jp/gp/product/4062578263/ref=as_li_ss_tl?ie=UTF8&camp=247&creative=7399&creativeASIN=4062578263&linkCode=as2&tag=katsuki0605-22" class="btn block w-full max-w-[160px] px-[0.8rem] py-[0.2rem] border-2 border-primary rounded-[8px] text-[0.85rem] text-primary text-center hover:bg-primary hover:text-white transition-colors duration-200 mb-[2.4rem]">調べる</a>
               </div>
             </div>
           </div>
-          <div class="col-md-6">
-            <div class="row">
-              <div class="col-4">
-                <a href="http://www.amazon.co.jp/gp/product/4883203123/ref=as_li_ss_tl?ie=UTF8&camp=247&creative=7399&creativeASIN=4883203123&linkCode=as2&tag=katsuki0605-22" class="guide-pic">
-                  <img src="assets/img/guide_06.jpg" alt="不眠の教本">
+          <div class="w-full md:w-1/2 px-4">
+            <div class="flex flex-wrap -mx-4">
+              <div class="w-1/3 px-4">
+                <a href="http://www.amazon.co.jp/gp/product/4883203123/ref=as_li_ss_tl?ie=UTF8&camp=247&creative=7399&creativeASIN=4883203123&linkCode=as2&tag=katsuki0605-22">
+                  <img src="assets/img/guide_06.jpg" alt="不眠の教本" class="mx-auto block">
                 </a>
               </div>
-              <div class="col-8">
-                <h3><span>不眠の教本</span>名著『断眠 - 人は眠らないとどうなるか？』</h3>
-                <p>
+              <div class="w-2/3 px-4">
+                <h3 class="mb-[0.4rem] p-0 text-[1.2rem] leading-[1.6] font-black"><span class="block font-medium text-[0.85rem]">不眠の教本</span>名著『断眠 - 人は眠らないとどうなるか？』</h3>
+                <p class="text-[0.75rem] leading-[1.8] tracking-[2px] mb-[1.2rem]">
                   断眠によって、活動時間の拡大だけにとどまらず、さらに大きな力をもたらしてくれるというお話が書かれた本です。
                 </p>
-                <a href="http://www.amazon.co.jp/gp/product/4883203123/ref=as_li_ss_tl?ie=UTF8&camp=247&creative=7399&creativeASIN=4883203123&linkCode=as2&tag=katsuki0605-22" class="btn">読む</a>
+                <a href="http://www.amazon.co.jp/gp/product/4883203123/ref=as_li_ss_tl?ie=UTF8&camp=247&creative=7399&creativeASIN=4883203123&linkCode=as2&tag=katsuki0605-22" class="btn block w-full max-w-[160px] px-[0.8rem] py-[0.2rem] border-2 border-primary rounded-[8px] text-[0.85rem] text-primary text-center hover:bg-primary hover:text-white transition-colors duration-200 mb-[2.4rem]">読む</a>
               </div>
             </div>
           </div>
@@ -248,35 +271,34 @@
   </section>
 </main>
 
-<footer id="footer">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-3">
-        <h2>Contents</h2>
+<footer id="footer" class="py-[2.4rem] md:pt-[4.2rem] md:pb-[2.4rem] bg-[#2b2b2b] text-white">
+  <div class="container mx-auto px-4">
+    <div class="flex flex-wrap -mx-4">
+      <div class="w-full md:w-1/4 px-4">
+        <h2 class="text-[1.2rem] mt-[1.2rem] md:mt-0 font-black mb-[1.6rem]">Contents</h2>
         <ul class="links">
-          <li><a href="#top">TOP</a></li>
-          <li><a href="#intro">不眠の敵</a></li>
-          <li><a href="#declaration">不眠宣言</a></li>
-          <li><a href="#guide">不眠の手引き</a></li>
+          <li><a href="#top" class="block p-[0.2rem] border-b border-dotted border-[#555] text-white hover:bg-primary hover:text-white transition-colors duration-200">TOP</a></li>
+          <li><a href="#intro" class="block p-[0.2rem] border-b border-dotted border-[#555] text-white hover:bg-primary hover:text-white transition-colors duration-200">不眠の敵</a></li>
+          <li><a href="#declaration" class="block p-[0.2rem] border-b border-dotted border-[#555] text-white hover:bg-primary hover:text-white transition-colors duration-200">不眠宣言</a></li>
+          <li><a href="#guide" class="block p-[0.2rem] border-b border-dotted border-[#555] text-white hover:bg-primary hover:text-white transition-colors duration-200">不眠の手引き</a></li>
         </ul>
       </div>
-      <div class="col-md-3">
-        <h2>Links</h2>
+      <div class="w-full md:w-1/4 px-4">
+        <h2 class="text-[1.2rem] mt-[1.2rem] md:mt-0 font-black mb-[1.6rem]">Links</h2>
         <ul class="links">
-          <li><a href="https://wwbwb.com" target="_blank">wwbw.com</a></li>
-          <li><a href="https://galactus.jp" target="_blank">GALACTUS  LLC</a></li>
-          <li><a href="https://katsuki.me" target="_blank">KATSUKI.me</a></li>
+          <li><a href="https://wwbwb.com" target="_blank" class="block p-[0.2rem] border-b border-dotted border-[#555] text-white hover:bg-primary hover:text-white transition-colors duration-200">wwbw.com</a></li>
+          <li><a href="https://galactus.jp" target="_blank" class="block p-[0.2rem] border-b border-dotted border-[#555] text-white hover:bg-primary hover:text-white transition-colors duration-200">GALACTUS  LLC</a></li>
         </ul>
       </div>
-      <div class="col-md-6">
-        <h2><strong>不眠運動</strong>参加者を募集しています</h2>
-        <p>不眠運動の参加は自由です。まず不眠を宣言し、眠らずの誓いをたててください。</p>
-        <a href="#declaration" class="btn">不眠宣言</a>
+      <div class="w-full md:w-1/2 px-4">
+        <h2 class="text-[1.2rem] mt-[1.2rem] md:mt-0 font-black mb-[1.6rem]"><strong>不眠運動</strong>参加者を募集しています</h2>
+        <p class="text-[1rem] leading-[1.8] tracking-[2px] mb-[2.4rem]">不眠運動の参加は自由です。まず不眠を宣言し、眠らずの誓いをたててください。</p>
+        <a href="#declaration" class="btn border-white mb-[1.6rem] text-white block w-full max-w-[160px] px-[0.8rem] py-[0.2rem] border-2 rounded-[8px] text-[0.85rem] text-center hover:bg-white hover:text-primary transition-colors duration-200">不眠宣言</a>
       </div>
     </div>
-    <p class="copyright">
-      <small>
-        &copy; 2019 katsuki.me
+    <p class="copyright pt-[3.6rem] text-center">
+      <small class="text-[80%]">
+        &copy; 2019 wwbwb.com
       </small>
     </p>
   </div>
@@ -284,22 +306,6 @@
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js?ver=1.11.3"></script>
 <script src="assets/js/script.min.js"></script>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-<script>
-  (function (i, s, o, g, r, a, m) {
-    i['GoogleAnalyticsObject'] = r;
-    i[r] = i[r] || function () {
-      (i[r].q = i[r].q || []).push(arguments)
-    }, i[r].l = 1 * new Date();
-    a = s.createElement(o),
-      m = s.getElementsByTagName(o)[0];
-    a.async = 1;
-    a.src = g;
-    m.parentNode.insertBefore(a, m)
-  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
-  ga('create', 'UA-42275433-5', 'auto');
-  ga('send', 'pageview');
-</script>
 </body>
 </html>
