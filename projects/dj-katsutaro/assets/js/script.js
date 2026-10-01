@@ -21,6 +21,13 @@ document.addEventListener('DOMContentLoaded', function () {
       target.scrollIntoView({ behavior: 'smooth' });
     });
   });
+
+  // respect reduced-motion: freeze the hero background video on its poster frame
+  var heroVideo = document.getElementById('hero-bg-video');
+  if (heroVideo && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    heroVideo.removeAttribute('autoplay');
+    heroVideo.pause();
+  }
 });
 
 // full-page party motion graphics: rising sparkles + falling confetti + glints

@@ -216,10 +216,20 @@
   </div>
 
   <header id="header" class="relative h-[92vh] min-h-[600px] overflow-hidden text-center">
+    <video
+      id="hero-bg-video"
+      class="absolute inset-0 w-full h-full object-cover"
+      src="assets/video/hero-bg.mp4"
+      poster="assets/video/hero-bg-poster.jpg"
+      autoplay muted loop playsinline preload="auto"
+      aria-hidden="true"
+    >
+      <source src="assets/video/hero-bg.webm" type="video/webm">
+      <source src="assets/video/hero-bg.mp4" type="video/mp4">
+    </video>
     <div class="absolute inset-0 spotlight-rays animate-ray-spin"></div>
     <div class="absolute inset-0 spotlight-rays-2 animate-ray-spin-rev"></div>
-    <div class="absolute inset-0 bg-cover bg-center opacity-25 mix-blend-overlay" style="background-image: url(assets/img/bg.jpg);"></div>
-    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-void/40 to-void"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-void/30 to-void"></div>
 
     <span class="absolute top-[14%] left-[8%] text-3xl sm:text-4xl animate-float-a select-none" aria-hidden="true">🎉</span>
     <span class="absolute top-[20%] right-[10%] text-2xl sm:text-3xl animate-float-b select-none" aria-hidden="true">✨</span>
