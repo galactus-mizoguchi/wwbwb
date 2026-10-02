@@ -27,16 +27,55 @@
           colors: {
             primary: '#050a7d',
             accent: '#e50044',
-          }
+          },
+          animation: {
+            'siren-spin': 'siren-spin 9s linear infinite',
+            'alarm-pulse': 'alarm-pulse 2.6s ease-in-out infinite',
+          },
+          keyframes: {
+            'siren-spin': {
+              '0%': { transform: 'rotate(0deg)' },
+              '100%': { transform: 'rotate(360deg)' },
+            },
+            'alarm-pulse': {
+              '0%,100%': { opacity: '.25' },
+              '50%': { opacity: '.75' },
+            },
+          },
         }
       }
     }
   </script>
+  <style>
+    .siren-sweep {
+      background: conic-gradient(from 0deg,
+        transparent 0deg, rgba(229,0,68,.4) 14deg, transparent 50deg,
+        transparent 175deg, rgba(90,140,255,.28) 192deg, transparent 230deg);
+      mix-blend-mode: screen;
+    }
+    .alarm-pulse-layer {
+      background: radial-gradient(circle at 50% 38%, rgba(229,0,68,.45), transparent 62%);
+      mix-blend-mode: screen;
+    }
+    #zap-canvas { pointer-events: none; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+      }
+    }
+  </style>
 </head>
 
 <body class="bg-[#f6f9f9] overflow-x-hidden text-[#212529] font-sans antialiased leading-relaxed">
-<header id="header" class="h-[80vh] bg-[url('assets/img/header_bg.jpg')] bg-cover bg-center text-white text-center">
-  <div class="container mx-auto px-4 h-full flex flex-col">
+<header id="header" class="relative h-[80vh] overflow-hidden text-white text-center">
+  <div class="absolute inset-0 bg-[url('assets/img/header_bg.jpg')] bg-cover bg-center opacity-50"></div>
+  <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/70 to-black"></div>
+  <div class="absolute inset-0 siren-sweep animate-siren-spin"></div>
+  <div class="absolute inset-0 alarm-pulse-layer animate-alarm-pulse"></div>
+  <canvas id="zap-canvas" class="absolute inset-0 w-full h-full"></canvas>
+
+  <div class="container relative z-10 mx-auto px-4 h-full flex flex-col">
     <div class="header-nav flex items-center justify-between py-4 h-[60px] md:h-[80px] md:flex-col md:justify-center">
       <h1 class="m-0 text-[1.2rem] tracking-[4px] font-black">不眠運動</h1>
       <nav class="nav md:w-full">
@@ -48,8 +87,8 @@
       </nav>
     </div>
     <div class="header-content flex flex-col justify-center items-center flex-grow h-[calc(80vh-60px)] md:h-[calc(80vh-80px)]">
-      <h2 class="text-[4rem] md:text-[6.4rem] font-black tracking-[4px] drop-shadow-[1px_1px_0_#000] mb-[1.6rem] leading-[1.6]">命短し<br class="block md:hidden">眠るな人類</h2>
-      <p class="font-black text-[1.2rem] md:text-[2.4rem] tracking-[4px] leading-[1.8]">不眠運動<br class="block md:hidden">-ANTI SLEEPING-</p>
+      <h2 class="text-[4.4rem] md:text-[8.8rem] font-black tracking-[4px] drop-shadow-[2px_2px_0_#000] mb-[1.6rem] leading-[1.3]">命短し<br class="block md:hidden">眠るな人類</h2>
+      <p class="font-black text-[1.4rem] md:text-[3rem] tracking-[4px] leading-[1.8]">不眠運動<br class="block md:hidden">-ANTI SLEEPING-</p>
     </div>
   </div>
 </header>
@@ -58,7 +97,7 @@
   <section class="py-[3.6rem] md:py-[6rem] overflow-hidden bg-[#efefef] drop-shadow-[1px_1px_0_#fff]" id="intro">
     <div class="container mx-auto px-4">
       <div class="mb-[1.2rem] pb-[1.2rem] border-b-4 border-double border-[#ccc] text-center">
-        <h2 class="pb-[1rem] text-[1.6rem] md:text-[2.4rem] tracking-[2px] leading-[1.6] font-black mb-[1.6rem]">我々は断固として"睡眠"に立ち向かう</h2>
+        <h2 class="pb-[1rem] text-[2.6rem] md:text-[5rem] tracking-[2px] leading-[1.3] font-black mb-[1.6rem]">我々は断固として"睡眠"に立ち向かう</h2>
         <p class="text-[1rem] leading-[1.8] tracking-[2px]">人を惑わす悪しき睡魔に打ち勝ち、限りある人生で有意義な活動時間を手にするために。</p>
       </div>
       <div>
@@ -70,7 +109,7 @@
         <div class="flex flex-wrap -mx-4 gap-y-[1.6rem]">
           <div class="w-full md:w-1/3 px-4">
             <img src="assets/img/intro_01.jpg" alt="睡眠は人生の浪費" class="mx-auto block">
-            <h3 class="my-[1.4rem] font-black text-[1.2rem] text-center py-[1rem] m-0">睡眠は人生の浪費</h3>
+            <h3 class="my-[1.4rem] font-black text-[1.8rem] md:text-[2.2rem] text-center py-[1rem] m-0">睡眠は人生の浪費</h3>
             <p class="text-[1rem] leading-[1.8] tracking-[2px]">
               あなたはどれほどの時間を睡眠に捧げてきたでしょうか。
               眠っている間は自分の意識で生きているといえますか。
@@ -79,7 +118,7 @@
           </div>
           <div class="w-full md:w-1/3 px-4">
             <img src="assets/img/intro_02.jpg" alt="睡眠は心の弱さ" class="mx-auto block">
-            <h3 class="my-[1.4rem] font-black text-[1.2rem] text-center py-[1rem] m-0">睡眠は心の弱さ</h3>
+            <h3 class="my-[1.4rem] font-black text-[1.8rem] md:text-[2.2rem] text-center py-[1rem] m-0">睡眠は心の弱さ</h3>
             <p class="text-[1rem] leading-[1.8] tracking-[2px]">
               生まれながらにして人間にプログラムされた「眠り」への欲求。
               この最大の本能的欲求に打ち勝ってこそ、生きている（起きている）時間に確かな意味を持たせることができるのです。
@@ -88,7 +127,7 @@
           </div>
           <div class="w-full md:w-1/3 px-4">
             <img src="assets/img/intro_03.jpg" alt="睡眠は洗脳" class="mx-auto block">
-            <h3 class="my-[1.4rem] font-black text-[1.2rem] text-center py-[1rem] m-0">睡眠は洗脳</h3>
+            <h3 class="my-[1.4rem] font-black text-[1.8rem] md:text-[2.2rem] text-center py-[1rem] m-0">睡眠は洗脳</h3>
             <p class="text-[1rem] leading-[1.8] tracking-[2px]">
               我々は国家の教育によって睡眠に関する偏った知識を刷り込まれ、眠ることを強制されてきました。
               またその一方で眠らないことは悪とされ、不眠は社会から糾弾されています。
@@ -109,7 +148,7 @@
   <section class="py-[3.6rem] md:py-[6rem] overflow-hidden text-center" id="declaration">
     <div class="container mx-auto px-4">
       <div class="mb-[1.2rem] pb-[1.2rem] border-b-4 border-double border-[#ccc] text-center">
-        <h2 class="pb-[1rem] text-[1.6rem] md:text-[2.4rem] tracking-[2px] leading-[1.6] font-black mb-[1.6rem]">不眠を宣言しよう</h2>
+        <h2 class="pb-[1rem] text-[2.6rem] md:text-[5rem] tracking-[2px] leading-[1.3] font-black mb-[1.6rem]">不眠を宣言しよう</h2>
         <p class="text-[1rem] leading-[1.8] tracking-[2px]">
           自分自身の為に不眠を誓い、社会のために不眠を啓蒙すること、それが不眠宣言です。<br>
           下記の崇高なる目標を達成することにもつながります。
@@ -120,7 +159,7 @@
         <div class="flex flex-wrap -mx-4 gap-y-[1.6rem]">
           <div class="w-full md:w-1/2 px-4">
             <div class="declaration-box min-h-0 mb-[1.6rem] md:min-h-[200px] md:mb-0">
-              <h3 class="my-[1.4rem] font-black text-[1.2rem]">「眠り」を倒す</h3>
+              <h3 class="my-[1.4rem] font-black text-[1.8rem] md:text-[2.2rem]">「眠り」を倒す</h3>
               <p class="text-[1rem] leading-[1.8] tracking-[2px]">
                 世の中から悪しき睡魔を追い払う為には、人々の意識を変革しなければなりません。
                 不眠こそ我々があるべき姿であることに気付かせるのです。
@@ -131,7 +170,7 @@
           </div>
           <div class="w-full md:w-1/2 px-4">
             <div class="declaration-box min-h-0 mb-[1.6rem] md:min-h-[200px] md:mb-0">
-              <h3 class="my-[1.4rem] font-black text-[1.2rem]">不眠を楽しむ</h3>
+              <h3 class="my-[1.4rem] font-black text-[1.8rem] md:text-[2.2rem]">不眠を楽しむ</h3>
               <p class="text-[1rem] leading-[1.8] tracking-[2px]">
                 不眠運動の目的は単に眠らないことではありません。
                 眠らずに得た時間を有効に活用し、人生をより有意義なものとすることです。
@@ -160,7 +199,7 @@
   <section class="py-[3.6rem] md:py-[6rem] overflow-hidden bg-[#efefef] drop-shadow-[1px_1px_0_#fff]" id="guide">
     <div class="container mx-auto px-4">
       <div class="mb-[1.2rem] pb-[1.2rem] border-b-4 border-double border-[#ccc] text-center">
-        <h2 class="pb-[1rem] text-[1.6rem] md:text-[2.4rem] tracking-[2px] leading-[1.6] font-black mb-[1.6rem]">不眠の手引き</h2>
+        <h2 class="pb-[1rem] text-[2.6rem] md:text-[5rem] tracking-[2px] leading-[1.3] font-black mb-[1.6rem]">不眠の手引き</h2>
         <p class="text-[1rem] leading-[1.8] tracking-[2px]">眠らない為の情報・モノをあなたに。</p>
       </div>
       <div>
@@ -173,7 +212,7 @@
                 </a>
               </div>
               <div class="w-2/3 px-4">
-                <h3 class="mb-[0.4rem] p-0 text-[1.2rem] leading-[1.6] font-black"><span class="block font-medium text-[0.85rem]">眠気覚ましの定番</span>エナジードリンク</h3>
+                <h3 class="mb-[0.4rem] p-0 text-[1.5rem] md:text-[1.7rem] leading-[1.4] font-black"><span class="block font-medium text-[0.85rem]">眠気覚ましの定番</span>エナジードリンク</h3>
                 <p class="text-[0.75rem] leading-[1.8] tracking-[2px] mb-[1.2rem]">
                   エナジードリンクには、カフェインを始めとするを活性化させる成分が多く含まれています。<br>
                   ただし効果は個人差があるうえ、一時的なものです。
@@ -190,7 +229,7 @@
                 </a>
               </div>
               <div class="w-2/3 px-4">
-                <h3 class="mb-[0.4rem] p-0 text-[1.2rem] leading-[1.6] font-black"><span class="block font-medium text-[0.85rem]">話題の光</span>ブルーライト</h3>
+                <h3 class="mb-[0.4rem] p-0 text-[1.5rem] md:text-[1.7rem] leading-[1.4] font-black"><span class="block font-medium text-[0.85rem]">話題の光</span>ブルーライト</h3>
                 <p class="text-[0.75rem] leading-[1.8] tracking-[2px] mb-[1.2rem]">
                   パソコンやスマホのモニターから発せられるブルーライトは、眼の刺激を通して脳を活性化させます。<br>
                   眼は疲れますが頭は活動的になるのです。
@@ -207,7 +246,7 @@
                 </a>
               </div>
               <div class="w-2/3 px-4">
-                <h3 class="mb-[0.4rem] p-0 text-[1.2rem] leading-[1.6] font-black"><span class="block font-medium text-[0.85rem]">不眠兵器</span>ハリセン</h3>
+                <h3 class="mb-[0.4rem] p-0 text-[1.5rem] md:text-[1.7rem] leading-[1.4] font-black"><span class="block font-medium text-[0.85rem]">不眠兵器</span>ハリセン</h3>
                 <p class="text-[0.75rem] leading-[1.8] tracking-[2px] mb-[1.2rem]">
                   仲間が眠ってしまいそうになったらこれで阻止しましょう。<br>
                   遠慮はいりません。不眠運動は助け合いです。
@@ -224,7 +263,7 @@
                 </a>
               </div>
               <div class="w-2/3 px-4">
-                <h3 class="mb-[0.4rem] p-0 text-[1.2rem] leading-[1.6] font-black"><span class="block font-medium text-[0.85rem]">人体を覚醒させる</span>眠気覚ましのつぼ</h3>
+                <h3 class="mb-[0.4rem] p-0 text-[1.5rem] md:text-[1.7rem] leading-[1.4] font-black"><span class="block font-medium text-[0.85rem]">人体を覚醒させる</span>眠気覚ましのつぼ</h3>
                 <p class="text-[0.75rem] leading-[1.8] tracking-[2px] mb-[1.2rem]">
                   人の体には様々なつぼがあり、刺激することで眠気を撃退し爽快な気分になれるものもあります。
                   眠気覚ましのつぼは全身のあらゆるところにあります。
@@ -241,7 +280,7 @@
                 </a>
               </div>
               <div class="w-2/3 px-4">
-                <h3 class="mb-[0.4rem] p-0 text-[1.2rem] leading-[1.6] font-black"><span class="block font-medium text-[0.85rem]">自然界の不眠の師</span>眠らない動物たち</h3>
+                <h3 class="mb-[0.4rem] p-0 text-[1.5rem] md:text-[1.7rem] leading-[1.4] font-black"><span class="block font-medium text-[0.85rem]">自然界の不眠の師</span>眠らない動物たち</h3>
                 <p class="text-[0.75rem] leading-[1.8] tracking-[2px] mb-[1.2rem]">
                   自然界には極限まで眠りを押さえた生き物が沢山います。例として、イルカは脳の半分のみを睡眠に当て、もう半分で活動を続ける「半球睡眠」ができます。これは見習うべきでしょう。明日から実践して下さい。
                 </p>
@@ -257,7 +296,7 @@
                 </a>
               </div>
               <div class="w-2/3 px-4">
-                <h3 class="mb-[0.4rem] p-0 text-[1.2rem] leading-[1.6] font-black"><span class="block font-medium text-[0.85rem]">不眠の教本</span>名著『断眠 - 人は眠らないとどうなるか？』</h3>
+                <h3 class="mb-[0.4rem] p-0 text-[1.5rem] md:text-[1.7rem] leading-[1.4] font-black"><span class="block font-medium text-[0.85rem]">不眠の教本</span>名著『断眠 - 人は眠らないとどうなるか？』</h3>
                 <p class="text-[0.75rem] leading-[1.8] tracking-[2px] mb-[1.2rem]">
                   断眠によって、活動時間の拡大だけにとどまらず、さらに大きな力をもたらしてくれるというお話が書かれた本です。
                 </p>
@@ -275,7 +314,7 @@
   <div class="container mx-auto px-4">
     <div class="flex flex-wrap -mx-4">
       <div class="w-full md:w-1/4 px-4">
-        <h2 class="text-[1.2rem] mt-[1.2rem] md:mt-0 font-black mb-[1.6rem]">Contents</h2>
+        <h2 class="text-[1.6rem] md:text-[1.8rem] mt-[1.2rem] md:mt-0 font-black mb-[1.6rem]">Contents</h2>
         <ul class="links">
           <li><a href="#top" class="block p-[0.2rem] border-b border-dotted border-[#555] text-white hover:bg-primary hover:text-white transition-colors duration-200">TOP</a></li>
           <li><a href="#intro" class="block p-[0.2rem] border-b border-dotted border-[#555] text-white hover:bg-primary hover:text-white transition-colors duration-200">不眠の敵</a></li>
@@ -284,14 +323,14 @@
         </ul>
       </div>
       <div class="w-full md:w-1/4 px-4">
-        <h2 class="text-[1.2rem] mt-[1.2rem] md:mt-0 font-black mb-[1.6rem]">Links</h2>
+        <h2 class="text-[1.6rem] md:text-[1.8rem] mt-[1.2rem] md:mt-0 font-black mb-[1.6rem]">Links</h2>
         <ul class="links">
           <li><a href="https://wwbwb.com" target="_blank" class="block p-[0.2rem] border-b border-dotted border-[#555] text-white hover:bg-primary hover:text-white transition-colors duration-200">wwbw.com</a></li>
           <li><a href="https://galactus.jp" target="_blank" class="block p-[0.2rem] border-b border-dotted border-[#555] text-white hover:bg-primary hover:text-white transition-colors duration-200">GALACTUS  LLC</a></li>
         </ul>
       </div>
       <div class="w-full md:w-1/2 px-4">
-        <h2 class="text-[1.2rem] mt-[1.2rem] md:mt-0 font-black mb-[1.6rem]"><strong>不眠運動</strong>参加者を募集しています</h2>
+        <h2 class="text-[1.6rem] md:text-[1.8rem] mt-[1.2rem] md:mt-0 font-black mb-[1.6rem]"><strong>不眠運動</strong>参加者を募集しています</h2>
         <p class="text-[1rem] leading-[1.8] tracking-[2px] mb-[2.4rem]">不眠運動の参加は自由です。まず不眠を宣言し、眠らずの誓いをたててください。</p>
         <a href="#declaration" class="btn border-white mb-[1.6rem] text-white block w-full max-w-[160px] px-[0.8rem] py-[0.2rem] border-2 rounded-[8px] text-[0.85rem] text-center hover:bg-white hover:text-primary transition-colors duration-200">不眠宣言</a>
       </div>
@@ -304,8 +343,7 @@
   </div>
 </footer>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js?ver=1.11.3"></script>
-<script src="assets/js/script.min.js"></script>
+<script src="assets/js/script.js"></script>
 
 </body>
 </html>
