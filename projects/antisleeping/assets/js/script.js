@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
     sctx.fillRect(0, 0, size, size);
     return sc;
   }
-  var COLORS = ['#ffffff', '#5a8cff', '#e50044'];
+  var COLORS = ['#ffffff', '#5a8cff', '#e50044', '#ffd9a0', '#7fe8ff', '#ff3b5c', '#eaf2ff'];
   COLORS.forEach(function (c) { glowSprites[c] = makeGlowSprite(c); });
   function blitGlow(color, x, y, size, alpha) {
     ctx.save();
@@ -55,6 +55,45 @@ document.addEventListener('DOMContentLoaded', function () {
     canvas.style.height = H + 'px';
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   }
+
+  // insomniac city: windows that stay lit all night, flickering neon-bright
+  var windowLights = [];
+  for (var w = 0; w < 50; w++) {
+    var neon = Math.random() < 0.25;
+    windowLights.push({
+      x: Math.random(),
+      y: 0.38 + Math.random() * 0.42,
+      size: neon ? 30 + Math.random() * 22 : 11 + Math.random() * 8,
+      color: neon
+        ? (Math.random() < 0.5 ? '#ff3b5c' : '#7fe8ff')
+        : (Math.random() < 0.6 ? '#ffd9a0' : '#eaf2ff'),
+      base: neon ? 0.45 + Math.random() * 0.35 : 0.35 + Math.random() * 0.4,
+      flickerSpeed: 0.0015 + Math.random() * 0.004,
+      flickerPhase: Math.random() * Math.PI * 2,
+      glitchAt: 600 + Math.random() * 4000,
+      glitchT: 0,
+    });
+  }
+
+  // glaring light-streaks raking across the skyline, like glints off glass and traffic
+  var streaks = [];
+  var streakColors = ['#ffd9a0', '#7fe8ff', '#ff3b5c', '#ffffff'];
+  function spawnStreak() {
+    var dir = Math.random() < 0.5 ? 1 : -1;
+    var len = 140 + Math.random() * 260;
+    return {
+      y: 0.12 + Math.random() * 0.55,
+      len: len,
+      dir: dir,
+      speed: (0.00035 + Math.random() * 0.00045),
+      width: 1.5 + Math.random() * 2.5,
+      color: streakColors[Math.floor(Math.random() * streakColors.length)],
+      alpha: 0.35 + Math.random() * 0.4,
+      progress: dir > 0 ? -0.15 : 1.15,
+    };
+  }
+  for (var st = 0; st < 3; st++) streaks.push(spawnStreak());
+  var nextStreakAt = 400;
 
   // ambient drifting sparks (neurons firing — staying awake)
   var sparks = [];
@@ -125,6 +164,45 @@ document.addEventListener('DOMContentLoaded', function () {
     lastTime = now;
 
     ctx.clearRect(0, 0, W, H);
+
+    // insomniac windows — flicker on a slow sine plus the occasional quick glitch
+    windowLights.forEach(function (lt) {
+      lt.flickerPhase += dt * lt.flickerSpeed;
+      var flicker = lt.base + lt.base * 0.6 * ((Math.sin(lt.flickerPhase) + 1) / 2);
+      lt.glitchAt -= dt;
+      if (lt.glitchAt <= 0) {
+        lt.glitchT = 90;
+        lt.glitchAt = 2500 + Math.random() * 5000;
+      }
+      if (lt.glitchT > 0) { lt.glitchT -= dt; flicker *= 0.15; }
+      blitGlow(lt.color, lt.x * W, lt.y * H, lt.size, Math.min(1, flicker));
+    });
+
+    // glaring light streaks sweeping the skyline
+    nextStreakAt -= dt;
+    if (nextStreakAt <= 0 && streaks.length < 5) {
+      streaks.push(spawnStreak());
+      nextStreakAt = 900 + Math.random() * 1600;
+    }
+    streaks.forEach(function (s) {
+      s.progress += s.dir * s.speed * dt;
+      var cx = s.progress * W;
+      ctx.save();
+      ctx.globalCompositeOperation = 'screen';
+      ctx.globalAlpha = s.alpha;
+      var grad = ctx.createLinearGradient(cx - s.len / 2, 0, cx + s.len / 2, 0);
+      grad.addColorStop(0, 'rgba(255,255,255,0)');
+      grad.addColorStop(0.5, s.color);
+      grad.addColorStop(1, 'rgba(255,255,255,0)');
+      ctx.strokeStyle = grad;
+      ctx.lineWidth = s.width;
+      ctx.beginPath();
+      ctx.moveTo(cx - s.len / 2, s.y * H);
+      ctx.lineTo(cx + s.len / 2, s.y * H);
+      ctx.stroke();
+      ctx.restore();
+    });
+    streaks = streaks.filter(function (s) { return s.progress > -0.2 && s.progress < 1.2; });
 
     // ambient sparks
     sparks.forEach(function (p) {

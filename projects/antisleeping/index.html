@@ -29,14 +29,9 @@
             accent: '#e50044',
           },
           animation: {
-            'siren-spin': 'siren-spin 9s linear infinite',
             'alarm-pulse': 'alarm-pulse 2.6s ease-in-out infinite',
           },
           keyframes: {
-            'siren-spin': {
-              '0%': { transform: 'rotate(0deg)' },
-              '100%': { transform: 'rotate(360deg)' },
-            },
             'alarm-pulse': {
               '0%,100%': { opacity: '.25' },
               '50%': { opacity: '.75' },
@@ -47,12 +42,6 @@
     }
   </script>
   <style>
-    .siren-sweep {
-      background: conic-gradient(from 0deg,
-        transparent 0deg, rgba(229,0,68,.4) 14deg, transparent 50deg,
-        transparent 175deg, rgba(90,140,255,.28) 192deg, transparent 230deg);
-      mix-blend-mode: screen;
-    }
     .alarm-pulse-layer {
       background: radial-gradient(circle at 50% 38%, rgba(229,0,68,.45), transparent 62%);
       mix-blend-mode: screen;
@@ -71,7 +60,6 @@
 <header id="header" class="relative h-[80vh] overflow-hidden text-white text-center">
   <div class="absolute inset-0 bg-[url('assets/img/header_bg.jpg')] bg-cover bg-center opacity-50"></div>
   <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/70 to-black"></div>
-  <div class="absolute inset-0 siren-sweep animate-siren-spin"></div>
   <div class="absolute inset-0 alarm-pulse-layer animate-alarm-pulse"></div>
   <canvas id="zap-canvas" class="absolute inset-0 w-full h-full"></canvas>
 
