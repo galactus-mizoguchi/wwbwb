@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="ja" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>宵町ネオ｜今夜も、営業中。</title>
+    <meta name="description" content="閉店した純喫茶のネオン看板に宿った付喪神。役目を終えた灯りが集まる電脳の街「残光街」から、深夜だけ営業するVTuber・宵町ネオの公式サイトです。">
+    <meta name="theme-color" content="#0b0a1a">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="宵町ネオ｜今夜も、営業中。">
+    <meta property="og:description" content="閉店した純喫茶のネオン看板に宿った付喪神VTuber・宵町ネオの公式サイト。">
+    <meta property="og:url" content="https://wwbwb.com/projects/yoimachi-neo/">
+    <meta property="og:image" content="https://wwbwb.com/assets/img/projects/yoimachi-neo.png">
+    <meta property="og:site_name" content="宵町ネオ">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Monoton&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Zen+Maru+Gothic:wght@300;500;700&family=Zen+Old+Mincho:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <a class="skip-link" href="#main">本文へスキップ</a>
+
+    <!-- ヘッダー -->
+    <header class="site-header">
+        <a class="site-logo" href="#top" aria-label="宵町ネオ トップへ">
+            <span class="site-logo-mark" aria-hidden="true">N</span>
+            <span class="site-logo-text">宵町ネオ</span>
+        </a>
+        <nav class="site-nav" aria-label="ページ内メニュー">
+            <ul>
+                <li><a href="#story">Story</a></li>
+                <li><a href="#profile">Profile</a></li>
+                <li><a href="#design">Design</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#history">History</a></li>
+            </ul>
+        </nav>
+        <button class="breaker" type="button" id="breaker" aria-pressed="true" aria-label="ネオンの点灯・消灯を切り替える">
+            <span class="breaker-label">BREAKER</span>
+            <span class="breaker-switch" aria-hidden="true"><span class="breaker-knob"></span></span>
+            <span class="breaker-state" id="breaker-state">ON</span>
+        </button>
+    </header>
+
+    <main id="main">
+        <!-- ヒーロー -->
+        <section class="hero" id="top" aria-labelledby="hero-title">
+            <div class="hero-bg" aria-hidden="true">
+                <div class="hero-wall"></div>
+                <div class="hero-rain"></div>
+                <div class="hero-puddle"></div>
+            </div>
+
+            <div class="hero-inner">
+                <div class="hero-copy">
+                    <p class="hero-kicker">
+                        <span class="hero-kicker-line">純喫茶ルナ　電脳支店</span>
+                        <span class="hero-kicker-sub">ZANKOUGAI 0:00 — 5:00</span>
+                    </p>
+
+                    <h1 class="hero-title" id="hero-title">
+                        <span class="hero-title-ruby" aria-hidden="true">YOIMACHI NEO</span>
+                        <span class="neon-text" data-flicker-target>
+                            <span class="neon-char">宵</span><span class="neon-char">町</span><span class="neon-char neon-char--alt">ネ</span><span class="neon-char neon-char--alt">オ</span>
+                        </span>
+                    </h1>
+
+                    <p class="hero-catch">今夜も、<em>営業中。</em></p>
+                    <p class="hero-lead">
+                        閉店した純喫茶の、ネオン看板の付喪神。<br>
+                        役目を終えた灯りが集まる街「残光街」から、深夜だけ配信しています。
+                    </p>
+
+                    <!-- 営業時間に応じて切り替わる札 -->
+                    <div class="open-sign" id="open-sign" data-state="closed" role="status" aria-live="polite">
+                        <span class="open-sign-chain" aria-hidden="true"></span>
+                        <div class="open-sign-board">
+                            <span class="open-sign-en" id="open-sign-en">CLOSED</span>
+                            <span class="open-sign-ja" id="open-sign-ja">準備中</span>
+                        </div>
+                        <p class="open-sign-note" id="open-sign-note">現在時刻を確認しています…</p>
+                    </div>
+                </div>
+
+                <figure class="hero-figure">
+                    <!-- ネオン管で描いた立ち絵 -->
+                    <svg class="neo-figure" viewBox="0 0 420 560" role="img" aria-labelledby="neo-figure-title neo-figure-desc">
+                        <title id="neo-figure-title">宵町ネオの立ち絵（ネオンサイン）</title>
+                        <desc id="neo-figure-desc">ピンクからシアンに光るボブヘアの少女が、ウィンクしながらクリームソーダを掲げている。頭には「営業中」の札型ヘアピン、背中からは電源コードのしっぽが伸びている。</desc>
+                        <defs>
+                            <linearGradient id="hair-gradient" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0" stop-color="#ff4fa3"/>
+                                <stop offset="0.5" stop-color="#ff6fc0"/>
+                                <stop offset="1" stop-color="#43f0ff"/>
+                            </linearGradient>
+                            <!-- ネオン管の発光（外側のにじみ＋白く明るい芯） -->
+                            <filter id="neon-glow" filterUnits="userSpaceOnUse" x="-40" y="-40" width="500" height="640">
+                                <feGaussianBlur in="SourceGraphic" stdDeviation="9" result="glow-wide"/>
+                                <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="glow-near"/>
+                                <feColorMatrix in="SourceGraphic" type="matrix" values="0.4 0 0 0 0.6  0 0.4 0 0 0.6  0 0 0.4 0 0.6  0 0 0 1 0" result="tube-core"/>
+                                <feMerge>
+                                    <feMergeNode in="glow-wide"/>
+                                    <feMergeNode in="glow-near"/>
+                                    <feMergeNode in="glow-near"/>
+                                    <feMergeNode in="tube-core"/>
+                                </feMerge>
+                            </filter>
+                        </defs>
+
+                        <!-- 看板の枠 -->
+                        <g class="tube tube--frame" data-part="frame">
+                            <rect x="18" y="18" width="384" height="524" rx="36"/>
+                        </g>
+
+                        <!-- 電源コード（しっぽ） -->
+                        <g class="tube tube--cord" data-part="cord">
+                            <path d="M132 470 C 96 488, 70 470, 66 444 C 62 414, 96 404, 92 378 C 88 352, 52 350, 48 322"/>
+                            <path d="M38 322 L 58 322 L 58 304 L 38 304 Z"/>
+                            <path d="M43 304 L 43 292 M 53 304 L 53 292"/>
+                        </g>
+
+                        <!-- 体・衣装 -->
+                        <g class="tube tube--body" data-part="body">
+                            <!-- 首 -->
+                            <path d="M190 300 L 190 318 M 230 300 L 230 318"/>
+                            <!-- 肩〜腕 -->
+                            <path d="M190 318 C 158 322, 128 336, 116 372 L 104 470"/>
+                            <path d="M230 318 C 262 322, 290 334, 302 356"/>
+                            <!-- 胴 -->
+                            <path d="M128 400 C 136 440, 136 470, 132 500 L 290 500 C 284 470, 286 440, 296 400"/>
+                        </g>
+                        <g class="tube tube--collar" data-part="collar">
+                            <!-- 白襟 -->
+                            <path d="M190 318 C 196 334, 206 340, 210 340 C 214 340, 224 334, 230 318"/>
+                            <path d="M190 318 C 176 330, 176 346, 188 352 L 210 340 L 232 352 C 244 346, 244 330, 230 318"/>
+                        </g>
+                        <g class="tube tube--tie" data-part="tie">
+                            <!-- リボンタイ -->
+                            <path d="M210 342 L 190 332 L 192 356 Z M 210 342 L 230 332 L 228 356 Z"/>
+                            <path d="M206 346 L 198 376 M 214 346 L 222 376"/>
+                        </g>
+                        <g class="tube tube--apron" data-part="apron">
+                            <!-- フリルのエプロン -->
+                            <path d="M150 412 C 170 420, 250 420, 272 412"/>
+                            <path d="M154 414 L 158 480 Q 168 494, 178 482 Q 188 494, 198 482 Q 208 494, 218 482 Q 228 494, 238 482 Q 248 494, 258 482 Q 266 492, 268 480 L 270 414"/>
+                            <path d="M186 440 L 236 440 L 232 462 L 190 462 Z"/>
+                        </g>
+
+                        <!-- 顔 -->
+                        <g class="tube tube--face" data-part="face">
+                            <path d="M146 214 C 148 262, 176 298, 210 302 C 244 298, 272 262, 274 214"/>
+                            <!-- 左目（開き）-->
+                            <path d="M162 226 Q 176 212, 192 224"/>
+                            <path d="M160 222 L 154 216"/>
+                            <circle cx="178" cy="234" r="7"/>
+                            <!-- 右目（ウィンク）-->
+                            <path d="M228 230 Q 242 220, 256 230"/>
+                            <!-- 口 -->
+                            <path d="M200 266 Q 206 272, 212 266 Q 218 272, 224 266"/>
+                        </g>
+                        <g class="tube tube--blush" data-part="blush">
+                            <path d="M160 254 L 166 248 M 168 256 L 174 250"/>
+                            <path d="M246 254 L 252 248 M 254 256 L 260 250"/>
+                        </g>
+                        <g class="tube tube--eye" data-part="eye">
+                            <circle cx="178" cy="234" r="2.5"/>
+                        </g>
+
+                        <!-- 髪（ボブ） -->
+                        <g class="tube tube--hair" data-part="hair">
+                            <path d="M210 92 C 140 92, 112 146, 116 210 C 118 246, 120 270, 112 292 C 124 300, 140 296, 146 284"/>
+                            <path d="M210 92 C 280 92, 308 146, 304 210 C 302 240, 300 262, 306 280"/>
+                            <!-- 前髪 -->
+                            <path d="M140 196 C 156 182, 170 160, 176 132 C 182 160, 198 178, 214 184 C 214 162, 222 140, 236 126 C 240 158, 258 182, 282 194"/>
+                            <!-- 内側のアホ毛 -->
+                            <path d="M206 92 C 196 70, 206 52, 226 56 C 214 62, 212 76, 218 92"/>
+                        </g>
+                        <!-- 接触不良で点滅する毛先 -->
+                        <g class="tube tube--hair tube--glitch" data-part="hair-tip">
+                            <path d="M306 280 C 308 296, 296 304, 282 296"/>
+                        </g>
+
+                        <!-- 「営業中」ヘアピン -->
+                        <g class="hairpin" data-part="hairpin" transform="rotate(14 270 128)">
+                            <g class="tube tube--pin">
+                                <rect x="236" y="112" width="76" height="32" rx="6"/>
+                                <path d="M248 112 L 262 100 L 276 112"/>
+                            </g>
+                            <text class="hairpin-text" id="hairpin-text" x="274" y="135" text-anchor="middle">営業中</text>
+                        </g>
+
+                        <!-- クリームソーダ -->
+                        <g class="tube tube--glass" data-part="glass">
+                            <path d="M300 360 L 312 470 L 354 470 L 366 360"/>
+                            <path d="M318 470 L 318 488 M 348 470 L 348 488 M 306 490 L 360 490"/>
+                            <path d="M378 300 L 342 352"/>
+                        </g>
+                        <g class="tube tube--soda" data-part="soda">
+                            <path d="M304 396 L 362 396"/>
+                            <circle cx="322" cy="420" r="4"/>
+                            <circle cx="342" cy="440" r="3"/>
+                            <circle cx="330" cy="454" r="2.5"/>
+                        </g>
+                        <g class="tube tube--cream" data-part="cream">
+                            <path d="M298 362 C 296 338, 316 328, 332 334 C 350 324, 372 338, 368 362"/>
+                        </g>
+                        <g class="tube tube--cherry" data-part="cherry">
+                            <circle cx="350" cy="322" r="10"/>
+                            <path d="M352 312 C 356 296, 366 290, 374 288"/>
+                        </g>
+                        <!-- グラスを持つ手 -->
+                        <g class="tube tube--body" data-part="hand">
+                            <path d="M302 356 C 296 372, 300 386, 312 390"/>
+                        </g>
+
+                        <!-- 看板の文字 -->
+                        <g class="sign-letters" aria-hidden="true">
+                            <text class="sign-letter" x="60" y="80">喫</text>
+                            <text class="sign-letter" x="60" y="122">茶</text>
+                            <text class="sign-letter sign-letter--dead" x="60" y="164">ル</text>
+                            <text class="sign-letter" x="60" y="206">ナ</text>
+                        </g>
+                    </svg>
+                    <figcaption class="visually-hidden">宵町ネオのネオン立ち絵</figcaption>
+                </figure>
+            </div>
+
+            <a class="scroll-cue" href="#story">
+                <span>Scroll</span>
+                <span class="scroll-cue-line" aria-hidden="true"></span>
+            </a>
+        </section>
+
+        <!-- ストーリー -->
+        <section class="story" id="story" aria-labelledby="story-title">
+            <div class="section-head">
+                <p class="section-num" aria-hidden="true">01</p>
+                <h2 class="section-title" id="story-title">
+                    <span class="section-title-en">Story</span>
+                    <span class="section-title-ja">残光街のはなし</span>
+                </h2>
+            </div>
+
+            <div class="story-body">
+                <p class="story-giant" data-reveal aria-hidden="true">残光街</p>
+
+                <div class="story-chapter" data-reveal>
+                    <p class="story-year">1974 — 2024</p>
+                    <h3 class="story-heading">五十年、路地を見下ろしていた。</h3>
+                    <p>
+                        大阪・阿倍野の、細い路地。純喫茶「ルナ」の袖看板は、半世紀のあいだ毎晩そこで灯っていました。<br>
+                        終電を逃した学生。雨宿りの恋人たち。閉店まで粘る、名前も知らない常連さん。<br>
+                        看板はぜんぶ見ていました。見ているうちに、いつのまにか「誰か」になっていました。
+                    </p>
+                </div>
+
+                <div class="story-chapter story-chapter--right" data-reveal>
+                    <p class="story-year">2024</p>
+                    <h3 class="story-heading">そして、スイッチが切られた。</h3>
+                    <p>
+                        マスターの引退で、ルナは閉店。看板は取り外され、最後の夜にコンセントが抜かれました。<br>
+                        暗くなる直前、看板は思いました。「あ、まだ言うてへん。いつもありがとうって」
+                    </p>
+                </div>
+
+                <div class="story-chapter" data-reveal>
+                    <p class="story-year">2026</p>
+                    <h3 class="story-heading">灯りたちの、終着駅。</h3>
+                    <p>
+                        目を覚ますと、そこはネットワークの片隅にある街「残光街」。<br>
+                        撤去された看板、消された街灯、捨てられたブラウン管——役目を終えた灯りたちが、毎晩0時から5時までだけ、もう一度光る場所です。
+                    </p>
+                    <p>
+                        ここでは、灯りは<strong>誰かに見てもらうこと</strong>で光っていられます。<br>
+                        だから彼女は、店を開けることにしました。「純喫茶ルナ　電脳支店」。<br>
+                        今度は、ちゃんと「ありがとう」を言えるように。
+                    </p>
+                </div>
+
+                <blockquote class="story-quote" data-reveal>
+                    <p>あんたが見てくれてる間は、<br>あたし、消えへんから。</p>
+                    <cite>— 宵町ネオ</cite>
+                </blockquote>
+            </div>
+        </section>
+
+        <!-- プロフィール -->
+        <section class="profile" id="profile" aria-labelledby="profile-title">
+            <div class="section-head">
+                <p class="section-num" aria-hidden="true">02</p>
+                <h2 class="section-title" id="profile-title">
+                    <span class="section-title-en">Profile</span>
+                    <span class="section-title-ja">看板娘のプロフィール</span>
+                </h2>
+            </div>
+
+            <div class="bento">
+                <article class="bento-card bento-card--name" data-reveal>
+                    <p class="bento-label">Name</p>
+                    <p class="bento-name">宵町ネオ</p>
+                    <p class="bento-name-en">Yoimachi Neo</p>
+                    <p class="bento-text">純喫茶「ルナ」の袖看板に宿った、ネオン管の付喪神。ゆるい関西弁で、深夜の常連さんをもてなします。</p>
+                </article>
+
+                <article class="bento-card bento-card--stat" data-reveal>
+                    <p class="bento-label">点灯年数</p>
+                    <p class="bento-stat"><span class="count-up" data-count="52">52</span><small>年目</small></p>
+                    <p class="bento-text">1974年7月18日 初点灯</p>
+                </article>
+
+                <article class="bento-card bento-card--stat" data-reveal>
+                    <p class="bento-label">身長</p>
+                    <p class="bento-stat"><span class="count-up" data-count="158">158</span><small>cm</small></p>
+                    <p class="bento-text">看板時代は 180 × 45cm</p>
+                </article>
+
+                <article class="bento-card bento-card--like" data-reveal>
+                    <p class="bento-label">Like</p>
+                    <ul class="bento-tags">
+                        <li>深夜</li>
+                        <li>クリームソーダ</li>
+                        <li>雨上がりのアスファルトに映る自分</li>
+                        <li>常連の蛾</li>
+                    </ul>
+                </article>
+
+                <article class="bento-card bento-card--dislike" data-reveal>
+                    <p class="bento-label">Dislike</p>
+                    <ul class="bento-tags bento-tags--dim">
+                        <li>朝</li>
+                        <li>ブレーカー</li>
+                        <li>LED（光がまっすぐすぎる）</li>
+                    </ul>
+                </article>
+
+                <article class="bento-card bento-card--voice" data-reveal>
+                    <p class="bento-label">Greeting</p>
+                    <p class="bento-voice">「いらっしゃい、<br>今夜も営業中やで」</p>
+                    <p class="bento-text">一人称は「あたし」。語尾に「知らんけど」がつきがち。</p>
+                </article>
+
+                <article class="bento-card bento-card--skill" data-reveal>
+                    <p class="bento-label">特技</p>
+                    <p class="bento-skill">
+                        <span class="skill-word">喫茶ルナ</span>
+                        <span class="skill-arrow" aria-hidden="true">→</span>
+                        <span class="skill-word"><span class="skill-off">喫</span>茶ルナ</span>
+                    </p>
+                    <p class="bento-text">文字の一部だけを消して、別の言葉にすること。</p>
+                </article>
+
+                <article class="bento-card bento-card--fan" data-reveal>
+                    <p class="bento-label">Fan name</p>
+                    <p class="bento-fan">常連さん</p>
+                    <p class="bento-mark" aria-label="推しマーク：さくらんぼと稲妻">🍒⚡</p>
+                </article>
+
+                <article class="bento-card bento-card--weak" data-reveal>
+                    <p class="bento-label">弱点</p>
+                    <p class="bento-text bento-text--lg">興奮すると接触不良で、<span class="glitch-word">毛先がチカチカ</span>する。</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- デザイン -->
+        <section class="design" id="design" aria-labelledby="design-title">
+            <div class="section-head">
+                <p class="section-num" aria-hidden="true">03</p>
+                <h2 class="section-title" id="design-title">
+                    <span class="section-title-en">Design</span>
+                    <span class="section-title-ja">立ち絵のひみつ</span>
+                </h2>
+            </div>
+
+            <div class="design-layout">
+                <ol class="design-parts">
+                    <li class="design-part" data-reveal data-highlight="hair">
+                        <button type="button" class="design-part-button">
+                            <span class="design-part-num">01</span>
+                            <span class="design-part-name">ネオン管のボブ</span>
+                            <span class="design-part-text">ピンクからシアンへ光る二色の髪。右の毛先だけ接触不良で、ときどき点滅します。</span>
+                        </button>
+                    </li>
+                    <li class="design-part" data-reveal data-highlight="hairpin">
+                        <button type="button" class="design-part-button">
+                            <span class="design-part-num">02</span>
+                            <span class="design-part-name">「営業中」のヘアピン</span>
+                            <span class="design-part-text">お店の札がモチーフ。配信していない時間は「準備中」に裏返ります。</span>
+                        </button>
+                    </li>
+                    <li class="design-part" data-reveal data-highlight="collar">
+                        <button type="button" class="design-part-button">
+                            <span class="design-part-num">03</span>
+                            <span class="design-part-name">純喫茶の制服</span>
+                            <span class="design-part-text">白襟、リボンタイ、フリルのエプロン。二代目マスターの奥さんが着ていた制服がモデル。</span>
+                        </button>
+                    </li>
+                    <li class="design-part" data-reveal data-highlight="glass">
+                        <button type="button" class="design-part-button">
+                            <span class="design-part-num">04</span>
+                            <span class="design-part-name">クリームソーダ</span>
+                            <span class="design-part-text">ルナの看板メニュー。グラスの縁のさくらんぼは推しマークにもなっています。</span>
+                        </button>
+                    </li>
+                    <li class="design-part" data-reveal data-highlight="cord">
+                        <button type="button" class="design-part-button">
+                            <span class="design-part-num">05</span>
+                            <span class="design-part-name">電源コードのしっぽ</span>
+                            <span class="design-part-text">最後の夜に抜かれたプラグ。本人いわく「もう二度と抜かせへん」。</span>
+                        </button>
+                    </li>
+                </ol>
+
+                <div class="palette" data-reveal>
+                    <h3 class="palette-title">Color Palette</h3>
+                    <p class="palette-note">クリックでカラーコードをコピーできます。</p>
+                    <ul class="palette-list">
+                        <li><button type="button" class="swatch" data-color="#ff4fa3" style="--swatch: #ff4fa3;"><span class="swatch-chip" aria-hidden="true"></span><span class="swatch-name">ネオンピンク</span><span class="swatch-hex">#FF4FA3</span></button></li>
+                        <li><button type="button" class="swatch" data-color="#43f0ff" style="--swatch: #43f0ff;"><span class="swatch-chip" aria-hidden="true"></span><span class="swatch-name">ネオンシアン</span><span class="swatch-hex">#43F0FF</span></button></li>
+                        <li><button type="button" class="swatch" data-color="#ffc861" style="--swatch: #ffc861;"><span class="swatch-chip" aria-hidden="true"></span><span class="swatch-name">アンバー</span><span class="swatch-hex">#FFC861</span></button></li>
+                        <li><button type="button" class="swatch" data-color="#5dff9b" style="--swatch: #5dff9b;"><span class="swatch-chip" aria-hidden="true"></span><span class="swatch-name">ソーダグリーン</span><span class="swatch-hex">#5DFF9B</span></button></li>
+                        <li><button type="button" class="swatch" data-color="#ff4757" style="--swatch: #ff4757;"><span class="swatch-chip" aria-hidden="true"></span><span class="swatch-name">チェリーレッド</span><span class="swatch-hex">#FF4757</span></button></li>
+                        <li><button type="button" class="swatch" data-color="#0b0a1a" style="--swatch: #0b0a1a;"><span class="swatch-chip" aria-hidden="true"></span><span class="swatch-name">宵闇</span><span class="swatch-hex">#0B0A1A</span></button></li>
+                    </ul>
+                    <p class="toast" id="toast" role="status" aria-live="polite"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 配信メニュー -->
+        <section class="menu" id="menu" aria-labelledby="menu-title">
+            <div class="section-head">
+                <p class="section-num" aria-hidden="true">04</p>
+                <h2 class="section-title" id="menu-title">
+                    <span class="section-title-en">Menu</span>
+                    <span class="section-title-ja">本日のおしながき</span>
+                </h2>
+            </div>
+
+            <div class="menu-board" data-reveal>
+                <p class="menu-board-head">
+                    <span class="menu-board-shop">純喫茶ルナ　電脳支店</span>
+                    <span class="menu-board-hours">営業時間　毎晩 0:00 — 5:00（残光街時間）</span>
+                </p>
+
+                <ul class="menu-list">
+                    <li class="menu-item" data-day="1">
+                        <span class="menu-day">月</span>
+                        <div class="menu-detail">
+                            <h3 class="menu-name">閉店後のネオン</h3>
+                            <p class="menu-desc">深夜の雑談。お便りコーナー「常連さんの独り言」</p>
+                        </div>
+                        <span class="menu-leader" aria-hidden="true"></span>
+                        <span class="menu-time">24:30〜</span>
+                    </li>
+                    <li class="menu-item" data-day="3">
+                        <span class="menu-day">水</span>
+                        <div class="menu-detail">
+                            <h3 class="menu-name">ブラウン管ナイト</h3>
+                            <p class="menu-desc">レトロゲーム実況。たまに残光街の住人がゲスト出演</p>
+                        </div>
+                        <span class="menu-leader" aria-hidden="true"></span>
+                        <span class="menu-time">25:00〜</span>
+                    </li>
+                    <li class="menu-item" data-day="5">
+                        <span class="menu-day">金</span>
+                        <div class="menu-detail">
+                            <h3 class="menu-name">ネオン・バラッド</h3>
+                            <p class="menu-desc">歌枠。昭和歌謡とシティポップ中心のリクエスト営業</p>
+                        </div>
+                        <span class="menu-leader" aria-hidden="true"></span>
+                        <span class="menu-time">24:00〜</span>
+                    </li>
+                    <li class="menu-item menu-item--special" data-day="0">
+                        <span class="menu-day">日</span>
+                        <div class="menu-detail">
+                            <h3 class="menu-name">夜明けまで耐久<span class="menu-badge">名物</span></h3>
+                            <p class="menu-desc">苦手な朝に挑む耐久配信。だいたい4時半ごろに負ける</p>
+                        </div>
+                        <span class="menu-leader" aria-hidden="true"></span>
+                        <span class="menu-time">26:00〜</span>
+                    </li>
+                </ul>
+
+                <div class="menu-tags">
+                    <p class="menu-tags-title">ハッシュタグ</p>
+                    <ul>
+                        <li><span class="menu-tag-label">配信</span><span class="menu-tag">#ネオン営業中</span></li>
+                        <li><span class="menu-tag-label">ファンアート</span><span class="menu-tag">#ネオ画廊</span></li>
+                        <li><span class="menu-tag-label">切り抜き</span><span class="menu-tag">#ネオの切れ端</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 年表 -->
+        <section class="history" id="history" aria-labelledby="history-title">
+            <div class="section-head">
+                <p class="section-num" aria-hidden="true">05</p>
+                <h2 class="section-title" id="history-title">
+                    <span class="section-title-en">History</span>
+                    <span class="section-title-ja">点灯の記録</span>
+                </h2>
+            </div>
+
+            <ol class="timeline">
+                <li class="timeline-item" data-reveal>
+                    <p class="timeline-year">1974</p>
+                    <p class="timeline-text">阿倍野に純喫茶「ルナ」開店。袖看板として初点灯。</p>
+                </li>
+                <li class="timeline-item" data-reveal>
+                    <p class="timeline-year">1989</p>
+                    <p class="timeline-text">「茶」の字が切れ、半年ほど「喫 ルナ」と光る。本人いわく「反抗期」。</p>
+                </li>
+                <li class="timeline-item" data-reveal>
+                    <p class="timeline-year">2003</p>
+                    <p class="timeline-text">二代目マスターが就任。ネオン管を一度だけ交換（本人いわく「整形」）。</p>
+                </li>
+                <li class="timeline-item timeline-item--dark" data-reveal>
+                    <p class="timeline-year">2024</p>
+                    <p class="timeline-text">閉店。看板が取り外され、最後の夜にコンセントが抜かれる。</p>
+                </li>
+                <li class="timeline-item timeline-item--now" data-reveal>
+                    <p class="timeline-year">2026</p>
+                    <p class="timeline-text">残光街で目を覚ます。「純喫茶ルナ　電脳支店」開店、初配信。</p>
+                </li>
+            </ol>
+        </section>
+    </main>
+
+    <!-- フッター -->
+    <footer class="site-footer">
+        <p class="footer-sign">
+            <span class="footer-sign-main">本日の営業は終了しました</span>
+            <span class="footer-sign-sub">またのご来店を、お待ちしております。</span>
+        </p>
+        <p class="footer-note">※ 宵町ネオは架空のVTuberです。登場する人物・店舗・団体はすべてフィクションです。</p>
+        <p class="copyright">&copy; 2019-2026 <a href="https://wwbwb.com">wwbwb.com</a></p>
+    </footer>
+
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
