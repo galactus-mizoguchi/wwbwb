@@ -307,114 +307,434 @@ const shrinesData = [
   }
 ];
 
+// 頁を大きく見せる社（3列時 / 2列時）
+const WIDE_IDS = [1, 10, 15, 20];
+const WIDE_MD_IDS = [15];
+// 二社で一社と数える組（賀茂神社）
+const SEAT_GROUPS = [[3, 4]];
+
+const RANK_LABELS = { upper: '上', middle: '中', lower: '下' };
 const STORAGE_KEY = 'our_22_shrines_progress';
+const DATES_KEY = 'our_22_shrines_dates';
 
-function loadProgress() {
-  const stored = localStorage.getItem(STORAGE_KEY);
-  return stored ? JSON.parse(stored) : [];
-}
+const $ = (selector, scope = document) => scope.querySelector(selector);
+const $$ = (selector, scope = document) => [...scope.querySelectorAll(selector)];
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-function saveProgress(visitedIds) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(visitedIds));
-  updateStats();
-}
+/* ---------- 保存 ---------- */
+const readStore = (key, fallback) => {
+  try {
+    const stored = localStorage.getItem(key);
+    return stored ? JSON.parse(stored) : fallback;
+  } catch (error) {
+    return fallback;
+  }
+};
+const writeStore = (key, value) => {
+  try {
+    localStorage.setItem(key, JSON.stringify(value));
+  } catch (error) {
+    // 保存できない環境でも表示は続ける
+  }
+};
 
-function updateStats() {
+const loadProgress = () => readStore(STORAGE_KEY, []);
+const loadDates = () => readStore(DATES_KEY, {});
+
+/* ---------- 和暦 ---------- */
+const KANJI_DIGITS = ['〇', '一', '二', '三', '四', '五', '六', '七', '八', '九'];
+const toKanji = (n) => {
+  if (n < 10) return KANJI_DIGITS[n];
+  const tens = Math.floor(n / 10);
+  const ones = n % 10;
+  return `${tens > 1 ? KANJI_DIGITS[tens] : ''}十${ones ? KANJI_DIGITS[ones] : ''}`;
+};
+const formatWareki = (iso) => {
+  const date = new Date(iso);
+  if (Number.isNaN(date.getTime())) return '';
+  const year = date.getFullYear() - 2018;
+  if (year < 1) return `${date.getFullYear()}年${toKanji(date.getMonth() + 1)}月${toKanji(date.getDate())}日`;
+  return `令和${year === 1 ? '元' : toKanji(year)}年${toKanji(date.getMonth() + 1)}月${toKanji(date.getDate())}日`;
+};
+
+/* ---------- 集計 ---------- */
+const seats = (() => {
+  const grouped = new Set(SEAT_GROUPS.flat());
+  return [...SEAT_GROUPS, ...shrinesData.filter((s) => !grouped.has(s.id)).map((s) => [s.id])];
+})();
+
+const updateStats = (bump = false) => {
   const visited = loadProgress();
-  const countSpan = document.getElementById('visited-count');
-  const totalSpan = document.getElementById('total-count');
-  const percentSpan = document.getElementById('percent');
+  const seatCount = seats.filter((ids) => ids.every((id) => visited.includes(id))).length;
+  const percent = Math.round((seatCount / seats.length) * 100);
 
-  const total = shrinesData.length;
-  const current = visited.length;
-
-  if (countSpan) countSpan.textContent = current;
-  if (totalSpan) totalSpan.textContent = total;
-  if (percentSpan) percentSpan.textContent = Math.round((current / total) * 100);
-}
-
-function toggleVisit(id) {
-  let visited = loadProgress();
-  if (visited.includes(id)) {
-    visited = visited.filter(v => v !== id);
-  } else {
-    visited.push(id);
-  }
-  saveProgress(visited);
-  render();
-}
-
-function createCard(shrine, isVisited) {
-  const div = document.createElement('div');
-  div.className = `shrine-card ${isVisited ? 'visited' : ''}`;
-  div.onclick = (e) => {
-    // Prevent toggling when clicking the map button or website button
-    if (e.target.closest('.map-button') || e.target.closest('.website-button')) return;
-    toggleVisit(shrine.id);
-  };
-
-  let websiteButtonHtml = '';
-  if (shrine.website) {
-    websiteButtonHtml = `
-      <a href="${shrine.website}" target="_blank" class="website-button" title="公式サイト">
-        WEB
-      </a>
-    `;
-  }
-
-  div.innerHTML = `
-    <div class="shrine-crest" style="background-image: url('assets/img/crests/${shrine.crest}.png')"></div>
-    <div class="shrine-content">
-      <div class="shrine-header">
-        <span class="province-label">${shrine.province}</span>
-        <span class="classification-label">${shrine.classification}</span>
-      </div>
-      <h3 class="shrine-name">${shrine.name}</h3>
-      
-      <div class="kami-section">
-        <div class="kami-label">御祭神</div>
-        <div class="kami-name">${shrine.kami}</div>
-      </div>
-      
-      <div class="shrine-footer">
-        <div class="shrine-address">${shrine.address}</div>
-        <div class="shrine-actions">
-          ${websiteButtonHtml}
-          <a href="${shrine.mapLink}" target="_blank" class="map-button" title="Google Mapsで開く">
-            MAP
-          </a>
-        </div>
-      </div>
-    </div>
-  `;
-  return div;
-}
-
-function render() {
-  const visited = loadProgress();
-
-  const containers = {
-    upper: document.getElementById('upper-list'),
-    middle: document.getElementById('middle-list'),
-    lower: document.getElementById('lower-list')
-  };
-
-  // Clear current content
-  for (const key in containers) {
-    if (containers[key]) containers[key].innerHTML = '';
-  }
-
-  shrinesData.forEach(shrine => {
-    const isVisited = visited.includes(shrine.id);
-    const card = createCard(shrine, isVisited);
-    if (containers[shrine.rank]) {
-      containers[shrine.rank].appendChild(card);
+  const countSpan = $('#visited-count');
+  if (countSpan) {
+    countSpan.textContent = seatCount;
+    if (bump) {
+      countSpan.classList.remove('is-bump');
+      void countSpan.offsetWidth;
+      countSpan.classList.add('is-bump');
     }
+  }
+  const setText = (selector, value) => { const el = $(selector); if (el) el.textContent = value; };
+  setText('#total-count', seats.length);
+  setText('#percent', percent);
+  setText('#stamp-count', visited.length);
+  setText('#stamp-total', shrinesData.length);
+  setText('[data-seats]', seatCount);
+
+  Object.keys(RANK_LABELS).forEach((rank) => {
+    const inRank = shrinesData.filter((s) => s.rank === rank);
+    setText(`[data-rank-visited="${rank}"]`, inRank.filter((s) => visited.includes(s.id)).length);
+    setText(`[data-rank-total="${rank}"]`, inRank.length);
   });
 
+  const line = $('.bar__line i');
+  if (line) line.style.setProperty('--p', (seatCount / seats.length).toFixed(4));
+  document.body.classList.toggle('is-complete', seatCount === seats.length);
+};
+
+/* ---------- 参拝の記録 ---------- */
+const applyVisit = (id, isVisited, animate = false) => {
+  const card = $(`#shrine-${id}`);
+  const dot = $(`[data-dot="${id}"]`);
+  const shrine = shrinesData.find((s) => s.id === id);
+  if (!card || !shrine) return;
+
+  card.classList.toggle('is-visited', isVisited);
+  card.classList.toggle('is-stamping', isVisited && animate);
+  const toggle = $('.card__toggle', card);
+  toggle.setAttribute('aria-pressed', String(isVisited));
+  toggle.setAttribute('aria-label', `${shrine.name}：${isVisited ? '参拝済（押すと取り消し）' : '参拝を記す'}`);
+  $('.card__state', card).textContent = isVisited ? '参拝済' : '未参拝';
+  const iso = loadDates()[id];
+  $('.card__date', card).textContent = isVisited && iso ? formatWareki(iso) : '';
+
+  if (dot) {
+    dot.classList.toggle('is-visited', isVisited);
+    dot.classList.toggle('is-fresh', isVisited && animate);
+  }
+};
+
+const toggleVisit = (id) => {
+  let visited = loadProgress();
+  const dates = loadDates();
+  const nowVisited = !visited.includes(id);
+  if (nowVisited) {
+    visited.push(id);
+    dates[id] = new Date().toISOString();
+  } else {
+    visited = visited.filter((v) => v !== id);
+    delete dates[id];
+  }
+  writeStore(STORAGE_KEY, visited);
+  writeStore(DATES_KEY, dates);
+  applyVisit(id, nowVisited, true);
+  updateStats(true);
+};
+
+/* ---------- 描画 ---------- */
+const createCard = (shrine, index) => {
+  const card = document.createElement('article');
+  // CSS変数内のURLはスタイルシート基準で解決されるため、絶対URLにして渡す
+  const crestUrl = new URL(`assets/img/crests/${shrine.crest}.png`, document.baseURI).href;
+  const crest = `url("${crestUrl}")`;
+  card.id = `shrine-${shrine.id}`;
+  card.className = [
+    'card', 'shrine-card', 'rv',
+    WIDE_IDS.includes(shrine.id) ? 'card--wide' : '',
+    WIDE_MD_IDS.includes(shrine.id) ? 'card--wide-md' : ''
+  ].filter(Boolean).join(' ');
+  card.style.setProperty('--crest', crest);
+  card.style.setProperty('--d', `${(index % 3) * 0.09}s`);
+
+  const websiteLink = shrine.website
+    ? `<a href="${shrine.website}" target="_blank" rel="noopener" class="card__link website-button" title="公式サイト">WEB</a>`
+    : '';
+
+  card.innerHTML = `
+    <button type="button" class="card__toggle"></button>
+    <div class="card__crest shrine-crest" aria-hidden="true"></div>
+    <header class="card__head shrine-header">
+      <span class="card__no">No.${String(index + 1).padStart(2, '0')}</span>
+      <span class="card__tag card__tag--province province-label">${shrine.province}</span>
+      <span class="card__tag classification-label">${shrine.classification}</span>
+      <span class="card__state">未参拝</span>
+    </header>
+    <div class="card__body">
+      <h3 class="card__name shrine-name">${shrine.name}</h3>
+      <p class="card__date" aria-label="参拝日"></p>
+      <div class="card__info">
+        ${shrine.note ? `<p class="card__note">${shrine.note}</p>` : ''}
+        <dl class="card__kami kami-section">
+          <dt class="kami-label">御祭神</dt>
+          <dd class="kami-name">${shrine.kami}</dd>
+        </dl>
+      </div>
+    </div>
+    <div class="card__seal" aria-hidden="true"><i></i></div>
+    <footer class="card__foot shrine-footer">
+      <address class="card__address shrine-address">${shrine.address}</address>
+      <div class="card__actions shrine-actions">
+        ${websiteLink}
+        <a href="${shrine.mapLink}" target="_blank" rel="noopener" class="card__link card__link--map map-button" title="Google Mapsで開く">MAP</a>
+      </div>
+    </footer>
+  `;
+
+  $('.card__toggle', card).addEventListener('click', () => toggleVisit(shrine.id));
+  card.addEventListener('animationend', (event) => {
+    if (event.animationName === 'ring') card.classList.remove('is-stamping');
+  });
+  return card;
+};
+
+const renderTrail = () => {
+  const trail = $('#trail');
+  if (!trail) return;
+  const paired = new Set(SEAT_GROUPS.flat());
+  Object.entries(RANK_LABELS).forEach(([rank, label]) => {
+    const group = document.createElement('div');
+    group.className = 'trail__group';
+    group.innerHTML = `<span class="trail__label">${label}</span>`;
+    shrinesData.filter((s) => s.rank === rank).forEach((shrine) => {
+      const dot = document.createElement('a');
+      dot.href = `#shrine-${shrine.id}`;
+      dot.className = `trail__dot${paired.has(shrine.id) ? ' trail__dot--pair' : ''}`;
+      dot.dataset.dot = shrine.id;
+      dot.setAttribute('aria-label', shrine.name);
+      dot.innerHTML = `<span class="trail__tip">${shrine.name}</span>`;
+      group.appendChild(dot);
+    });
+    trail.appendChild(group);
+  });
+};
+
+// 国別の分布（社のデータから集計）
+const renderProvinces = () => {
+  const list = $('#provinces');
+  if (!list) return;
+  const counts = shrinesData.reduce((acc, { province }) => {
+    acc[province] = (acc[province] || 0) + 1;
+    return acc;
+  }, {});
+  const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+  const max = sorted[0][1];
+  list.innerHTML = sorted.map(([province, count], i) => `
+    <li><span>${province}</span><i style="--w:${((count / max) * 100).toFixed(1)}%; --n:${i}"></i><b>${count}</b></li>
+  `).join('');
+};
+
+const render = () => {
+  renderProvinces();
+  const visited = loadProgress();
+  const containers = {
+    upper: $('#upper-list'),
+    middle: $('#middle-list'),
+    lower: $('#lower-list')
+  };
+
+  renderTrail();
+  shrinesData.forEach((shrine, index) => {
+    const container = containers[shrine.rank];
+    if (!container) return;
+    container.appendChild(createCard(shrine, index));
+    applyVisit(shrine.id, visited.includes(shrine.id));
+  });
   updateStats();
-}
+};
+
+/* ---------- 文字分割 ---------- */
+const splitChars = (el, className) => {
+  const text = el.textContent.trim();
+  el.textContent = '';
+  [...text].forEach((char, i) => {
+    const span = document.createElement('span');
+    span.className = className;
+    span.style.setProperty('--i', i);
+    span.textContent = char;
+    el.appendChild(span);
+  });
+};
+
+const setupTypography = () => {
+  let heroIndex = 0;
+  $$('.hero__col').forEach((col) => {
+    splitChars(col, 'hch');
+    $$('.hch', col).forEach((char) => char.style.setProperty('--i', heroIndex++));
+  });
+  $$('.rank__title').forEach((title) => {
+    title.setAttribute('aria-label', title.textContent.trim());
+    splitChars(title, 'ch');
+    $$('.ch', title).forEach((char) => char.setAttribute('aria-hidden', 'true'));
+  });
+
+  // 背景を流れる社名
+  const names = shrinesData.map((s) => `<span>${s.name}</span>`);
+  const rows = $$('.about__row');
+  if (rows[0]) rows[0].innerHTML = names.slice(0, 12).join('');
+  if (rows[1]) rows[1].innerHTML = names.slice(11).join('');
+};
+
+/* ---------- リビール ---------- */
+const setupReveal = () => {
+  const targets = $$('.rv, .rank__title');
+  if (!('IntersectionObserver' in window)) {
+    targets.forEach((target) => target.classList.add('is-in'));
+    return;
+  }
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-in');
+      observer.unobserve(entry.target);
+    });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.06 });
+  targets.forEach((target) => observer.observe(target));
+};
+
+/* ---------- スクロール連動 ---------- */
+const setupScroll = () => {
+  const bar = $('#bar');
+  const hero = $('.hero');
+  const heroImg = $('.hero__photo img');
+  const ghost = $('.hero__ghost');
+  const titles = $$('.rank__title');
+  const rows = $$('.about__row');
+  const navLinks = $$('.bar__nav a');
+  const sections = navLinks.map((link) => $(link.getAttribute('href')));
+  let ticking = false;
+
+  const update = () => {
+    ticking = false;
+    const y = window.scrollY;
+    const vh = window.innerHeight;
+    const heroH = hero ? hero.offsetHeight : 0;
+
+    if (bar) bar.classList.toggle('is-solid', y > heroH - 90);
+
+    if (!reducedMotion) {
+      if (y < heroH) {
+        if (heroImg) heroImg.style.setProperty('--py', `${(y * 0.2).toFixed(1)}px`);
+        if (ghost) ghost.style.setProperty('--gy', `${(y * -0.18).toFixed(1)}px`);
+      }
+      titles.forEach((title) => {
+        const rect = title.getBoundingClientRect();
+        if (rect.bottom < -200 || rect.top > vh + 200) return;
+        const progress = (rect.top + rect.height / 2 - vh / 2) / vh;
+        title.style.setProperty('--dx', `${(progress * Number(title.dataset.drift || 1) * window.innerWidth * 0.07).toFixed(1)}px`);
+      });
+      rows.forEach((row) => {
+        const rect = row.parentNode.getBoundingClientRect();
+        if (rect.bottom < 0 || rect.top > vh) return;
+        const progress = (vh - rect.top) / (vh + rect.height);
+        row.style.setProperty('--mx', `${(progress * Number(row.dataset.row) * -window.innerWidth * 0.5).toFixed(1)}px`);
+      });
+    }
+
+    let current = -1;
+    sections.forEach((section, i) => {
+      if (section && section.getBoundingClientRect().top < vh * 0.5) current = i;
+    });
+    const about = $('#about');
+    if (about && about.getBoundingClientRect().top < vh * 0.5) current = -1;
+    navLinks.forEach((link, i) => link.classList.toggle('is-current', i === current));
+  };
+
+  window.addEventListener('scroll', () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(update);
+  }, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+};
+
+/* ---------- 木漏れ日に舞う塵 ---------- */
+const setupDust = () => {
+  const canvas = $('.hero__dust');
+  const hero = $('.hero');
+  if (!canvas || !hero || reducedMotion) return;
+  const ctx = canvas.getContext('2d');
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  let width = 0;
+  let height = 0;
+  let running = false;
+  let pointerX = 0;
+
+  const motes = Array.from({ length: 54 }, () => ({
+    x: Math.random(),
+    y: Math.random(),
+    r: 0.6 + Math.random() * 1.9,
+    vx: (Math.random() - 0.5) * 0.00012,
+    vy: -(0.00006 + Math.random() * 0.00022),
+    phase: Math.random() * Math.PI * 2,
+    depth: 0.3 + Math.random() * 0.7
+  }));
+
+  const resize = () => {
+    width = hero.clientWidth;
+    height = hero.clientHeight;
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  };
+
+  let last = performance.now();
+  const frame = (now) => {
+    if (!running) return;
+    const dt = Math.min(now - last, 50);
+    last = now;
+    ctx.clearRect(0, 0, width, height);
+    motes.forEach((mote) => {
+      mote.x += mote.vx * dt + Math.sin(now * 0.0004 + mote.phase) * 0.00004 * dt;
+      mote.y += mote.vy * dt;
+      if (mote.y < -0.05) { mote.y = 1.05; mote.x = Math.random(); }
+      if (mote.x < -0.05) mote.x = 1.05;
+      if (mote.x > 1.05) mote.x = -0.05;
+      const twinkle = 0.35 + 0.65 * Math.abs(Math.sin(now * 0.0011 + mote.phase));
+      const px = mote.x * width + pointerX * 26 * mote.depth;
+      const py = mote.y * height;
+      const radius = mote.r * mote.depth * 2.4;
+      const glow = ctx.createRadialGradient(px, py, 0, px, py, radius * 3);
+      glow.addColorStop(0, `rgba(255, 232, 178, ${(0.75 * twinkle * mote.depth).toFixed(3)})`);
+      glow.addColorStop(1, 'rgba(255, 232, 178, 0)');
+      ctx.fillStyle = glow;
+      ctx.beginPath();
+      ctx.arc(px, py, radius * 3, 0, Math.PI * 2);
+      ctx.fill();
+    });
+    requestAnimationFrame(frame);
+  };
+
+  resize();
+  window.addEventListener('resize', resize);
+  window.addEventListener('pointermove', (event) => {
+    pointerX = event.clientX / window.innerWidth - 0.5;
+  }, { passive: true });
+
+  new IntersectionObserver(([entry]) => {
+    const visible = entry.isIntersecting;
+    if (visible && !running) {
+      running = true;
+      last = performance.now();
+      requestAnimationFrame(frame);
+    }
+    running = visible;
+  }).observe(hero);
+};
 
 document.addEventListener('DOMContentLoaded', () => {
+  setupTypography();
   render();
+  setupReveal();
+  setupScroll();
+  setupDust();
+
+  // フォントが揃ってから幕を開ける
+  const open = () => document.body.classList.add('is-ready');
+  const fontsReady = document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve();
+  fontsReady.then(() => setTimeout(open, 150));
+  setTimeout(open, 1800);
 });

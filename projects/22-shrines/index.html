@@ -4,59 +4,214 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>僕らの二十二社巡り</title>
+  <meta name="description" content="千年の時を超え、今もなお深く信仰される二十二社を巡る、御朱印ドライブ物語。">
+  <meta name="theme-color" content="#0d0f0b">
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500&family=Zen+Old+Mincho:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Yuji+Syuku&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Zen+Old+Mincho:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <script>document.documentElement.classList.add('js');</script>
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-  <header>
-    <div class="header-content">
-      <div class="vertical-titles">
-        <h1>僕らの<br>二十二社巡り</h1>
-        <div class="japanese-subtitle">御朱印ドライブ物語</div>
-      </div>
-      <div class="subtitle">Our Tour of the 22 Shrines</div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- 固定バー -->
+  <div class="bar" id="bar">
+    <a class="bar__brand" href="#top"><span class="bar__mark" aria-hidden="true"></span>二十二社巡り</a>
+    <nav class="bar__nav" aria-label="社格ナビゲーション">
+      <a href="#upper">上七社</a>
+      <a href="#middle">中七社</a>
+      <a href="#lower">下八社</a>
+    </nav>
+    <p class="bar__count" aria-hidden="true"><b data-seats>0</b><i>/</i><span>22</span></p>
+    <div class="bar__line" aria-hidden="true"><i></i></div>
+  </div>
+
+  <header class="hero" id="top">
+    <div class="hero__photo" aria-hidden="true">
+      <img src="assets/img/main_visual.png" alt="" width="1024" height="1024" fetchpriority="high">
     </div>
+    <canvas class="hero__dust" aria-hidden="true"></canvas>
+    <p class="hero__ghost" aria-hidden="true">22</p>
+
+    <div class="hero__titles vertical-titles">
+      <h1 class="hero__title" aria-label="僕らの二十二社巡り">
+        <span class="hero__col" aria-hidden="true">僕らの</span>
+        <span class="hero__col hero__col--main" aria-hidden="true">二十二社巡り</span>
+      </h1>
+      <p class="hero__jp japanese-subtitle">御朱印ドライブ物語</p>
+    </div>
+
+    <p class="hero__en subtitle"><span>Our Tour of the 22 Shrines</span></p>
+
+    <a class="hero__scroll" href="#status" aria-label="巡礼の進捗へ"><span>参道へ</span><i aria-hidden="true"></i></a>
   </header>
 
   <main>
-    <div class="status-bar">
-      <div class="progress-text">巡礼の進捗</div>
-      <div>
-        <span id="visited-count" class="progress-count">0</span> / <span id="total-count">0</span> 社 
-        (<span id="percent">0</span>%)
+    <!-- 巡礼の進捗 -->
+    <section class="status" id="status" aria-label="巡礼の進捗">
+      <div class="status__panel status-bar">
+        <p class="status__label progress-text">巡礼の進捗</p>
+        <div class="status__figure">
+          <p class="status__num">
+            <span id="visited-count" class="status__visited progress-count">0</span>
+            <span class="status__slash">/</span>
+            <span id="total-count" class="status__total">22</span>
+            <span class="status__unit">社</span>
+          </p>
+          <p class="status__percent">(<span id="percent">0</span>%)</p>
+        </div>
+        <div class="status__trail">
+          <div class="trail" id="trail"></div>
+          <p class="status__note">御朱印 <b id="stamp-count">0</b> / <span id="stamp-total">23</span> ヶ所<span class="status__aside">賀茂神社は上賀茂・下鴨の二社で一社と数えます</span></p>
+        </div>
+        <div class="status__seal" aria-hidden="true"><span>満願</span></div>
       </div>
-    </div>
-
-    <section class="rank-section">
-      <h2 class="rank-title">上七社</h2>
-      <div id="upper-list" class="shrine-grid"></div>
     </section>
 
-    <section class="rank-section">
-      <h2 class="rank-title">中七社</h2>
-      <div id="middle-list" class="shrine-grid"></div>
+    <section class="rank rank-section" id="upper">
+      <header class="rank__head">
+        <p class="rank__index"><span>壱</span><i>Upper Seven</i></p>
+        <h2 class="rank__title rank-title" data-drift="-1">上七社</h2>
+        <p class="rank__count">参拝 <b data-rank-visited="upper">0</b><i>/</i><span data-rank-total="upper">0</span></p>
+      </header>
+      <div id="upper-list" class="grid shrine-grid"></div>
     </section>
 
-    <section class="rank-section">
-      <h2 class="rank-title">下八社</h2>
-      <div id="lower-list" class="shrine-grid"></div>
+    <section class="rank rank--right rank-section" id="middle">
+      <header class="rank__head">
+        <p class="rank__index"><span>弐</span><i>Middle Seven</i></p>
+        <h2 class="rank__title rank-title" data-drift="1">中七社</h2>
+        <p class="rank__count">参拝 <b data-rank-visited="middle">0</b><i>/</i><span data-rank-total="middle">0</span></p>
+      </header>
+      <div id="middle-list" class="grid shrine-grid"></div>
+    </section>
+
+    <section class="rank rank-section" id="lower">
+      <header class="rank__head">
+        <p class="rank__index"><span>参</span><i>Lower Eight</i></p>
+        <h2 class="rank__title rank-title" data-drift="-1">下八社</h2>
+        <p class="rank__count">参拝 <b data-rank-visited="lower">0</b><i>/</i><span data-rank-total="lower">0</span></p>
+      </header>
+      <div id="lower-list" class="grid shrine-grid"></div>
     </section>
   </main>
 
-  <div class="about-section">
-    <h2 class="about-title">二十二社とは</h2>
-    <p class="about-text">
-      平安時代後期、国家の重大事や天変地異の際に朝廷が特別に奉幣した有力な22の神社。<br>
-      伊勢神宮は「別格」として筆頭に置かれ、京に近い順に「上七社」「中七社」「下八社」と区分されています。<br>
-      千年の時を超え、今もなお深く信仰される聖地を巡る旅です。
-    </p>
-  </div>
+  <section class="about about-section" id="about">
+    <div class="about__names" aria-hidden="true">
+      <p class="about__row" data-row="1"></p>
+      <p class="about__row about__row--alt" data-row="-1"></p>
+    </div>
+    <div class="about__inner">
+      <div class="about__intro">
+        <h2 class="about__title about-title rv">二十二社とは</h2>
+        <p class="about__text about-text rv">
+          平安時代後期、国家の重大事や天変地異の際に朝廷が特別に奉幣した有力な22の神社。<br>
+          伊勢神宮は「別格」として筆頭に置かれ、京に近い順に「上七社」「中七社」「下八社」と区分されています。<br>
+          千年の時を超え、今もなお深く信仰される聖地を巡る旅です。
+        </p>
+      </div>
 
-  <footer>
-    &copy; Katsuki.me Lab
+      <!-- 奉幣とは -->
+      <div class="about__block about__block--split">
+        <div class="about__col rv">
+          <p class="about__kicker"><i>01</i>奉幣</p>
+          <h3 class="about__heading">都から、<br>神々へ使いが立つ。</h3>
+        </div>
+        <div class="about__col rv" style="--d:.1s">
+          <p class="about__body">
+            奉幣（ほうへい）とは、朝廷が神前に幣帛（へいはく）＝供物を捧げること。
+            日照りが続けば雨を、長雨が続けば晴れ間を、春には一年の豊作を。
+            国の大事が起こるたび、都から選ばれた社へ勅使が遣わされました。
+          </p>
+          <ul class="about__prayers">
+            <li><b>祈年穀</b><span>その年の豊作を祈る</span></li>
+            <li><b>祈雨・止雨</b><span>雨を乞い、雨を止める</span></li>
+            <li><b>国家の大事</b><span>行幸・大嘗会・外敵の来襲など</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 成立の歩み -->
+      <div class="about__block">
+        <div class="about__col rv">
+          <p class="about__kicker"><i>02</i>成立の歩み</p>
+          <h3 class="about__heading">十六社から、<br class="about__br">七十年余りをかけて二十二社へ。</h3>
+        </div>
+        <ol class="timeline">
+          <li class="timeline__item rv">
+            <p class="timeline__year"><b>966</b><span>康保三年</span></p>
+            <p class="timeline__count">十六社</p>
+            <p class="timeline__text">止雨の奉幣にあたり、十六社が定まる。伊勢・石清水・賀茂・松尾・平野・稲荷・春日に、大原野・大神・石上・大和・広瀬・龍田・住吉・丹生・貴布禰。</p>
+          </li>
+          <li class="timeline__item rv">
+            <p class="timeline__year"><b>991</b><span>正暦二年</span></p>
+            <p class="timeline__count">十九社</p>
+            <p class="timeline__text">吉田・広田・北野の三社が加わる。</p>
+          </li>
+          <li class="timeline__item rv">
+            <p class="timeline__year"><b>994</b><span>正暦五年</span></p>
+            <p class="timeline__count">二十社</p>
+            <p class="timeline__text">梅宮が加わる。</p>
+          </li>
+          <li class="timeline__item rv">
+            <p class="timeline__year"><b>995</b><span>長徳元年</span></p>
+            <p class="timeline__count">二十一社</p>
+            <p class="timeline__text">祇園（いまの八坂神社）が加わる。</p>
+          </li>
+          <li class="timeline__item timeline__item--key rv">
+            <p class="timeline__year"><b>1039</b><span>長暦三年</span></p>
+            <p class="timeline__count">二十二社</p>
+            <p class="timeline__text">後朱雀天皇の代、比叡山の守護神・日吉が加わり、二十二社がそろう。</p>
+          </li>
+          <li class="timeline__item rv">
+            <p class="timeline__year"><b>1081</b><span>永保元年</span></p>
+            <p class="timeline__count">永例</p>
+            <p class="timeline__text">白河天皇の代、二十二社が「永例」＝恒久の制度として定められる。のちに厳島を加える動きもあったが、実現しなかった。</p>
+          </li>
+          <li class="timeline__item rv">
+            <p class="timeline__year"><b>1449</b><span>宝徳元年</span></p>
+            <p class="timeline__count">中絶</p>
+            <p class="timeline__text">この年の祈年穀奉幣を最後に、朝廷からの奉幣は途絶える。</p>
+          </li>
+          <li class="timeline__item rv">
+            <p class="timeline__year"><b>1744</b><span>延享元年</span></p>
+            <p class="timeline__count">復興</p>
+            <p class="timeline__text">江戸時代、甲子の年に上七社への奉幣だけが復興する。</p>
+          </li>
+        </ol>
+      </div>
+
+      <!-- 巡る前に -->
+      <div class="about__block">
+        <div class="about__col rv">
+          <p class="about__kicker"><i>03</i>巡る前に</p>
+          <h3 class="about__heading">都を囲む、畿内の社。</h3>
+        </div>
+        <div class="about__notes">
+          <div class="note note--wide rv">
+            <h4 class="note__title">国別の分布</h4>
+            <p class="note__text">二十三ヶ所を国別に見ると、都のあった山城国と古都の大和国に集中しています。車で巡るなら、京都と奈良が旅の中心です。</p>
+            <ul class="provinces" id="provinces"></ul>
+          </div>
+          <div class="note rv" style="--d:.1s">
+            <h4 class="note__title">二十二社なのに、二十三ヶ所</h4>
+            <p class="note__text">賀茂は上賀茂（賀茂別雷神社）と下鴨（賀茂御祖神社）の二社で一社。このページの御朱印が二十三ヶ所あるのはそのためです。</p>
+          </div>
+          <div class="note rv" style="--d:.2s">
+            <h4 class="note__title">丹生川上は三社ある</h4>
+            <p class="note__text">奈良・吉野の丹生川上神社は、現在は上社・中社・下社の三社に分かれています。訪ねる前に行き先を決めておきましょう。</p>
+          </div>
+        </div>
+        <p class="about__source rv">参考：<a href="https://ja.wikipedia.org/wiki/%E4%BA%8C%E5%8D%81%E4%BA%8C%E7%A4%BE" target="_blank" rel="noopener">Wikipedia「二十二社」</a>ほか</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <a class="footer__top" href="#top">鳥居へ戻る</a>
+    <p>&copy; Katsuki.me Lab</p>
   </footer>
 
   <script src="assets/js/script.js"></script>
