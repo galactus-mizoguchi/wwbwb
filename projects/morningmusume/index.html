@@ -4,73 +4,130 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>モーニング娘。いまむかし</title>
+  <meta name="description" content="モーニング娘。の歴代メンバーを振り返る。Since 1997.">
+  <meta name="theme-color" content="#0b0a12">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Noto+Serif+JP:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <script>document.documentElement.classList.add('js');</script>
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-  <header class="header">
-    <div class="header-inner">
-      <p class="header-label">Since 1997</p>
-      <h1 class="main-title">
-        <span class="title-main">モーニング娘。</span>
-        <span class="title-sub-text">いまむかし</span>
+  <header class="header hero" id="top">
+    <div class="hero__glow" aria-hidden="true"></div>
+
+    <div class="header-inner hero__inner">
+      <p class="header-label hero__label"><span>Since 1997</span></p>
+      <h1 class="main-title hero__title">
+        <span class="title-main hero__main" aria-label="モーニング娘。">モーニング娘<i>。</i></span>
+        <span class="title-sub-text hero__sub" aria-label="いまむかし">いまむかし</span>
       </h1>
-      <p class="header-en">Morning Musume. Then and Now</p>
-      <p class="header-tagline">歴代メンバーを振り返る</p>
+      <p class="header-en hero__en">Morning Musume. Then and Now</p>
+      <p class="header-tagline hero__tagline">歴代メンバーを振り返る</p>
     </div>
+
+    <dl class="hero__stats">
+      <div><dt>メンバー</dt><dd><b data-stat="members">0</b><i>人</i></dd></div>
+      <div><dt>期</dt><dd><b data-stat="generations">0</b><i>期</i></dd></div>
+      <div><dt>いま</dt><dd><b data-stat="active">0</b><i>人</i></dd></div>
+      <div><dt>あゆみ</dt><dd><b data-stat="years">0</b><i>年</i></dd></div>
+    </dl>
+
+    <!-- 客席のペンライト -->
+    <div class="lights" id="lights" aria-label="メンバーカラーのペンライト"></div>
+    <p class="hero__hint" aria-hidden="true">ペンライトにふれると、メンバーに会えます</p>
   </header>
 
-  <nav class="filter-nav">
-    <div class="filter-inner">
-      <span class="filter-label">Generation</span>
-      <div class="filter-buttons">
-        <button class="filter-btn active" data-generation="all">All</button>
-        <button class="filter-btn" data-generation="1">01</button>
-        <button class="filter-btn" data-generation="2">02</button>
-        <button class="filter-btn" data-generation="3">03</button>
-        <button class="filter-btn" data-generation="4">04</button>
-        <button class="filter-btn" data-generation="5">05</button>
-        <button class="filter-btn" data-generation="6">06</button>
-        <button class="filter-btn" data-generation="7">07</button>
-        <button class="filter-btn" data-generation="8">08</button>
-        <button class="filter-btn" data-generation="9">09</button>
-        <button class="filter-btn" data-generation="10">10</button>
-        <button class="filter-btn" data-generation="11">11</button>
-        <button class="filter-btn" data-generation="12">12</button>
-        <button class="filter-btn" data-generation="13">13</button>
-        <button class="filter-btn" data-generation="14">14</button>
-        <button class="filter-btn" data-generation="15">15</button>
-        <button class="filter-btn" data-generation="16">16</button>
-        <button class="filter-btn" data-generation="17">17</button>
-      </div>
-    </div>
-  </nav>
-
   <main class="main-content">
-    <div class="members-count" id="membersCount"></div>
-    <div class="members-grid" id="membersGrid">
-      <!-- メンバーカードがここに動的に生成されます -->
-    </div>
+
+    <!-- 年表 -->
+    <section class="sec sec--chron" id="chronicle">
+      <div class="wrap">
+        <header class="sec-head">
+          <p class="sec-head__en">Chronicle</p>
+          <h2 class="sec-head__title">むかしから、いまへ。</h2>
+          <p class="sec-head__lead">ひとりひとりの在籍期間を、メンバーカラーの線で。</p>
+        </header>
+        <div class="chart rv" id="chart">
+          <div class="chart__scroll">
+            <div class="chart__inner" id="chartInner"></div>
+          </div>
+          <p class="chart__note">横にスクロールできます</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- メンバー -->
+    <section class="sec sec--members" id="members">
+      <div class="wrap">
+        <header class="sec-head">
+          <p class="sec-head__en">Members</p>
+          <h2 class="sec-head__title">歴代メンバー</h2>
+        </header>
+      </div>
+
+      <nav class="filter-nav filter" id="filter" aria-label="メンバーの絞り込み">
+        <div class="filter-inner filter__inner">
+          <div class="filter__status" role="group" aria-label="在籍状況">
+            <button class="status-btn is-active" type="button" data-status="all" aria-pressed="true">すべて</button>
+            <button class="status-btn" type="button" data-status="active" aria-pressed="false">いま</button>
+            <button class="status-btn" type="button" data-status="graduated" aria-pressed="false">むかし</button>
+          </div>
+          <div class="filter__gens">
+            <span class="filter-label filter__label">Generation</span>
+            <div class="filter-buttons filter__buttons" role="group" aria-label="期で絞り込む">
+              <button class="filter-btn active" type="button" data-generation="all" aria-pressed="true">All</button>
+              <button class="filter-btn" type="button" data-generation="1" aria-pressed="false">01</button>
+              <button class="filter-btn" type="button" data-generation="2" aria-pressed="false">02</button>
+              <button class="filter-btn" type="button" data-generation="3" aria-pressed="false">03</button>
+              <button class="filter-btn" type="button" data-generation="4" aria-pressed="false">04</button>
+              <button class="filter-btn" type="button" data-generation="5" aria-pressed="false">05</button>
+              <button class="filter-btn" type="button" data-generation="6" aria-pressed="false">06</button>
+              <button class="filter-btn" type="button" data-generation="7" aria-pressed="false">07</button>
+              <button class="filter-btn" type="button" data-generation="8" aria-pressed="false">08</button>
+              <button class="filter-btn" type="button" data-generation="9" aria-pressed="false">09</button>
+              <button class="filter-btn" type="button" data-generation="10" aria-pressed="false">10</button>
+              <button class="filter-btn" type="button" data-generation="11" aria-pressed="false">11</button>
+              <button class="filter-btn" type="button" data-generation="12" aria-pressed="false">12</button>
+              <button class="filter-btn" type="button" data-generation="13" aria-pressed="false">13</button>
+              <button class="filter-btn" type="button" data-generation="14" aria-pressed="false">14</button>
+              <button class="filter-btn" type="button" data-generation="15" aria-pressed="false">15</button>
+              <button class="filter-btn" type="button" data-generation="16" aria-pressed="false">16</button>
+              <button class="filter-btn" type="button" data-generation="17" aria-pressed="false">17</button>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <div class="wrap">
+        <div class="members-count" id="membersCount" aria-live="polite"></div>
+        <div class="members-grid" id="membersGrid">
+          <!-- メンバーカードがここに動的に生成されます -->
+        </div>
+      </div>
+    </section>
   </main>
 
-  <div class="modal" id="memberModal">
+  <div class="modal" id="memberModal" role="dialog" aria-modal="true" aria-label="メンバー詳細" hidden>
     <div class="modal-overlay"></div>
     <div class="modal-content">
-      <button class="modal-close" id="modalClose">
+      <button class="modal-close" id="modalClose" type="button" aria-label="閉じる">
         <span></span>
         <span></span>
       </button>
       <div class="modal-body" id="modalBody">
         <!-- モーダルコンテンツがここに動的に生成されます -->
       </div>
+      <div class="modal-nav">
+        <button type="button" id="modalPrev" class="modal-arrow" aria-label="前のメンバー"><i></i><span>むかし</span></button>
+        <button type="button" id="modalNext" class="modal-arrow modal-arrow--next" aria-label="次のメンバー"><span>いま</span><i></i></button>
+      </div>
     </div>
   </div>
 
   <footer class="footer">
     <div class="footer-inner">
-      <div class="footer-deco"></div>
+      <div class="footer-deco" id="footerDeco" aria-hidden="true"></div>
       <p class="footer-text">© 2019-2026 <a href="https://wwbwb.com">wwbwb.com</a></p>
     </div>
   </footer>
