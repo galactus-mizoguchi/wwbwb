@@ -4,329 +4,272 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>オリンポス12神ショー | The Twelve Olympians</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+    <meta name="description" content="神々が住まう山、オリンポス。世界を統べる12柱の絶対的な力と物語。">
+    <meta name="theme-color" content="#060914">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Noto+Serif+JP:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Jost:wght@400;500&family=Shippori+Mincho:wght@400;500;700&display=swap" rel="stylesheet">
+    <script>document.documentElement.classList.add('js');</script>
+    <link rel="stylesheet" href="assets/css/style.css">
   </head>
   <body>
-    <div class="marble-bg"></div>
-    <div id="particles-container"></div>
-    <div id="loading" class="loading-screen">
-      <div class="text-center">
-        <div class="loader mb-4 mx-auto"></div>
-        <h2 class="loading-title">LOADING OLYMPUS</h2>
-      </div>
+    <!-- 開幕 -->
+    <div id="loading" class="loader" aria-hidden="true">
+      <p class="loader__count" data-loader-count>I</p>
+      <p class="loader__label">LOADING OLYMPUS</p>
     </div>
-    <nav class="navbar" id="navbar">
-      <div class="container flex justify-between items-center">
-        <div class="nav-logo text-gold-gradient cursor-pointer" onclick="window.scrollTo({top:0, behavior:'smooth'})">
-          OLYMPUS XII
-        </div>
-        <div class="nav-links hidden md:flex text-slate-300">
-          <a href="#gallery" class="nav-link">GODS</a>
-          <a href="#about" class="nav-link">MYTHOS</a>
-          <a href="#timeline" class="nav-link">HISTORY</a>
-          <a href="#genealogy" class="nav-link">LINEAGE</a>
-          <a href="#oracle" class="nav-link">ORACLE</a>
-        </div>
+
+    <div class="grain" aria-hidden="true"></div>
+
+    <nav class="nav" id="navbar" aria-label="メインナビゲーション">
+      <a class="nav__logo" href="#top">OLYMPUS <span>XII</span></a>
+      <div class="nav__links" id="nav-links">
+        <a href="#gallery"><i>01</i>GODS</a>
+        <a href="#about"><i>02</i>MYTHOS</a>
+        <a href="#timeline"><i>03</i>HISTORY</a>
+        <a href="#genealogy"><i>04</i>LINEAGE</a>
+        <a href="#oracle"><i>05</i>ORACLE</a>
       </div>
+      <button class="nav__toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="メニューを開く"><span></span><span></span></button>
+      <div class="nav__progress" aria-hidden="true"><i></i></div>
     </nav>
+
     <main>
-      <header class="hero-section">
-        <div class="hero-bg">
-          <img src="https://images.unsplash.com/photo-1564399580075-5dfe19c205f3?q=80&w=2070&auto=format&fit=crop" 
-               alt="Olympus Temple" 
-               class="hero-bg-img animate-pulse-slow">
-          <div class="hero-overlay"></div>
-        </div>
-        <div class="hero-content" id="hero-content">
-          <p class="hero-subtitle">The Divine Pantheons</p>
-          <h1 class="hero-title text-gold-gradient">
-            OLYMPUS
-            <span>Twelve Gods Show</span>
+      <header class="hero" id="top">
+        <div class="hero__sky" aria-hidden="true"><img src="assets/img/body_bg.jpg" alt="" width="1600" height="1200" fetchpriority="high"></div>
+        <canvas class="hero__stars" aria-hidden="true"></canvas>
+        <div class="hero__ring" id="hero-ring" aria-hidden="true"></div>
+
+        <div class="hero__content" id="hero-content">
+          <p class="hero__sub">The Divine Pantheons</p>
+          <h1 class="hero__title" aria-label="OLYMPUS Twelve Gods Show">
+            <span class="hero__word" aria-hidden="true">OLYMPUS</span>
+            <span class="hero__show" aria-hidden="true">Twelve Gods Show</span>
           </h1>
-          <p class="hero-desc text-slate-300">
+        </div>
+
+        <div class="hero__foot">
+          <p class="hero__desc">
             神々が住まう山、オリンポス。<br>
             世界を統べる12柱の絶対的な力と物語。
           </p>
-          <a href="#gallery" class="btn-hero">
-            神々謁見
-          </a>
+          <a href="#gallery" class="btn btn--hero"><span>神々謁見</span><i aria-hidden="true"></i></a>
         </div>
       </header>
-      <section id="gallery" class="gallery-section">
-        <div class="container">
-          <div class="section-header-unified">
-            <h2 class="section-title-main">GODS</h2>
-            <span class="section-title-sub">十二神の紹介</span>
+
+      <!-- 01 GODS -->
+      <section id="gallery" class="sec sec--gods">
+        <div class="wrap">
+          <header class="sec-head">
+            <p class="sec-head__no">01</p>
+            <h2 class="sec-head__title" data-drift="-1">GODS</h2>
+            <p class="sec-head__sub">十二神の紹介</p>
+          </header>
+          <div class="gods__bar">
+            <p class="gods__lead">カードをクリックすると、神々の詳細な伝承が表示されます。</p>
+            <div class="filters" role="group" aria-label="神々を絞り込む">
+              <button class="filter is-active" type="button" data-filter="all" aria-pressed="true">ALL GODS<sup data-count="all"></sup></button>
+              <button class="filter" type="button" data-filter="Male" aria-pressed="false">GODS (MALE)<sup data-count="Male"></sup></button>
+              <button class="filter" type="button" data-filter="Female" aria-pressed="false">GODDESSES (FEMALE)<sup data-count="Female"></sup></button>
+            </div>
           </div>
-          <p class="section-desc mb-8">
-            カードをクリックすると、神々の詳細な伝承が表示されます。
-          </p>
-          <div class="filter-container">
-            <button class="filter-btn active" data-filter="all">ALL GODS</button>
-            <button class="filter-btn" data-filter="Male">GODS (MALE)</button>
-            <button class="filter-btn" data-filter="Female">GODDESSES (FEMALE)</button>
-          </div>
-          <div class="gods-grid" id="gods-grid">
+          <div class="gods" id="gods-grid"></div>
+        </div>
+      </section>
+
+      <!-- 02 MYTHOS -->
+      <section id="about" class="sec sec--mythos">
+        <div class="wrap">
+          <header class="sec-head">
+            <p class="sec-head__no">02</p>
+            <h2 class="sec-head__title" data-drift="1">MYTHOS</h2>
+            <p class="sec-head__sub">オリンポスの神々について</p>
+          </header>
+          <div class="mythos">
+            <div class="mythos__text">
+              <p class="mythos__lead rv">ギリシャ北部にそびえ立つオリンポス山。<br>その山頂には、世界を統べる神々の宮殿があると信じられていました。<br>彼らは「オリンポス十二神」と呼ばれ、主神ゼウスを中心に、<br>厳格なヒエラルキーと家族関係によって結ばれています。</p>
+              <p class="mythos__body rv">彼らは不死の存在ですが、人間と同じように感情を持ち、<br>愛し、憎み、争い、そして時には人間を助け、あるいは試練を与えます。<br>その人間臭さこそが、数千年の時を超えて人々を魅了し続ける理由なのかもしれません。</p>
+            </div>
+            <aside class="doctrine rv">
+              <p class="doctrine__mark" aria-hidden="true">Δ</p>
+              <h3 class="doctrine__title">THE DOCTRINE</h3>
+              <p class="doctrine__text">神々は自然現象や人間の営み（愛、知恵、戦争、芸術など）を司ります。<br>古代の人々は、不可解な運命や自然の脅威を神々の意志として理解し、<br>祈りと捧げ物によってその加護を得ようとしました。</p>
+            </aside>
           </div>
         </div>
       </section>
-      <section id="about" class="about-section">
-        <div class="container">
-          <div class="section-header-unified">
-            <h2 class="section-title-main">MYTHOS</h2>
-            <span class="section-title-sub">オリンポスの神々について</span>
-          </div>
-          <div class="about-content">
-            <p class="about-text">
-              ギリシャ北部にそびえ立つオリンポス山。<br>
-              その山頂には、世界を統べる神々の宮殿があると信じられていました。<br>
-              彼らは「オリンポス十二神」と呼ばれ、主神ゼウスを中心に、<br>
-              厳格なヒエラルキーと家族関係によって結ばれています。
-            </p>
-            <p class="about-text">
-              彼らは不死の存在ですが、人間と同じように感情を持ち、<br>
-              愛し、憎み、争い、そして時には人間を助け、あるいは試練を与えます。<br>
-              その人間臭さこそが、数千年の時を超えて人々を魅了し続ける理由なのかもしれません。
-            </p>
-            <div class="myth-box">
-              <h3 class="myth-title">THE DOCTRINE</h3>
-              <p class="text-slate-400 text-sm">
-                神々は自然現象や人間の営み（愛、知恵、戦争、芸術など）を司ります。<br>
-                古代の人々は、不可解な運命や自然の脅威を神々の意志として理解し、<br>
-                祈りと捧げ物によってその加護を得ようとしました。
-              </p>
-            </div>
-          </div>
+
+      <!-- 03 CHRONICLES -->
+      <section id="timeline" class="sec sec--chron">
+        <div class="wrap">
+          <header class="sec-head">
+            <p class="sec-head__no">03</p>
+            <h2 class="sec-head__title" data-drift="-1">CHRONICLES</h2>
+            <p class="sec-head__sub">神話の歴史</p>
+          </header>
+          <ol class="chron" id="chron">
+            <li class="chron__item">
+              <p class="chron__no" aria-hidden="true">I</p>
+              <div class="chron__body">
+                <p class="chron__era">THE BEGINNING</p>
+                <h3 class="chron__title">混沌（カオス）からの誕生</h3>
+                <p class="chron__desc">
+                  数千年前、世界は混沌のみが存在していました。そこから大地母神ガイアが生まれ、ウラノス（天空）などの原初の神々が誕生。世界の基礎が築かれました。
+                </p>
+              </div>
+            </li>
+            <li class="chron__item">
+              <p class="chron__no" aria-hidden="true">II</p>
+              <div class="chron__body">
+                <p class="chron__era">TITANOMACHY</p>
+                <h3 class="chron__title">巨神族との戦い</h3>
+                <p class="chron__desc">
+                  クロノス率いる巨神族（ティターン）と、ゼウス率いるオリンポスの神々との壮絶な戦い。10年に及ぶ大戦の末、ゼウスが勝利し、新たな秩序が生まれました。
+                </p>
+              </div>
+            </li>
+            <li class="chron__item">
+              <p class="chron__no" aria-hidden="true">III</p>
+              <div class="chron__body">
+                <p class="chron__era">AGE OF OLYMPUS</p>
+                <h3 class="chron__title">オリンポスの黄金時代</h3>
+                <p class="chron__desc">
+                  ゼウスを頂点とする12神が世界を統治。人類に対し、火（プロメテウス）や知恵、芸術が与えられ、文明が栄えました。神々と人間が最も近づいた時代です。
+                </p>
+              </div>
+            </li>
+            <li class="chron__item">
+              <p class="chron__no" aria-hidden="true">IV</p>
+              <div class="chron__body">
+                <p class="chron__era">HEROIC AGE</p>
+                <h3 class="chron__title">英雄たちの時代</h3>
+                <p class="chron__desc">
+                  ヘラクレスやアキレウス、オデュッセウスなど、神の血を引く英雄たちが活躍。トロイア戦争などの叙事詩が紡がれ、神話は伝説へと昇華されていきました。
+                </p>
+              </div>
+            </li>
+          </ol>
         </div>
       </section>
-      <section id="timeline" class="timeline-section">
-        <div class="container relative">
-          <div class="section-header-unified">
-            <h2 class="section-title-main">CHRONICLES</h2>
-            <span class="section-title-sub">神話の歴史</span>
-          </div>
-          <div class="timeline-line"></div>
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content">
-              <span class="timeline-year">THE BEGINNING</span>
-              <h3 class="timeline-item-title">混沌（カオス）からの誕生</h3>
-              <p class="timeline-item-desc">
-                数千年前、世界は混沌のみが存在していました。そこから大地母神ガイアが生まれ、ウラノス（天空）などの原初の神々が誕生。世界の基礎が築かれました。
-              </p>
+
+      <!-- 04 FAMILY TREE -->
+      <section id="genealogy" class="sec sec--tree">
+        <div class="wrap">
+          <header class="sec-head">
+            <p class="sec-head__no">04</p>
+            <h2 class="sec-head__title" data-drift="1">FAMILY TREE</h2>
+            <p class="sec-head__sub">神々の系譜</p>
+          </header>
+
+          <div class="tree rv">
+            <div class="tree__root">
+              <div class="node node--titan">
+                <p class="node__names"><span class="node__name">CRONUS</span><i class="node__symbol">∞</i><span class="node__name">RHEA</span></p>
+                <p class="node__role">THE TITANS</p>
+              </div>
             </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content">
-              <span class="timeline-year">TITANOMACHY</span>
-              <h3 class="timeline-item-title">巨神族との戦い</h3>
-              <p class="timeline-item-desc">
-                クロノス率いる巨神族（ティターン）と、ゼウス率いるオリンポスの神々との壮絶な戦い。10年に及ぶ大戦の末、ゼウスが勝利し、新たな秩序が生まれました。
-              </p>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content">
-              <span class="timeline-year">AGE OF OLYMPUS</span>
-              <h3 class="timeline-item-title">オリンポスの黄金時代</h3>
-              <p class="timeline-item-desc">
-                ゼウスを頂点とする12神が世界を統治。人類に対し、火（プロメテウス）や知恵、芸術が与えられ、文明が栄えました。神々と人間が最も近づいた時代です。
-              </p>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content">
-              <span class="timeline-year">HEROIC AGE</span>
-              <h3 class="timeline-item-title">英雄たちの時代</h3>
-              <p class="timeline-item-desc">
-                ヘラクレスやアキレウス、オデュッセウスなど、神の血を引く英雄たちが活躍。トロイア戦争などの叙事詩が紡がれ、神話は伝説へと昇華されていきました。
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section id="genealogy" class="genealogy-section">
-        <div class="container">
-          <div class="section-header-unified">
-            <h2 class="section-title-main">FAMILY TREE</h2>
-            <span class="section-title-sub">神々の系譜</span>
-          </div>
-          <div class="genealogy-tree">
-            <ul>
+
+            <ul class="tree__gen tree__gen--sib">
+              <li><div class="node"><span class="node__name">HESTIA</span><span class="node__role">Hearth</span></div></li>
+              <li><div class="node"><span class="node__name">HADES</span><span class="node__role">Underworld</span></div></li>
+              <li><button class="node" type="button" data-god="4"><span class="node__name">DEMETER</span><span class="node__role">Harvest</span></button></li>
+              <li><button class="node" type="button" data-god="3"><span class="node__name">POSEIDON</span><span class="node__role">Sea</span></button></li>
               <li>
-                <div class="tree-node titan">
-                  <div class="node-content">
-                    <span class="node-name">CRONUS</span>
-                    <span class="node-symbol">∞</span>
-                    <span class="node-name">RHEA</span>
-                  </div>
-                  <span class="node-role">THE TITANS</span>
+                <div class="node node--pair">
+                  <p class="node__names">
+                    <button type="button" class="node__name node__name--zeus" data-god="1">ZEUS<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 2 5 13.5h5.5L9.5 22 19 9.5h-5.5z"/></svg></button>
+                    <button type="button" class="node__name node__name--hera" data-god="2"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18h18l1-10-5.5 4L12 5l-4.5 7L2 8z"/></svg>HERA</button>
+                  </p>
+                  <p class="node__role">King &amp; Queen</p>
                 </div>
-                <ul>
-                  <li>
-                    <div class="tree-node">
-                      <span class="node-name">HESTIA</span>
-                      <span class="node-role">Hearth</span>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="tree-node">
-                      <span class="node-name">HADES</span>
-                      <span class="node-role">Underworld</span>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="tree-node">
-                      <span class="node-name">DEMETER</span>
-                      <span class="node-role">Harvest</span>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="tree-node">
-                      <span class="node-name">POSEIDON</span>
-                      <span class="node-role">Sea</span>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="tree-node double">
-                      <div class="node-content">
-                        <div class="god-pair">
-                          <span class="node-name zeus-text">ZEUS</span>
-                          <span class="pair-icon">⚡</span>
-                        </div>
-                        <div class="god-pair">
-                          <span class="pair-icon">👑</span>
-                          <span class="node-name hera-text">HERA</span>
-                        </div>
-                      </div>
-                      <span class="node-role">King & Queen</span>
-                    </div>
-                    <ul>
-                      <li>
-                        <div class="tree-node">
-                          <span class="node-name">ATHENA</span>
-                          <span class="node-role">Wisdom</span>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="tree-node">
-                          <span class="node-name">APOLLO</span>
-                          <span class="node-role">Sun</span>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="tree-node">
-                          <span class="node-name">ARTEMIS</span>
-                          <span class="node-role">Hunt</span>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="tree-node">
-                          <span class="node-name">ARES</span>
-                          <span class="node-role">War</span>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="tree-node">
-                          <span class="node-name">HEPHAESTUS</span>
-                          <span class="node-role">Fire</span>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="tree-node">
-                          <span class="node-name">HERMES</span>
-                          <span class="node-role">Speed</span>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="tree-node">
-                          <span class="node-name">DIONYSUS</span>
-                          <span class="node-role">Wine</span>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="tree-node">
-                          <span class="node-name">APHRODITE</span>
-                          <span class="node-role">Beauty</span>
-                        </div>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
               </li>
+            </ul>
+
+            <ul class="tree__gen tree__gen--kids">
+              <li><button class="node" type="button" data-god="5"><span class="node__name">ATHENA</span><span class="node__role">Wisdom</span></button></li>
+              <li><button class="node" type="button" data-god="6"><span class="node__name">APOLLO</span><span class="node__role">Sun</span></button></li>
+              <li><button class="node" type="button" data-god="7"><span class="node__name">ARTEMIS</span><span class="node__role">Hunt</span></button></li>
+              <li><button class="node" type="button" data-god="8"><span class="node__name">ARES</span><span class="node__role">War</span></button></li>
+              <li><button class="node" type="button" data-god="10"><span class="node__name">HEPHAESTUS</span><span class="node__role">Fire</span></button></li>
+              <li><button class="node" type="button" data-god="11"><span class="node__name">HERMES</span><span class="node__role">Speed</span></button></li>
+              <li><button class="node" type="button" data-god="12"><span class="node__name">DIONYSUS</span><span class="node__role">Wine</span></button></li>
+              <li><button class="node" type="button" data-god="9"><span class="node__name">APHRODITE</span><span class="node__role">Beauty</span></button></li>
             </ul>
           </div>
         </div>
       </section>
-      <section id="oracle" class="oracle-section">
-        <div class="container">
-          <div class="section-header-unified">
-            <h2 class="section-title-main">THE ORACLE</h2>
-            <span class="section-title-sub">守護神診断</span>
-          </div>
-          <div class="oracle-container">
-            <div id="oracle-start">
-              <p class="text-slate-300 mb-8">あなたの魂に共鳴するオリンポスの神を告げます。</p>
-              <button onclick="startOracle()" class="btn-oracle">
-                診断を始める
-              </button>
+
+      <!-- 05 THE ORACLE -->
+      <section id="oracle" class="sec sec--oracle">
+        <div class="oracle__halo" aria-hidden="true"></div>
+        <div class="wrap">
+          <header class="sec-head sec-head--center">
+            <p class="sec-head__no">05</p>
+            <h2 class="sec-head__title" data-drift="-1">THE ORACLE</h2>
+            <p class="sec-head__sub">守護神診断</p>
+          </header>
+
+          <div class="oracle rv">
+            <div class="oracle__panel is-active" id="oracle-start" data-panel="start">
+              <p class="oracle__intro">あなたの魂に共鳴するオリンポスの神を告げます。</p>
+              <button type="button" class="btn btn--gold" id="oracle-begin"><span>診断を始める</span><i aria-hidden="true"></i></button>
             </div>
-            <div id="oracle-quiz" class="oracle-box hidden" style="display: none;">
-              <h3 class="text-yellow-500 text-sm tracking-widest mb-4 eng-font">QUESTION <span id="q-number">1</span></h3>
-              <p id="q-text" class="question-text">質問内容</p>
-              <div id="q-options" class="options-grid">
+
+            <div class="oracle__panel" id="oracle-quiz" data-panel="quiz" hidden>
+              <div class="oracle__meta">
+                <p class="oracle__q-no">QUESTION <span id="q-number">1</span></p>
+                <div class="oracle__dots" id="q-dots" aria-hidden="true"></div>
               </div>
+              <p id="q-text" class="oracle__q">質問内容</p>
+              <div id="q-options" class="oracle__options"></div>
             </div>
-            <div id="oracle-result" class="hidden" style="display: none;">
-            </div>
+
+            <div class="oracle__panel" id="oracle-result" data-panel="result" aria-live="polite" hidden></div>
           </div>
         </div>
       </section>
     </main>
+
     <footer class="footer">
-      <div class="container">
-        <h2 class="footer-title">OLYMPUS XII</h2>
-        <p class="footer-desc">
+      <p class="footer__ghost" aria-hidden="true">OLYMPUS XII</p>
+      <div class="wrap footer__inner">
+        <h2 class="footer__title">OLYMPUS XII</h2>
+        <p class="footer__desc">
           古代ギリシャの神話に捧ぐ。<br>
           <small>すべての画像はイメージであり、Unsplashより提供されています。</small>
         </p>
-        <div class="footer-copyright">
-          &copy; 2023 Olympus Show Gallery. All Rights Reserved.
-        </div>
+        <p class="footer__copy">&copy; 2023 Olympus Show Gallery. All Rights Reserved.</p>
       </div>
     </footer>
-    <div id="modal" class="modal-wrapper">
-      <div class="absolute inset-0 modal-overlay" id="modal-overlay"></div>
-      <div id="modal-content" class="modal-content-container">
-        <button id="modal-close" class="modal-close-btn">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" style="width: 2rem; height: 2rem;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
-        <div class="modal-image-col group">
-          <img id="modal-img" src="" alt="" class="w-full h-full object-cover">
-          <div class="absolute inset-0" style="background: linear-gradient(to top, #0f172a, transparent);"></div>
+
+    <!-- 神々の詳細 -->
+    <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-jp-name" hidden>
+      <div class="modal__veil" id="modal-overlay"></div>
+      <div class="modal__box" id="modal-content">
+        <button id="modal-close" class="modal__close" type="button" aria-label="閉じる"><span></span><span></span></button>
+        <div class="modal__media">
+          <img id="modal-img" src="" alt="">
+          <p class="modal__no" id="modal-no" aria-hidden="true">I</p>
         </div>
-        <div class="modal-text-col">
-          <span id="modal-eng-name" class="modal-bg-text">ZEUS</span>
-          <h3 id="modal-jp-name" class="modal-title-main">ゼウス</h3>
-          <p id="modal-title" class="modal-title-sub">全知全能の神</p>
-          <div class="space-y-6 modal-desc-container">
-            <p id="modal-desc" class="modal-desc-text">ここに説明が入ります。</p>
-            <div class="modal-info-box">
-              <h4 class="text-yellow-500 text-sm mb-2">SYMBOLS</h4>
-              <p id="modal-symbols" class="text-sm">雷霆、鷲、オークの木、王笏</p>
-            </div>
+        <div class="modal__text">
+          <span id="modal-eng-name" class="modal__ghost" aria-hidden="true">ZEUS</span>
+          <p class="modal__eng" id="modal-eng-label">ZEUS</p>
+          <h3 id="modal-jp-name" class="modal__name">ゼウス</h3>
+          <p id="modal-title" class="modal__title">全知全能の神</p>
+          <p id="modal-desc" class="modal__desc">ここに説明が入ります。</p>
+          <div class="modal__symbols">
+            <h4>SYMBOLS</h4>
+            <ul id="modal-symbols"></ul>
+          </div>
+          <div class="modal__nav">
+            <button type="button" id="modal-prev" class="modal__arrow"><i aria-hidden="true"></i><span>PREV</span></button>
+            <p class="modal__index"><b id="modal-index">01</b> / 12</p>
+            <button type="button" id="modal-next" class="modal__arrow modal__arrow--next"><span>NEXT</span><i aria-hidden="true"></i></button>
           </div>
         </div>
       </div>
     </div>
+
     <script src="assets/js/script.js"></script>
   </body>
 </html>

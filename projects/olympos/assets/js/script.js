@@ -146,128 +146,7 @@ const godsData = [
   }
 ];
 
-// DOM Elements
-const grid = document.getElementById('gods-grid');
-const modal = document.getElementById('modal');
-const modalOverlay = document.getElementById('modal-overlay');
-const modalClose = document.getElementById('modal-close');
-
-// Modal Contents
-const mImg = document.getElementById('modal-img');
-const mJpName = document.getElementById('modal-jp-name');
-const mEngName = document.getElementById('modal-eng-name');
-const mTitle = document.getElementById('modal-title');
-const mDesc = document.getElementById('modal-desc');
-const mSymbols = document.getElementById('modal-symbols');
-
-// 初期化処理
-window.addEventListener('DOMContentLoaded', () => {
-  // ローディング画面の制御
-  setTimeout(() => {
-    const loader = document.getElementById('loading');
-    if (loader) {
-      loader.style.opacity = '0';
-      loader.style.pointerEvents = 'none';
-    }
-
-    // ヒーローコンテンツのアニメーション開始
-    const heroContent = document.getElementById('hero-content');
-    if (heroContent) {
-      heroContent.classList.add('visible');
-    }
-  }, 1500);
-
-  // フィルタリング初期化
-  const filterBtns = document.querySelectorAll('.filter-btn');
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      renderGods(btn.dataset.filter);
-    });
-  });
-
-  renderGods();
-  createParticles();
-  initTimeline();
-});
-
-// タイムラインアニメーション初期化
-function initTimeline() {
-  const items = document.querySelectorAll('.timeline-content');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.2 });
-
-  items.forEach(item => observer.observe(item));
-}
-
-// カードの生成
-function renderGods(filter = 'all') {
-  grid.innerHTML = '';
-
-  const filteredData = filter === 'all'
-    ? godsData
-    : godsData.filter(god => god.gender === filter);
-
-  filteredData.forEach((god, index) => {
-    const card = document.createElement('div');
-    card.className = 'god-card';
-    card.onclick = () => openModal(god);
-
-    // 遅延表示アニメーション用のスタイル
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(20px)';
-
-    card.innerHTML = `
-      <div class="god-image-container">
-        <img src="${god.img}" alt="${god.name}" class="god-image">
-        <div class="card-overlay"></div>
-      </div>
-      
-      <div class="card-content">
-        <p class="card-eng-name eng-font">${god.engName}</p>
-        <h3 class="card-name eng-font">${god.name}</h3>
-        <p class="card-description">${god.title}</p>
-        <div class="card-divider"></div>
-      </div>
-      
-      <div class="card-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" style="width: 1.5rem; height: 1.5rem;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-        </svg>
-      </div>
-    `;
-
-    grid.appendChild(card);
-
-    // スクロール検知によるフェードイン
-    observeElement(card, index * 100);
-  });
-}
-
-// Intersection Observerの設定
-function observeElement(element, delay) {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        setTimeout(() => {
-          element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-          element.style.opacity = '1';
-          element.style.transform = 'translateY(0)';
-        }, delay);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  observer.observe(element);
-}
-
-/* Oracle Logic */
+/* Oracle Data */
 const oracleQuestions = [
   {
     text: "あなたが最も大切にしているものは？",
@@ -306,134 +185,467 @@ const godTypes = {
   "Nature": [4, 7, 10] // Demeter, Artemis, Hephaestus
 };
 
+const ROMAN = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII'];
+const $ = (selector, scope = document) => scope.querySelector(selector);
+const $$ = (selector, scope = document) => [...scope.querySelectorAll(selector)];
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+
+/* ---------- 開幕 ---------- */
+const setupLoader = () => {
+  const counter = $('[data-loader-count]');
+  const open = () => document.body.classList.add('is-ready');
+  if (reducedMotion || !counter) {
+    open();
+    return;
+  }
+  let step = 0;
+  const timer = setInterval(() => {
+    step += 1;
+    counter.textContent = ROMAN[Math.min(step, ROMAN.length - 1)];
+    if (step >= ROMAN.length - 1) {
+      clearInterval(timer);
+      setTimeout(open, 320);
+    }
+  }, 85);
+  // 念のための保険
+  setTimeout(open, 3200);
+};
+
+/* ---------- 文字分割 ---------- */
+const splitChars = (el, className) => {
+  const text = el.textContent.trim();
+  el.textContent = '';
+  [...text].forEach((char, i) => {
+    if (char === ' ') {
+      el.appendChild(document.createTextNode(' '));
+      return;
+    }
+    const span = document.createElement('span');
+    span.className = className;
+    span.style.setProperty('--i', i);
+    span.textContent = char;
+    el.appendChild(span);
+  });
+};
+
+const setupTypography = () => {
+  $$('.hero__word').forEach((word) => splitChars(word, 'hch'));
+  $$('.sec-head__title').forEach((title) => {
+    title.setAttribute('aria-label', title.textContent.trim());
+    splitChars(title, 'ch');
+    $$('.ch', title).forEach((char) => char.setAttribute('aria-hidden', 'true'));
+  });
+};
+
+/* ---------- 十二神の円環 ---------- */
+const buildRing = () => {
+  const ring = $('#hero-ring');
+  if (!ring) return;
+  const marks = godsData.map((god, i) => `
+    <g transform="rotate(${i * 30} 500 500)">
+      <line x1="500" y1="92" x2="500" y2="116"/>
+      <text class="ring__num" x="500" y="74" text-anchor="middle">${ROMAN[i]}</text>
+      <text class="ring__name" x="500" y="152" text-anchor="middle">${god.engName}</text>
+    </g>`).join('');
+  ring.innerHTML = `
+    <svg viewBox="0 0 1000 1000">
+      <circle class="ring__faint" cx="500" cy="500" r="470"/>
+      <circle cx="500" cy="500" r="408"/>
+      <circle class="ring__dash" cx="500" cy="500" r="330"/>
+      ${marks}
+    </svg>`;
+};
+
+/* ---------- 星空 ---------- */
+const setupStars = () => {
+  const canvas = $('.hero__stars');
+  const hero = $('.hero');
+  if (!canvas || !hero || reducedMotion) return;
+  const ctx = canvas.getContext('2d');
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  let width = 0;
+  let height = 0;
+  let running = false;
+  let meteor = null;
+  let nextMeteor = performance.now() + 3500;
+
+  const stars = Array.from({ length: 170 }, () => ({
+    x: Math.random(),
+    y: Math.random(),
+    r: 0.3 + Math.random() * 1.2,
+    phase: Math.random() * Math.PI * 2,
+    speed: 0.0006 + Math.random() * 0.0016,
+    gold: Math.random() < 0.3
+  }));
+
+  const resize = () => {
+    width = hero.clientWidth;
+    height = hero.clientHeight;
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  };
+
+  const frame = (now) => {
+    if (!running) return;
+    ctx.clearRect(0, 0, width, height);
+    stars.forEach((star) => {
+      const alpha = 0.15 + 0.85 * Math.abs(Math.sin(now * star.speed + star.phase));
+      ctx.fillStyle = star.gold ? `rgba(244, 225, 174, ${alpha.toFixed(3)})` : `rgba(238, 236, 255, ${(alpha * 0.8).toFixed(3)})`;
+      ctx.beginPath();
+      ctx.arc(star.x * width, star.y * height, star.r, 0, Math.PI * 2);
+      ctx.fill();
+    });
+
+    // 流れ星
+    if (!meteor && now > nextMeteor) {
+      meteor = { x: Math.random() * width * 0.8 + width * 0.2, y: Math.random() * height * 0.35, born: now };
+    }
+    if (meteor) {
+      const t = (now - meteor.born) / 900;
+      if (t >= 1) {
+        meteor = null;
+        nextMeteor = now + 4000 + Math.random() * 6000;
+      } else {
+        const headX = meteor.x - t * 360;
+        const headY = meteor.y + t * 170;
+        const tail = ctx.createLinearGradient(headX, headY, headX + 150, headY - 70);
+        tail.addColorStop(0, `rgba(244, 225, 174, ${(1 - t).toFixed(3)})`);
+        tail.addColorStop(1, 'rgba(244, 225, 174, 0)');
+        ctx.strokeStyle = tail;
+        ctx.lineWidth = 1.2;
+        ctx.beginPath();
+        ctx.moveTo(headX, headY);
+        ctx.lineTo(headX + 150, headY - 70);
+        ctx.stroke();
+      }
+    }
+    requestAnimationFrame(frame);
+  };
+
+  resize();
+  window.addEventListener('resize', resize);
+  new IntersectionObserver(([entry]) => {
+    const visible = entry.isIntersecting;
+    if (visible && !running) {
+      running = true;
+      requestAnimationFrame(frame);
+    }
+    running = visible;
+  }).observe(hero);
+};
+
+/* ---------- リビール ---------- */
+const revealObserver = 'IntersectionObserver' in window
+  ? new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-in');
+      revealObserver.unobserve(entry.target);
+    });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 })
+  : null;
+
+const reveal = (el) => {
+  if (revealObserver) revealObserver.observe(el);
+  else el.classList.add('is-in');
+};
+
+/* ---------- 神々のカード ---------- */
+const grid = $('#gods-grid');
+
+const renderGods = (filter = 'all') => {
+  if (!grid) return;
+  grid.innerHTML = '';
+  const filtered = filter === 'all' ? godsData : godsData.filter((god) => god.gender === filter);
+
+  filtered.forEach((god, index) => {
+    const card = document.createElement('button');
+    card.type = 'button';
+    card.className = 'god god-card';
+    card.style.setProperty('--d', `${(index % 4) * 0.08}s`);
+    card.setAttribute('aria-label', `${god.name}（${god.engName}）の伝承を開く`);
+    card.innerHTML = `
+      <span class="god__img"><img src="${god.img}" alt="" loading="lazy"></span>
+      <span class="god__no">${ROMAN[god.id - 1]}</span>
+      <span class="god__cat">${god.category}</span>
+      <span class="god__meta">
+        <span class="god__eng">${god.engName}</span>
+        <span class="god__jp">${god.name}</span>
+        <span class="god__title">${god.title}</span>
+        <span class="god__more">VIEW</span>
+      </span>
+    `;
+    card.addEventListener('click', () => openModal(god.id, card));
+    grid.appendChild(card);
+    reveal(card);
+  });
+};
+
+const setupFilters = () => {
+  const buttons = $$('.filter');
+  buttons.forEach((button) => {
+    const key = button.dataset.filter;
+    const count = key === 'all' ? godsData.length : godsData.filter((god) => god.gender === key).length;
+    const badge = $('sup', button);
+    if (badge) badge.textContent = count;
+    button.addEventListener('click', () => {
+      buttons.forEach((other) => {
+        const active = other === button;
+        other.classList.toggle('is-active', active);
+        other.setAttribute('aria-pressed', String(active));
+      });
+      renderGods(key);
+    });
+  });
+};
+
+/* ---------- 神々の詳細（モーダル） ---------- */
+const modal = $('#modal');
+let modalIndex = 0;
+let modalTrigger = null;
+let modalTimer = 0;
+
+const fillModal = (index) => {
+  const god = godsData[index];
+  modalIndex = index;
+  const img = $('#modal-img');
+  img.src = god.img;
+  img.alt = god.name;
+  $('#modal-no').textContent = ROMAN[index];
+  $('#modal-eng-name').textContent = god.engName;
+  $('#modal-eng-label').textContent = god.engName;
+  $('#modal-jp-name').textContent = god.name;
+  $('#modal-title').textContent = god.title;
+  $('#modal-desc').textContent = god.desc;
+  $('#modal-symbols').innerHTML = god.symbols.split('、').map((symbol) => `<li>${symbol}</li>`).join('');
+  $('#modal-index').textContent = String(index + 1).padStart(2, '0');
+
+  modal.classList.remove('is-swapping');
+  void modal.offsetWidth;
+  modal.classList.add('is-swapping');
+  const text = $('.modal__text', modal);
+  if (text) text.scrollTop = 0;
+};
+
+const openModal = (godId, trigger = null) => {
+  const index = godsData.findIndex((god) => god.id === Number(godId));
+  if (index < 0 || !modal) return;
+  clearTimeout(modalTimer);
+  modalTrigger = trigger;
+  modal.hidden = false;
+  fillModal(index);
+  document.body.classList.add('is-locked');
+  requestAnimationFrame(() => {
+    modal.classList.add('is-active');
+    $('#modal-close').focus({ preventScroll: true });
+  });
+};
+
+const closeModal = () => {
+  if (!modal || modal.hidden) return;
+  modal.classList.remove('is-active');
+  document.body.classList.remove('is-locked');
+  modalTimer = setTimeout(() => {
+    modal.hidden = true;
+    $('#modal-img').src = '';
+  }, 520);
+  if (modalTrigger && document.contains(modalTrigger)) modalTrigger.focus({ preventScroll: true });
+};
+
+const stepModal = (direction) => {
+  fillModal((modalIndex + direction + godsData.length) % godsData.length);
+};
+
+const setupModal = () => {
+  if (!modal) return;
+  $('#modal-close').addEventListener('click', closeModal);
+  $('#modal-overlay').addEventListener('click', closeModal);
+  $('#modal-prev').addEventListener('click', () => stepModal(-1));
+  $('#modal-next').addEventListener('click', () => stepModal(1));
+  document.addEventListener('keydown', (event) => {
+    if (modal.hidden) return;
+    if (event.key === 'Escape') closeModal();
+    if (event.key === 'ArrowLeft') stepModal(-1);
+    if (event.key === 'ArrowRight') stepModal(1);
+  });
+  // 系譜から神々の詳細へ
+  $$('[data-god]').forEach((node) => {
+    node.addEventListener('click', () => openModal(node.dataset.god, node));
+  });
+};
+
+/* ---------- 神託 ---------- */
 let currentQIndex = 0;
 let scores = { "Leader": 0, "Wisdom": 0, "Passion": 0, "Nature": 0 };
 
-function startOracle() {
-  document.getElementById('oracle-start').style.display = 'none';
-  document.getElementById('oracle-quiz').style.display = 'block';
+const showPanel = (name) => {
+  $$('.oracle__panel').forEach((panel) => {
+    const active = panel.dataset.panel === name;
+    panel.hidden = !active;
+    panel.classList.toggle('is-active', active);
+  });
+};
+
+const showQuestion = () => {
+  const question = oracleQuestions[currentQIndex];
+  $('#q-number').textContent = currentQIndex + 1;
+  $('#q-text').textContent = question.text;
+  $('#q-dots').innerHTML = oracleQuestions
+    .map((_, i) => `<i class="${i <= currentQIndex ? 'is-done' : ''}"></i>`)
+    .join('');
+
+  const options = $('#q-options');
+  options.innerHTML = '';
+  question.options.forEach((option, i) => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'option option-btn';
+    button.style.setProperty('--i', i);
+    button.innerHTML = `<i>${'ABCD'[i]}</i><span>${option.text}</span>`;
+    button.addEventListener('click', () => handleAnswer(option.type));
+    options.appendChild(button);
+  });
+
+  // 設問が変わるたびにパネルを再生する
+  const panel = $('#oracle-quiz');
+  panel.classList.remove('is-active');
+  void panel.offsetWidth;
+  panel.classList.add('is-active');
+};
+
+const startOracle = () => {
   currentQIndex = 0;
   scores = { "Leader": 0, "Wisdom": 0, "Passion": 0, "Nature": 0 };
+  showPanel('quiz');
   showQuestion();
-}
+};
 
-function showQuestion() {
-  const q = oracleQuestions[currentQIndex];
-  document.getElementById('q-number').textContent = currentQIndex + 1;
-  document.getElementById('q-text').textContent = q.text;
+const handleAnswer = (type) => {
+  scores[type] += 1;
+  currentQIndex += 1;
+  if (currentQIndex < oracleQuestions.length) showQuestion();
+  else showResult();
+};
 
-  const optionsDiv = document.getElementById('q-options');
-  optionsDiv.innerHTML = '';
-
-  q.options.forEach(opt => {
-    const btn = document.createElement('button');
-    btn.className = 'option-btn';
-    btn.textContent = opt.text;
-    btn.onclick = () => handleAnswer(opt.type);
-    optionsDiv.appendChild(btn);
-  });
-}
-
-function handleAnswer(type) {
-  scores[type]++;
-  currentQIndex++;
-
-  if (currentQIndex < oracleQuestions.length) {
-    showQuestion();
-  } else {
-    showResult();
-  }
-}
-
-function showResult() {
-  document.getElementById('oracle-quiz').style.display = 'none';
-
-  // Find max score
-  let maxType = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
-
-  // Get random god from type
+const showResult = () => {
+  // 最も得点の高いタイプから、守護神を一柱選ぶ
+  const maxType = Object.keys(scores).reduce((a, b) => (scores[a] > scores[b] ? a : b));
   const candidates = godTypes[maxType];
   const godId = candidates[Math.floor(Math.random() * candidates.length)];
-  const god = godsData.find(g => g.id === godId);
+  const god = godsData.find((item) => item.id === godId);
 
-  const resultDiv = document.getElementById('oracle-result');
-  resultDiv.style.display = 'block';
-  resultDiv.innerHTML = `
-    <div class="text-center oracle-result">
-      <p class="oracle-result-title">YOUR GUARDIAN GOD</p>
-      <h3 class="oracle-result-name">${god.name}</h3>
-      <div class="oracle-avatar">
-        <img src="${god.img}" class="w-full h-full object-cover">
-      </div>
-      <p class="oracle-result-desc">${god.title}</p>
-      <button onclick="location.reload()" class="text-sm text-slate-500 hover:text-white transition-colors">
-        最初に戻る
-      </button>
+  const result = $('#oracle-result');
+  result.innerHTML = `
+    <p class="oracle__label oracle-result-title">YOUR GUARDIAN GOD</p>
+    <div class="oracle__avatar oracle-avatar"><img src="${god.img}" alt="${god.name}"></div>
+    <p class="oracle__eng">${god.engName}</p>
+    <h3 class="oracle__name oracle-result-name">${god.name}</h3>
+    <p class="oracle__title oracle-result-desc">${god.title}</p>
+    <div class="oracle__actions">
+      <button type="button" class="btn" data-oracle-detail><span>伝承を見る</span><i aria-hidden="true"></i></button>
+      <button type="button" class="btn btn--ghost" data-oracle-reset><span>最初に戻る</span></button>
     </div>
   `;
-}
+  $('[data-oracle-detail]', result).addEventListener('click', (event) => openModal(god.id, event.currentTarget));
+  $('[data-oracle-reset]', result).addEventListener('click', () => showPanel('start'));
+  showPanel('result');
+};
 
-// モーダルを開く
-function openModal(god) {
-  mImg.src = god.img;
-  mJpName.textContent = god.name;
-  mEngName.textContent = god.engName;
-  mTitle.textContent = god.title;
-  mDesc.textContent = god.desc;
-  mSymbols.textContent = god.symbols;
+const setupOracle = () => {
+  const begin = $('#oracle-begin');
+  if (begin) begin.addEventListener('click', startOracle);
+};
 
-  modal.classList.add('active');
-  modal.querySelector('#modal-content').style.transform = 'scale(1)';
-  document.body.style.overflow = 'hidden';
-}
+/* ---------- ナビゲーション ---------- */
+const setupNav = () => {
+  const nav = $('#navbar');
+  const toggle = $('#nav-toggle');
+  if (!nav || !toggle) return;
+  const setOpen = (open) => {
+    nav.classList.toggle('is-open', open);
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
+    document.body.classList.toggle('is-locked', open);
+  };
+  toggle.addEventListener('click', () => setOpen(!nav.classList.contains('is-open')));
+  $$('.nav__links a', nav).forEach((link) => link.addEventListener('click', () => setOpen(false)));
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && nav.classList.contains('is-open')) setOpen(false);
+  });
+};
 
-// モーダルを閉じる
-function closeModal() {
-  modal.classList.remove('active');
-  modal.querySelector('#modal-content').style.transform = 'scale(0.95)';
-  setTimeout(() => {
-    mImg.src = '';
-    document.body.style.overflow = 'auto';
-  }, 300);
-}
+/* ---------- スクロール連動 ---------- */
+const setupScroll = () => {
+  const nav = $('#navbar');
+  const progress = $('.nav__progress i');
+  const hero = $('.hero');
+  const sky = $('.hero__sky img');
+  const content = $('.hero__content');
+  const ring = $('#hero-ring');
+  const titles = $$('.sec-head__title');
+  const chron = $('#chron');
+  const links = $$('.nav__links a');
+  const sections = links.map((link) => $(link.getAttribute('href')));
+  let ticking = false;
 
-modalClose.onclick = closeModal;
-modalOverlay.onclick = closeModal;
+  const update = () => {
+    ticking = false;
+    const y = window.scrollY;
+    const vh = window.innerHeight;
+    const max = document.documentElement.scrollHeight - vh;
 
-// Escキーで閉じる
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') closeModal();
+    if (nav) nav.classList.toggle('is-scrolled', y > 40);
+    if (progress) progress.style.setProperty('--p', max > 0 ? (y / max).toFixed(4) : 0);
+
+    if (!reducedMotion) {
+      if (hero && y < hero.offsetHeight) {
+        if (sky) sky.style.setProperty('--py', `${(y * 0.22).toFixed(1)}px`);
+        if (content) content.style.setProperty('--cy', `${(y * -0.16).toFixed(1)}px`);
+        if (ring) ring.style.setProperty('--rs', (1 + y / hero.offsetHeight * 0.35).toFixed(3));
+      }
+      titles.forEach((title) => {
+        const rect = title.getBoundingClientRect();
+        if (rect.bottom < -200 || rect.top > vh + 200) return;
+        // 画面中央で定位置に収まり、離れるほど右へ流れる（左端で欠けないように）
+        const offset = Math.abs(rect.top + rect.height / 2 - vh / 2) / vh;
+        title.style.setProperty('--dx', `${(offset * window.innerWidth * 0.09).toFixed(1)}px`);
+      });
+    }
+
+    if (chron) {
+      const rect = chron.getBoundingClientRect();
+      chron.style.setProperty('--cp', clamp((vh * 0.62 - rect.top) / rect.height, 0, 1).toFixed(4));
+    }
+
+    let current = -1;
+    sections.forEach((section, i) => {
+      if (section && section.getBoundingClientRect().top < vh * 0.5) current = i;
+    });
+    links.forEach((link, i) => link.classList.toggle('is-current', i === current));
+  };
+
+  window.addEventListener('scroll', () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(update);
+  }, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+};
+
+/* ---------- 初期化 ---------- */
+window.addEventListener('DOMContentLoaded', () => {
+  setupTypography();
+  buildRing();
+  setupFilters();
+  renderGods();
+  setupModal();
+  setupOracle();
+  setupNav();
+  $$('.rv, .sec-head__title, .chron__item').forEach(reveal);
+  setupScroll();
+  setupStars();
+  setupLoader();
 });
-
-// ナビゲーションバーの背景制御
-window.addEventListener('scroll', () => {
-  const nav = document.getElementById('navbar');
-  if (window.scrollY > 50) {
-    nav.classList.add('scrolled');
-  } else {
-    nav.classList.remove('scrolled');
-  }
-});
-
-// パーティクル生成
-function createParticles() {
-  const container = document.getElementById('particles-container');
-  const particleCount = 20;
-
-  for (let i = 0; i < particleCount; i++) {
-    const p = document.createElement('div');
-    p.classList.add('particle');
-
-    // ランダムな位置とサイズ
-    const size = Math.random() * 3 + 1;
-    p.style.width = `${size}px`;
-    p.style.height = `${size}px`;
-    p.style.left = `${Math.random() * 100}vw`;
-
-    // ランダムなアニメーション遅延と時間
-    p.style.animationDuration = `${Math.random() * 10 + 10}s`;
-    p.style.animationDelay = `${Math.random() * 5}s`;
-
-    container.appendChild(p);
-  }
-}
